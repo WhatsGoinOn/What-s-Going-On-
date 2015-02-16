@@ -33,34 +33,62 @@
  	    	</ul>
 	  	</nav>
 	  
-	  	<section>
-	  		<h1>Search for Event:</h1>
-	  		<div>
-	  			<label for="eventName">Find event by name:</label>  
-		  			<input type="text" id="eventName" placeholder="Event Name"/>
+	  	<section>	  		
+	  		<form id="searchForm" name="searchForm" method="" action="" onsubmit="">		
+			
+			<fieldset>
+				<legend>Search for Event:</legend>
+				<div>
+					<label for="eventName">Name:</label>  
+		  				<input type="text" id="eventName"/>
 		  			<input type="button" value="GO" onclick=""/><br>
-		  		<label for="zipCode">Find events by zip code:</label>  
-		  			<input type="text" id="zipCode" placeholder="Zip Code"/><br>	  			
-		  		<label for="city">Find events by city:</label>  
-		  			<input type="text" id="city" placeholder="City"/><br>
-		  		<label for="state">Find events by state:</label>  
-		  			<input type="text" id="state" placeholder="State"/><br>
-		  		<label for="type">Type of Event:</label>
-		  			<select name="type" id="type">
-						<option value=""></option>
-						<option value="Music">Music</option>/option>
-						<option value="Sports">Sports</option>
-						<option value="Annual">Annual</option>
-						<option value="Party">Party</option>
-						<option value="Kids">Kids</option>
-						<option value="School">School</option>
-						<option value="Public">Public</option>
-						<option value="Community">Community</option>
-						<option value="Private">Private</option>
-					</select>
-						<input type="button" value="SEARCH" onclick=""/><br>
-	  		</div>
-	  		
+			  		<label for="zipCode">Zip Code:</label>  
+			  			<input type="text" id="zipCode"/><br>	  			
+			  		<label for="city">City:</label>  
+			  			<input type="text" id="city"/><br>
+			  		<label for="state">State:</label>  
+			  			<input type="text" id="state"/><br>
+			  		<label for="music">Music:</label>
+			  			<input type="checkbox" id="music"/>
+			  		<label for="sports">Sports:</label>
+			  			<input type="checkbox" id="sports"/>
+			  		<label for="annual">Annual:</label>
+			  			<input type="checkbox" id="annual"/>
+			  		<label for="party">Party:</label>
+			  			<input type="checkbox" id="party"/>
+			  		<label for="kids">Kids:</label>
+			  			<input type="checkbox" id="kids"/>
+			  		<label for="school">School:</label>
+			  			<input type="checkbox" id="school"/>
+			  		<label for="public">Public:</label>
+			  			<input type="checkbox" id="public"/>
+			  		<label for="community">Community:</label>
+			  			<input type="checkbox" id="community"/>
+			  		<label for="private">Private:</label>
+			  			<input type="checkbox" id="private"/>			  			
+					<!--Insert the Calendar here -->
+		  			<h1>CALENDAR HERE</h1>
+					<input type="button" value="SEARCH" onclick=""/><br>	
+				</div>
+			</fieldset>	
+	  			
+	  		<div id="results">	  			
+	  			<div id="eventOne">
+		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="150" height="130">
+		  			<h3>Event Name</h3>  
+		  			<p>Event Description</p>		  			
+		  		</div>
+		  		<div id="eventTwo">
+		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="150" height="130">
+		  			<h3>Event Name</h3>
+		  			<p>Event Description</p>	
+		  		</div>
+		  		<div id="eventThree">
+		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="150" height="130">
+		  			<h3>Event Name</h3>
+		  			<p>Event Description</p>	
+		  		</div>
+	  		</div>	  		
 	  	</section>
 	  	
 	  	<footer>
