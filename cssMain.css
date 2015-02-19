@@ -61,9 +61,28 @@ nav a
 	text-transform:uppercase;
 	color:#FF9900;
 }
-section 
+.eventName
 {
 	
+    
+}
+.eventName img 
+{
+	width: ;
+}
+section
+{
+	width:62%;
+	float:left;
+}
+aside
+{
+	width:35%;
+	float:left;
+}
+footer
+{
+	clear:left;
 }
 
 
