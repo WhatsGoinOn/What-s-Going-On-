@@ -1,0 +1,70 @@
+@import url(reset.css);
+
+body
+{
+	background-color:#A0A0A0;
+}
+#wrapper
+{
+	width: 80%;
+	margin:auto;
+	background-color: white;
+	font-family:"Lucida Grande", Times, serif;
+	font-size:1em;
+	line-height:1.5em;
+	overflow:auto;
+}
+
+/*styling main content*/
+#text
+{
+	margin-left:2em;
+	margin-right:2em;
+	clear:both;
+}
+header
+{
+	height: 130px;
+    background:#F0F0F0;
+    border:1px solid #CCC;
+    width:auto;
+}
+header h1
+{
+	font-size:26px;
+	color:#FF6600;
+	top:50px;
+	left:50px;
+	position:relative;
+}
+header a
+{
+	font-family:"Times New Roman", Times, serif;
+}
+#login
+{
+	float:right;
+}
+
+/*styling horizontal navigation*/
+nav
+{
+	margin-left:20%;
+	margin-right:12%;
+	text-align:center;
+}
+nav a
+{
+	float:left;
+	margin-left:2em;
+	text-align:center;
+	text-transform:uppercase;
+	color:#FF9900;
+}
+section 
+{
+	float:left;
+	clear:both;
+}
+
+
