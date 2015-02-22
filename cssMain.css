@@ -63,26 +63,52 @@ nav a
 }
 .eventName
 {
-	
-    
+	padding-bottom:30px;
 }
-.eventName img 
+section img 
 {
-	width: ;
+	width:26%;
+	float:left;
+	clear:left;
+	padding-right:24px;
 }
 section
 {
+	margin-top:20px;
 	width:62%;
 	float:left;
 }
+section h1
+{
+	font-size:20px;
+	color:#FF6600;
+}
+section h3
+{
+	font-size:18px;
+	margin-bottom:5px;
+}
+section p
+{
+	font-size:12px;
+}
 aside
 {
-	width:35%;
+	margin-top:20px;
+	width:37%;
 	float:left;
+	text-align:center;
 }
 footer
 {
 	clear:left;
+	border-top: 0.1em solid black;
+    background-color:rgb(166,102,12);	
+    color: #FFFFFF;
+    margin: 2em 0 0;
+    text-align: center;
+    line-height:1.5em;
+    clear:both;
 }
 
 
