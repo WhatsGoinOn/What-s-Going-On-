@@ -107,21 +107,7 @@ aside
 	float:left;
 	text-align:center;
 }
-.inputStyle
-{
-	float:left;
-	width: 16%;
-	height: 20px;
-	margin: 0.7%;
-}
-.label
-{
-	margin-left:1%;
-	padding:1%;
-	width: 80px;
-	float: left;
-	clear:both;
-}
+
 footer
 {
 	clear:left;
