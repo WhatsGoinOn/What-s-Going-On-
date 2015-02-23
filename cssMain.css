@@ -60,14 +60,22 @@ nav a
 	text-align:center;
 	text-transform:uppercase;
 	color:#FF9900;
+	text-decoration:none;
+}
+nav a:hover
+{
+	display: block;
+	background-color:#FF9900;
+	color: #FFFFFF;
 }
 .eventName
 {
 	padding-bottom:30px;
 }
-section img 
+section img, #nearbyEvents img, #savedEvents img
 {
 	width:26%;
+	height: 30%;
 	float:left;
 	clear:left;
 	padding-right:24px;
@@ -98,6 +106,21 @@ aside
 	width:37%;
 	float:left;
 	text-align:center;
+}
+.inputStyle
+{
+	float:left;
+	width: 16%;
+	height: 20px;
+	margin: 0.7%;
+}
+.label
+{
+	margin-left:1%;
+	padding:1%;
+	width: 80px;
+	float: left;
+	clear:both;
 }
 footer
 {
