@@ -107,7 +107,14 @@ aside
 	float:left;
 	text-align:center;
 }
-
+#eventName
+{
+	float:left;
+}
+#location
+{
+	
+}
 
 footer
 {
