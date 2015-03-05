@@ -9,4 +9,4 @@ define("DB_HOST", "itsql.fvtc.edu");
 define("DB_NAME", "whatsgoingon");
 define("DB_USER", "WhatsGoingOn");
 define("DB_PASS", "WhatsGoingOn");
-define("CRYPT_BLOWFISH", 1);
+//define("CRYPT_BLOWFISH", 1);
