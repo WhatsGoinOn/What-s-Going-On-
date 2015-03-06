@@ -107,13 +107,22 @@ aside
 	float:left;
 	text-align:center;
 }
+#events
+{
+	width:100%;
+}
 #eventName
 {
 	float:left;
 }
-#location
+#zip, #city, #state
 {
-	
+	float:left;
+	margin-left:5px;
+}
+#chkbx1, #chkbx2
+{
+	clear:left;
 }
 
 footer
