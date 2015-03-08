@@ -73,13 +73,21 @@ nav a:hover
 {
 	padding-bottom:30px;
 }
-section img, #nearbyEvents img, #savedEvents img, #results img
+section img, #savedEvents img, #results img
 {
 	width:150px;
 	height:100px;
 	float:left;
 	clear:left;
 	padding-right:24px;
+}
+#nearbyEvents img
+{
+	width:100px;
+	height:60px;
+	padding-right:24px;
+	margin-top:1%;
+	margin-bottom:1%;
 }
 section, #results 
 {
@@ -91,6 +99,20 @@ section h1, legend
 {
 	font-size:20px;
 	color:#FF6600;
+}
+#mapSection h1
+{
+	clear:left;
+	margin-top:10%;
+	margin-bottom:1%;
+}
+#mapSection h3
+{
+	
+}
+#nearbyEvents div
+{
+	display:inline-table;
 }
 section h3, #results h3
 {
@@ -109,17 +131,19 @@ aside
 	text-align:center;
 }
 /*Events Page--------------------------*/
-#eventsSection, #mapSection
+#eventsSection, #mapSection, #createEventSection
 {
 	width:100%;
 }
-#eventName, #zip, #city, #state
+#eventName, #zip, #city, #state, #map input
 {
     display: inline-block;
     clear: left;
     width: 150px;
     height:20px;
     clear:left;
+    margin-top:1%;
+    font-size:0.9em;
 }
 #chkbx1, #chkbx2
 {
@@ -132,7 +156,7 @@ input[type=checkbox]
 input[type=submit], #map input[type=button]
 {
 	height: 2.5em;
-	width: 10%;
+	width: 12%;
 	margin-top:1%;
 	margin-bottom:2%;
 	cursor: pointer;
