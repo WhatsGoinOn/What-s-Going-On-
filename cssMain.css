@@ -89,6 +89,11 @@ section img, #savedEvents img, #results img
 	margin-top:1%;
 	margin-bottom:1%;
 }
+#map img
+{
+	width:300px;
+	height:200px;
+}
 section, #results 
 {
 	margin-top:20px;
@@ -103,16 +108,17 @@ section h1, legend
 #mapSection h1
 {
 	clear:left;
-	margin-top:10%;
+	padding-top:1em;
 	margin-bottom:1%;
 }
 #mapSection h3
 {
-	
+	padding-top:1%;
 }
 #nearbyEvents div
 {
-	display:inline-table;
+	/*display:inline-table;*/
+	clear:left;
 }
 section h3, #results h3
 {
@@ -168,6 +174,21 @@ input[type=submit]:hover, #map input[type=button]:hover
 {
 	color:#FF6600;
 }
+/*Create Events Page--------------------------------------------*/
+#createEventSection label
+{
+	margin-left:1%;
+	padding:1%;
+	width: 80px;
+	float: left;
+	clear:both;
+}
+#createEventSection input, #createEventSection option
+{
+	width: 16%;
+	height: 20px;
+}
+
 footer
 {
 	clear:left;
