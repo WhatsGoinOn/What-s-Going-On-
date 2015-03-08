@@ -75,24 +75,24 @@ nav a:hover
 }
 section img, #nearbyEvents img, #savedEvents img, #results img
 {
-	width:30%;
-	height:26%;
+	width:150px;
+	height:100px;
 	float:left;
 	clear:left;
 	padding-right:24px;
 }
-section
+section, #results 
 {
 	margin-top:20px;
 	width:62%;
 	float:left;
 }
-section h1
+section h1, legend
 {
 	font-size:20px;
 	color:#FF6600;
 }
-section h3
+section h3, #results h3
 {
 	font-size:18px;
 	margin-bottom:5px;
@@ -109,7 +109,7 @@ aside
 	text-align:center;
 }
 /*Events Page--------------------------*/
-#eventsSection
+#eventsSection, #mapSection
 {
 	width:100%;
 }
@@ -129,7 +129,7 @@ input[type=checkbox]
 {
 	margin-right:2em;
 }
-input[type=submit]
+input[type=submit], #map input[type=button]
 {
 	height: 2.5em;
 	width: 10%;
@@ -140,7 +140,7 @@ input[type=submit]
 	border-radius:0.4em;
 	box-shadow: 0.5em 0.5em 0.5em #888888;
 }
-input[type=submit]:hover
+input[type=submit]:hover, #map input[type=button]:hover
 {
 	color:#FF6600;
 }
