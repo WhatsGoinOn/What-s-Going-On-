@@ -28,10 +28,7 @@
 		<header>
 			<h1><img src="" alt="What's Going On?"></h1>
 			<div id="login">
-				<input type="text" placeholder="username"/><br>
-				<input type="text" placeholder="password"/><br>
-				<input type="button" value="login" onclick=""/><br/>
-				<a href="createAccount.htm">or Create Account</a> 
+				<?php require_once("login/loginHandler.php"); ?>
 			</div>			
 		</header>
 		<div id="text">
