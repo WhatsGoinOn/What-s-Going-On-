@@ -55,23 +55,23 @@ class Login
             // if no connection errors (= working database connection)
             if (!$this->db_connection->connect_errno) {
                 // escape the POST stuff
-                $user_name = $this->db_connection->real_escape_string($_POST['user_email']);
+                $user_email = $this->db_connection->real_escape_string($_POST['user_email']);
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
                 $sql = "SELECT Email, Password
                         FROM account
-                        WHERE Email = '" . $user_name . "';";
+                        WHERE Email = '" . $user_email . "';";
                 $result_of_login_check = $this->db_connection->query($sql);
                 // if this user exists
                 if ($result_of_login_check->num_rows == 1) {
                     // get result row (as an object)
                     $result_row = $result_of_login_check->fetch_object();
 					// create password hashing object
-					$password_hasher = new PasswordHash();
+					$password_hasher = new PasswordHash(8, FALSE);
                     // check if the provided password fits the hash of that user's password
                     if ($password_hasher->CheckPassword($_POST['user_password'], $result_row->Password)) {
                         // write user data into PHP SESSION (a file on your server)
-                        $_SESSION['user_email'] = $result_row->user_email;
+                        $_SESSION['user_email'] = $result_row->Email;
                         $_SESSION['user_login_status'] = 1;
                     } else {
                         $this->errors[] = "Wrong password. Try again.";
