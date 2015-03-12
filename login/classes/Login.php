@@ -55,7 +55,7 @@ class Login
             // if no connection errors (= working database connection)
             if (!$this->db_connection->connect_errno) {
                 // escape the POST stuff
-                $user_email = $this->db_connection->real_escape_string($_POST['user_email']);
+                $user_email = $this->db_connection->real_escape_string($_POST['user_name']);
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
                 $sql = "SELECT Username, Password
