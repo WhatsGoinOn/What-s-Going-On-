@@ -41,11 +41,11 @@ class Login
     private function dologinWithPostData()
     {
         // check login form contents
-        if (empty($_POST['user_email'])) {
-            $this->errors[] = "Email field was empty.";
+        if (empty($_POST['user_name'])) {
+            $this->errors[] = "Username field was empty.";
         } elseif (empty($_POST['user_password'])) {
             $this->errors[] = "Password field was empty.";
-        } elseif (!empty($_POST['user_email']) && !empty($_POST['user_password'])) {
+        } elseif (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
             // create a database connection, using the constants from config/db.php (which we loaded in index.php)
             $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
             // change character set to utf8 and check it
@@ -58,9 +58,9 @@ class Login
                 $user_email = $this->db_connection->real_escape_string($_POST['user_email']);
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT Email, Password
+                $sql = "SELECT Username, Password
                         FROM account
-                        WHERE Email = '" . $user_email . "';";
+                        WHERE Username = '" . $user_name . "';";
                 $result_of_login_check = $this->db_connection->query($sql);
                 // if this user exists
                 if ($result_of_login_check->num_rows == 1) {
@@ -71,7 +71,7 @@ class Login
                     // check if the provided password fits the hash of that user's password
                     if ($password_hasher->CheckPassword($_POST['user_password'], $result_row->Password)) {
                         // write user data into PHP SESSION (a file on your server)
-                        $_SESSION['user_email'] = $result_row->Email;
+                        $_SESSION['user_name'] = $result_row->Username;
                         $_SESSION['user_login_status'] = 1;
                     } else {
                         $this->errors[] = "Wrong password. Try again.";

@@ -18,8 +18,8 @@ if (isset($login)) {
 <!-- login form box -->
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" name="loginform">
 
-    <label for="login_input_email">Email</label>
-    <input id="login_input_email" class="login_input" type="text" name="user_email" required />
+    <label for="login_input_name">Username</label>
+    <input id="login_input_name" class="login_input" type="text" name="user_name" required />
 
     <label for="login_input_password">Password</label>
     <input id="login_input_password" class="login_input" type="password" name="user_password" autocomplete="off" required />
