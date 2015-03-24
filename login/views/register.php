@@ -32,7 +32,7 @@ if (isset($registration)) {
     <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" /><br>
     
     Is this a business account?
-    <input type="radio" name="is_business" value="0" checked>No <br>
+    <input type="radio" name="is_business" value="0" checked>No 
     <input type="radio" name="is_business" value="1">Yes<br><br>
     
     <input type="submit" name="register" value="Register" />
@@ -40,4 +40,4 @@ if (isset($registration)) {
 </form>
 
 <!-- backlink -->
-<a href="default?.php">Back to Home Page</a>
+<a href="/WhatsGoingOn/default.php">Back to Home Page</a>
