@@ -11,14 +11,33 @@
 		<link href="cssMain.css" rel="stylesheet" type="text/css" />		
 
 		<style type="text/css">
-			a[href="map.htm"]
+			a[href="map.php"]
 			{
 				display:block;
 				background-color: #E65C00;
 				color: #FFFFFF;
 				font-weight:bold;
 			}
+			
+			#map-canvas {
+		        width: 500px;
+		        height: 400px;
+		      }
 		</style>
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<script>
+			function initialize() {
+			    var mapCanvas = document.getElementById('map-canvas');
+			    var mapOptions = {
+					center: new google.maps.LatLng(44.5403, -78.5463),
+					zoom: 8,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+			    }
+				var map = new google.maps.Map(mapCanvas, mapOptions);
+			}
+			//Load map on page load
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
 	</head>
 
 	<body>
@@ -37,7 +56,7 @@
 	 		 	<ul>
 		     	    <li><a href="default.htm">Home</a></li>
 		  	   	    <li><a href="events.htm">Events</a></li>
-		   		    <li><a href="map.htm">Map</a></li>
+		   		    <li><a href="map.php">Map</a></li>
 		   		    <li><a href="createEvent.htm">Create</a></li>
 		   		    <li><a href="userProfile.htm">Profile</a></li>
 	 	    	</ul>
@@ -45,12 +64,11 @@
 	  
 		  	<section id="mapSection">
 		  		<div id="map">
-		  			<!--The map would go here not the image-->
-			  		<img src="eventImage.jpg" alt="Profile Picture"><br/>
-		  			<div>
-		  			<input type="text" placeholder="Choose starting point"/><br>
-					<input type="text" placeholder="Choose destination"/><br>
-					<input type="button" id="getDirections" value="Get Directions" onclick=""/><br>
+		  			<div id="map-canvas"></div>
+		  			<div id="mapSearch">
+			  			<input type="text" placeholder="Choose starting point"/><br>
+						<input type="text" placeholder="Choose destination"/><br>
+						<input type="button" id="getDirections" value="Get Directions" onclick=""/><br>
 					</div>	
 		  		</div>
 		  		
@@ -77,6 +95,6 @@
                Whats Going On?
       		</address>
 	  	</footer>
-	  	 </div><!--end of wrapper-->
+	  	</div><!--end of wrapper-->
 	</body>
 </html>
