@@ -27,7 +27,7 @@
 			
 		<header>
 			<h1><img src="" alt="What's Going On?"></h1>
-			<div id="login">
+			<div id="login">			    
 				<?php require_once("login/loginHandler.php"); ?>
 			</div>			
 		</header>
@@ -112,7 +112,7 @@
 	  	</aside>
 	  	</div><!--end of text-->
     	  	<footer>
-    	  		<?php require_once("footer.php"); ?>
+    	  	    <?php require_once("footer.php"); ?>
     	  	</footer>
 	    </div><!--end of wrapper-->
 	</body>

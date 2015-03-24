@@ -26,10 +26,7 @@
 		<header>
 			<h1><img src="" alt="What's Going On?" /></h1>
 			<div id="login">
-				<input type="text" placeholder="username" onclick="changeColor()"/><br>
-				<input type="text" placeholder="password" onclick="changeText()"/><br>
-				<input type="button" value="login" onclick=""/><br/>
-				<a href="createAccount.htm">or Create Account</a> 
+				<?php require_once("login/loginHandler.php"); ?>
 			</div>			
 		</header>
 		<div id="text">
@@ -111,10 +108,7 @@
 	  	</section>
 	  	</div><!--end of text-->
 	  	<footer>
-	  		<address>Copyright &copy; 2015
-               Whats Going On? &bull;
-               Whats Going On?
-      		</address>
+	  		<?php require_once("footer.php"); ?>
 	  	</footer>
 	  	 </div><!--end of wrapper-->
 	</body>
