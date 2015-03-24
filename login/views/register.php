@@ -15,7 +15,7 @@ if (isset($registration)) {
 ?>
 
 <!-- register form -->
-<form method="post" action="registrationHandler.php" name="registerform">
+<form method="post" action="/WhatsGoingOn/login/registrationHandler.php" name="registerform">
 
     <!-- the user name input field uses a HTML5 pattern check -->
     <label for="login_input_username">Username (only letters and numbers, 2 to 64 characters)</label>
