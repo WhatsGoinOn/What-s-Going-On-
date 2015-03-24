@@ -1,1 +1,4 @@
+## Ignore project files from Aptana and elsewise
 
+*.project
+*.gitignore
