@@ -24,20 +24,6 @@
 		        height: 400px;
 		      }
 		</style>
-		<script src="https://maps.googleapis.com/maps/api/js"></script>
-		<script>
-			function initialize() {
-			    var mapCanvas = document.getElementById('map-canvas');
-			    var mapOptions = {
-					center: new google.maps.LatLng(44.5403, -78.5463),
-					zoom: 8,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-			    }
-				var map = new google.maps.Map(mapCanvas, mapOptions);
-			}
-			//Load map on page load
-			google.maps.event.addDomListener(window, 'load', initialize);
-		</script>
 	</head>
 
 	<body>
@@ -55,22 +41,22 @@
 			<nav>
 	 		 	<ul>
 		     	    <li><a href="default.php">Home</a></li>
-                    <li><a href="events.php">Search Events</a></li>
-                    <li><a href="map.php">Map</a></li>
-                    <li><a href="createEvent.php">Create Event</a></li>
-                    <li><a href="userProfile.php">User Profile</a></li>
+		  	   	    <li><a href="events.php">Search Events</a></li>
+		   		    <li><a href="map.php">Map</a></li>
+		   		    <li><a href="createEvent.php">Create Event</a></li>
++                   <li><a href="userProfile.php">User Profile</a></li>
 	 	    	</ul>
 		  	</nav>
 	  
 		  	<section id="mapSection">
 		  		<div id="map">
-		  			<div id="map-canvas"></div>
-		  			<div id="mapSearch">
-			  			<input type="text" placeholder="Choose starting point"/><br>
-						<input type="text" placeholder="Choose destination"/><br>
-						<input type="button" id="getDirections" value="Get Directions" onclick=""/><br>
-					</div>	
-		  		</div>
+		  			<iframe
+					  	width="600"
+					  	height="450"
+					  	frameborder="0" style="border:0"
+					  	src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDDhZL749Ov1AhGMlAj4bAVTnAVCGvCTQM&q=-33.8569,151.2152&zoom=7">
+					</iframe>
+				</div>		  		
 		  		
 		  		<div id="nearbyEvents">
 		  			<h1>Nearby Events</h1>
