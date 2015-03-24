@@ -10,7 +10,7 @@
 		
 		<link href="cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			a[href="createEvent.htm"]
+			a[href="createEvent.php"]
 			{
 				display:block;
 				background-color: #E65C00;
@@ -23,13 +23,11 @@
 
 	<body>
 		<div id="wrapper">
+			
 		<header>
 			<h1><img src="" alt="What's Going On?" /></h1>
 			<div id="login">
-				<input type="text" placeholder="username" onclick="changeColor()"/><br>
-				<input type="text" placeholder="password" onclick="changeText()"/><br>
-				<input type="button" value="login" onclick=""/><br/>
-				<a href="createAccount.htm">or Create Account</a> 
+				<?php?> require_once("login/loginHandler.php");
 			</div>			
 		</header>
 		<div id="text">
@@ -149,12 +147,9 @@
 			</form>		  			
 	  	</section>
 	  	</div><!--end of text-->
-	  	<footer>
-	  		<address>Copyright &copy; 2015
-               Whats Going On? &bull;
-               Whats Going On?
-      		</address>
-	  	</footer>
-	  	 </div><!--end of wrapper-->
+		  	<footer>
+		  		<?php require_once("footer.php"); ?>
+		  	</footer>
+	  	</div><!--end of wrapper-->
 	</body>
 </html>
