@@ -31,7 +31,7 @@ if (isset($registration)) {
     <label for="login_input_password_repeat">Repeat password</label>
     <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" /><br>
     
-    <p>Is this a business account?</p><br>
+    Is this a business account?
     <input type="radio" name="is_business" value="0" checked>No <br>
     <input type="radio" name="is_business" value="1">Yes<br><br>
     
