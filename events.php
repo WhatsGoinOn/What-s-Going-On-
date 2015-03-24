@@ -36,10 +36,10 @@
 		<nav>
  		 	<ul>
 	     	    <li><a href="default.php">Home</a></li>
-	  	   	    <li><a href="events.php">Events</a></li>
+	  	   	    <li><a href="events.php">Search Events</a></li>
 	   		    <li><a href="map.php">Map</a></li>
-	   		    <li><a href="createEvent.php">Create</a></li>
-	   		    <li><a href="userProfile.php">Profile</a></li>
+	   		    <li><a href="createEvent.php">Create Event</a></li>
+	   		    <li><a href="userProfile.php">User Profile</a></li>
  	    	</ul>
 	  	</nav>
 	  
