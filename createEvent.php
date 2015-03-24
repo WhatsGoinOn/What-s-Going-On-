@@ -27,7 +27,7 @@
 		<header>
 			<h1><img src="" alt="What's Going On?" /></h1>
 			<div id="login">
-				<?php?> require_once("login/loginHandler.php");
+				<?php require_once("login/loginHandler.php");?> 
 			</div>			
 		</header>
 		<div id="text">
