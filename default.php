@@ -10,7 +10,7 @@
 		
 		<link href="cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			a[href="default.htm"]
+			a[href="default.php"]
 			{
 				display:block;
 				width:3.5em;
@@ -34,11 +34,11 @@
 		<div id="text">
 		<nav>
  		 	<ul>
-	     	    <li><a href="default.htm">Home</a></li>
-	  	   	    <li><a href="events.htm">Events</a></li>
-	   		    <li><a href="map.htm">Map</a></li>
-	   		    <li><a href="createEvent.htm">Create</a></li>
-	   		    <li><a href="userProfile.htm">Profile</a></li>
+	     	    <li><a href="default.php">Home</a></li>
+	  	   	    <li><a href="events.php">Events</a></li>
+	   		    <li><a href="map.php">Map</a></li>
+	   		    <li><a href="createEvent.php">Create</a></li>
+	   		    <li><a href="userProfile.php">Profile</a></li>
  	   		</ul>
 	  	</nav>
 	  
