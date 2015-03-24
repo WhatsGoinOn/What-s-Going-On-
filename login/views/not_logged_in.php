@@ -27,4 +27,4 @@ if (isset($login)) {
 
 </form>
 
-<a href="/login/registrationHandler.php">or Create account</a>
+<a href="/WhatsGoingOn/login/registrationHandler.php">or Create account</a>
