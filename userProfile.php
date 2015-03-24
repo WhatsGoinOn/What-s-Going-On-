@@ -11,7 +11,7 @@
 		<link href="cssMain.css" rel="stylesheet" type="text/css" />		
 
 		<style type="text/css">
-			a[href="userProfile.htm"]
+			a[href="userProfile.php"]
 			{
 				display:block;
 				background-color: #E65C00;
