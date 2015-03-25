@@ -35,7 +35,7 @@ if (isset($registration)) {
     <input type="radio" name="is_business" value="0" checked>No 
     <input type="radio" name="is_business" value="1">Yes<br><br>
     
-    <input type="submit" name="register" value="Register" />
+    <input type="submit" onclick="return Validate()" name="register" value="Register" />
 
 </form>
 
