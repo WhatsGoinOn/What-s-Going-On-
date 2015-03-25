@@ -81,13 +81,11 @@ class Registration
                 $user_email = $this->db_connection->real_escape_string(strip_tags($_POST['user_email'], ENT_QUOTES));
                 $user_isBusiness = $_POST['is_business'];
                 $user_password = $_POST['user_password_new'];
-
-                // crypt the user's password with PHP 5.5's password_hash() function, results in a 60 character
-                // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using
-                // PHP 5.3/5.4, by the password hashing compatibility library
-                
+                       
                 // create password hashing object
                 $password_hasher = new PasswordHash(8, FALSE);
+                
+                // crypt the user's password
                 $user_password_hash = $password_hasher->HashPassword($user_password);
 
                 // check if user or email address already exists
