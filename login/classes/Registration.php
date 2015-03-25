@@ -101,8 +101,11 @@ class Registration
                     $query_new_user_insert = $this->db_connection->query($sql);
 
                     // if user has been added successfully
-                    if ($query_new_user_insert) {
-                        $this->messages[] = "Your account has been created successfully. You can now log in.";
+                    if ($query_new_user_insert) {                        
+                        session_start();
+                        $_SESSION['user_name'] = $user_name;
+                        $_SESSION['user_login_status'] = 1;
+                        header('Location: ../default.php');
                     } else {
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
                     }
