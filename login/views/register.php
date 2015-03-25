@@ -34,7 +34,7 @@ if (isset($registration)) {
             
             if (Username.length >= 2 && Username.length <= 64)    
             {
-                alert("Username must be from 2-64 characters in length.");
+                alert("Username must be 2-64 characters in length.");
                 Username.focus();
                 return false;
             } 
@@ -84,26 +84,31 @@ if (isset($registration)) {
     </nav>
     
     <form method="post" action="/WhatsGoingOn/login/registrationHandler.php" name="registerform">
-    
-        <!-- the user name input field uses a HTML5 pattern check -->
-        <label for="login_input_username">Username:</label>
-        <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required /><br>
-    
-        <!-- the email input field uses a HTML5 email type check -->
-        <label for="login_input_email">Email:</label>
-        <input id="login_input_email" class="login_input" type="email" name="user_email" required /><br>
-    
-        <label for="login_input_password_new">Password:</label>
-        <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" /><br>
-    
-        <label for="login_input_password_repeat">Repeat Password:</label>
-        <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" /><br>
         
-        Is this a business account?
-        <input type="radio" name="is_business" value="0" checked>No 
-        <input type="radio" name="is_business" value="1">Yes<br><br>
+        <fieldset>
+            <legend>Create Account:</legend>
+            <div>
+                <!-- the user name input field uses a HTML5 pattern check -->
+                <label for="login_input_username">Username:</label>
+                <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required /><br>
+            
+                <!-- the email input field uses a HTML5 email type check -->
+                <label for="login_input_email">Email:</label>
+                <input id="login_input_email" class="login_input" type="email" name="user_email" required /><br>
+            
+                <label for="login_input_password_new">Password:</label>
+                <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" /><br>
+            
+                <label for="login_input_password_repeat">Repeat Password:</label>
+                <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" /><br>
+                
+                Is this a business account?
+                <input type="radio" name="is_business" value="0" checked>No 
+                <input type="radio" name="is_business" value="1">Yes<br><br>
+                
+                <input type="submit" onclick="return Validate()" name="register" value="Sign Up" />
+            </div>
+        </fieldset>
         
-        <input type="submit" onclick="return Validate()" name="register" value="Register" />
-    
     </form>
 </body>
