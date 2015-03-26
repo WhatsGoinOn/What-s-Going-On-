@@ -88,7 +88,9 @@
 		  		</div>
 		  		<!---->
 		  	<?php } else {
-		  				echo "Event does not exist/no event selected!";
+		  				if (empty($_GET("id"))) {
+		  					echo "No event selected!";
+						}
 				  		if (isset($event)) {
 						    if ($event->errors) {
 						        foreach ($event->errors as $error) {
