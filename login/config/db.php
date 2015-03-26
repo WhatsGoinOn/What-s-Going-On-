@@ -9,4 +9,5 @@ define("DB_HOST", "itsql.fvtc.edu");
 define("DB_NAME", "whatsgoingon");
 define("DB_USER", "WhatsGoingOn");
 define("DB_PASS", "WhatsGoingOn");
+define("DB_OPTIONS", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 //define("CRYPT_BLOWFISH", 1);
