@@ -28,6 +28,10 @@
 			$IsCancelled;
 		}
 		
+		public function getFullAddress() {
+			return $this->Address . ', ' . $this->City . ', ' . $this->State;
+		}
+		
 		public function fetchFromId($_id) {
 			if (is_numeric($_id)) {
 				// create a database connection, using the constants from config/db.php

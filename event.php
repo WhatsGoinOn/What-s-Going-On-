@@ -72,8 +72,14 @@
 		  		</div>	
 		  		
 		  		<div id="">
-		  			<!--Not sure what Andrew was planning on the wireframe for the event 
-		  				article on the right hand side of the page, but it will go here-->
+		  			<div id="map">
+			  			<iframe
+						  	width="600"
+						  	height="450"
+						  	frameborder="0" style="border:0"
+						  	src="https://www.google.com/maps/embed/v1/place?q=<?php echo(str_replace(' ','+',$event->getFullAddress())) ?>&key=AIzaSyDDhZL749Ov1AhGMlAj4bAVTnAVCGvCTQM">
+						</iframe>
+					</div>	
 		  		</div>
 		  		
 		  		<!--
