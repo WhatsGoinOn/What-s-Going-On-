@@ -36,11 +36,11 @@
 			if (is_numeric($_id)) {
 				try {
 					$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-					$params = array(':id' => $_id);
 					$sql = $pdo->prepare("SELECT OwnerID, Title, Image, Description, DateTime, Address, City, State, ZIP, Cost, IsCancelled
 	                        FROM event
 	                        WHERE ID = :id");
-					$sql->execute($params);
+					$sql->bindParam(':id', $_id, PDO::PARAM_INT);
+					$sql->execute();
 					
 					while ($result_row = $sql->fetch()) {
 						//Set object variables
