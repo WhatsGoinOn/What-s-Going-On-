@@ -101,7 +101,8 @@ class Registration
                     $query_new_user_insert = $this->db_connection->query($sql);
 
                     // if user has been added successfully
-                    if ($query_new_user_insert) {                        
+                    if ($query_new_user_insert) {
+                        session_destroy();                        
                         session_start();
                         $_SESSION['user_name'] = $user_name;
                         $_SESSION['user_login_status'] = 1;
