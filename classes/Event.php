@@ -11,21 +11,21 @@
 	    public $messages = array();
 		
 		//Set to default values
-		
+		public $ID;
+		public $OwnerID;
+		public 	$Title;
+		public $Image;
+		public $Description;
+		public $DateTime;
+		public $Address;
+		public $City;
+		public $State;
+		public $ZIP;
+		public $Cost;
+		public $IsCancelled;
 		
 		public function __construct() {
-			$ID;
-			$OwnerID;
-			$Title;
-			$Image;
-			$Description;
-			$DateTime;
-			$Address;
-			$City;
-			$State;
-			$ZIP;
-			$Cost;
-			$IsCancelled;
+			
 		}
 		
 		public function getFullAddress() {
