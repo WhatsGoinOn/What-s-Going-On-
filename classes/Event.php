@@ -34,42 +34,35 @@
 		
 		public function fetchFromId($_id) {
 			if (is_numeric($_id)) {
-				// create a database connection, using the constants from config/db.php
-	            $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	            // change character set to utf8 and check it
-	            if (!$this->db_connection->set_charset("utf8")) {
-	                $this->errors[] = $this->db_connection->error;
-	            }
-	            // if no connection errors (= working database connection)
-	            if (!$this->db_connection->connect_errno) {
-	                // database query, getting all the info of the selected event
-	                $sql = "SELECT OwnerID, Title, Image, Description, DateTime, Address, City, State, ZIP, Cost, IsCancelled
+				try {
+					$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+					$params = array(':id' => $_id);
+					$sql = $pdo->prepare("SELECT OwnerID, Title, Image, Description, DateTime, Address, City, State, ZIP, Cost, IsCancelled
 	                        FROM event
-	                        WHERE ID = '" . $_id . "';";
-	                $result = $this->db_connection->query($sql);
-	                // if this user exists
-	                if ($result->num_rows == 1) {
-	                    // get result row (as an object)
-	                    $result_row = $result->fetch_object();
-	                    //Set object variables
+	                        WHERE ID = :id");
+					$sql->execute($params);
+					
+					while ($result_row = $sql->fetch()) {
+						//Set object variables
 						$this->ID = intval($_id);
-						$this->OwnerID = $result_row->OwnerID;
-						$this->Title = $result_row->Title;
-						$this->Image = $result_row->Image;
-						$this->Description = $result_row->Description;
-						$this->DateTime = $result_row->DateTime;
-						$this->Address = $result_row->Address;
-						$this->City = $result_row->City;
-						$this->State = $result_row->State;
-						$this->ZIP = $result_row->ZIP;
-						$this->Cost = $result_row->Cost;
-						$this->IsCancelled = $result_row->IsCancelled;
-	                } else {
-	                    $this->errors[] = "This event does not exist.";
-	                }
-	            } else {
-	                $this->errors[] = "Database connection problem.";
-	            }
+						$this->OwnerID = $result_row["OwnerID"];
+						$this->Title = $result_row["Title"];
+						$this->Image = $result_row["Image"];
+						$this->Description = $result_row["Description"];
+						$this->DateTime = $result_row["DateTime"];
+						$this->Address = $result_row["Address"];
+						$this->City = $result_row["City"];
+						$this->State = $result_row["State"];
+						$this->ZIP = $result_row["ZIP"];
+						$this->Cost = $result_row["Cost"];
+						$this->IsCancelled = $result_row["IsCancelled"];
+					}
+					
+					$sql->closeCursor();
+					$pdo = null;
+				} catch(PDOException $e) {
+					$this->errors[] = $e->getMessage();
+				}
             } else {
             	//Inputted id was not valid
             	$this->errors[] = "Given id is not valid number.";
