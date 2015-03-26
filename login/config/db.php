@@ -6,6 +6,7 @@
  * DB_PASS: the password of the above user
  */
 define("DB_HOST", "itsql.fvtc.edu");
+define("DB_PDOHOST", "mysql:host=itsql.fvtc.edu;dbname=31845_500138367")
 define("DB_NAME", "whatsgoingon");
 define("DB_USER", "WhatsGoingOn");
 define("DB_PASS", "WhatsGoingOn");
