@@ -10,20 +10,23 @@
 	     */
 	    public $messages = array();
 		
-		public $ID;
-		public $OwnerID;
-		public $Title;
-		public $Image;
-		public $Description;
-		public $DateTime;
-		public $Address;
-		public $City;
-		public $State;
-		public $ZIP;
-		public $Cost;
-		public $IsCancelled;
+		//Set to default values
 		
-		public function __construct() { }
+		
+		public function __construct() {
+			$ID;
+			$OwnerID;
+			$Title;
+			$Image;
+			$Description;
+			$DateTime;
+			$Address;
+			$City;
+			$State;
+			$ZIP;
+			$Cost;
+			$IsCancelled;
+		}
 		
 		public function fetchFromId($_id) {
 			if (is_numeric($_id)) {
@@ -45,18 +48,18 @@
 	                    // get result row (as an object)
 	                    $result_row = $result->fetch_object();
 	                    //Set object variables
-						$this->$ID = intval($_id);
-						$this->$OwnerID = $result_row->OwnerID;
-						$this->$Title = $result_row->Title;
-						$this->$Image = $result_row->Image;
-						$this->$Description = $result_row->Description;
-						$this->$DateTime = $result_row->DateTime;
-						$this->$Address = $result_row->Address;
-						$this->$City = $result_row->City;
-						$this->$State = $result_row->State;
-						$this->$ZIP = $result_row->ZIP;
-						$this->$Cost = $result_row->Cost;
-						$this->$IsCancelled = $result_row->IsCancelled;
+						$this->ID = intval($_id);
+						$this->OwnerID = $result_row->OwnerID;
+						$this->Title = $result_row->Title;
+						$this->Image = $result_row->Image;
+						$this->Description = $result_row->Description;
+						$this->DateTime = $result_row->DateTime;
+						$this->Address = $result_row->Address;
+						$this->City = $result_row->City;
+						$this->State = $result_row->State;
+						$this->ZIP = $result_row->ZIP;
+						$this->Cost = $result_row->Cost;
+						$this->IsCancelled = $result_row->IsCancelled;
 	                } else {
 	                    $this->errors[] = "This event does not exist.";
 	                }

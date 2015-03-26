@@ -81,6 +81,13 @@ section img, #savedEvents img, #results img
 	clear:left;
 	padding-right:24px;
 }
+#eventArticle img
+{
+	/*Overwrite for event article image size*/
+	width:300px;
+	height:200px;
+}
+
 #nearbyEvents img, #savedEvents img
 {
 	width:100px;
