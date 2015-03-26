@@ -78,9 +78,9 @@ if (isset($registration)) {
             <li><a href="/WhatsGoingOn/default.php">Home</a></li>
             <li><a href="/WhatsGoingOn/events.php">Search Events</a></li>
             <li><a href="/WhatsGoingOn/map.php">Map</a></li>
-            <li><a href="/WhatsGoingOn/createEvent.php">Create Event</a></li>
+            <li><a href="/WhatsGoingOn/create_event.php">Create Event</a></li>
             <li><a href="/WhatsGoingOn/userProfile.php">User Profile</a></li>
-        </ul>
+        </ul>        
     </nav>
     
     <form method="post" action="/WhatsGoingOn/login/registrationHandler.php" name="registerform">

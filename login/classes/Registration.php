@@ -105,6 +105,7 @@ class Registration
                         session_start();
                         $_SESSION['user_name'] = $user_name;
                         $_SESSION['user_login_status'] = 1;
+                        
                         header('Location: ../default.php');
                     } else {
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";

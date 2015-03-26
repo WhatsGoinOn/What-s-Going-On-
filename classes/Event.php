@@ -13,7 +13,7 @@
 		//Set to default values
 		public $ID;
 		public $OwnerID;
-		public 	$Title;
+		public $Title;
 		public $Image;
 		public $Description;
 		public $DateTime;
