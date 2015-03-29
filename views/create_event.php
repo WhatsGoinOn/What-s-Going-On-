@@ -26,7 +26,7 @@ if (isset($createEvent)) {
 		
 		<link href="styles/cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			a[href="create_event.php"]
+			a[href="/WhatsGoingOn/createEventHandler.php"]
 			{
 				display:block;
 				background-color: #E65C00;
