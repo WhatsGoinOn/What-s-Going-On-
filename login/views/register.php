@@ -19,7 +19,7 @@ if (isset($registration)) {
 <head>  
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Whats Going On?</title>   
+    <title>Whats Going On? - Register</title>   
     
     <link href="" rel="stylesheet" type="text/css" />       
     
