@@ -10,7 +10,7 @@
 		
 		<link href="styles/cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			a[href="default.php"]
+			a[href="/WhatsGoingOn/default.php"]
 			{
 				display:block;
 				width:3.5em;
