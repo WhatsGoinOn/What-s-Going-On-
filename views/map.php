@@ -8,7 +8,7 @@
 		<meta name="author" content="wetzel">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		
-		<link href="cssMain.css" rel="stylesheet" type="text/css" />		
+		<link href="../styles/cssMain.css" rel="stylesheet" type="text/css" />		
 
 		<style type="text/css">
 			a[href="map.php"]
@@ -31,12 +31,12 @@
 		<header>
 			<h1><img src="" alt="What's Going On?" /></h1>
 			<div id="login">
-				<?php require_once("login/loginHandler.php"); ?>
+				<?php require_once("../login/loginHandler.php"); ?>
 			</div>			
 		</header>
 		<div id="text">
 			<nav>
-	 		 	<?php require_once("navigation.php"); ?>
+	 		 	<?php require_once("../navigation.php"); ?>
 		  	</nav>
 	  
 		  	<section id="mapSection">
@@ -52,22 +52,22 @@
 		  		<div id="nearbyEvents">
 		  			<h1>Nearby Events</h1>
 		  			<div>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+		  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
 		  			<h3>Event Name</h3><br/>
 		  			</div>
 		  			<div>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+		  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
 		  			<h3>Event Name</h3><br/>
 		  			</div>
 		  			<div>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+		  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
 		  			<h3>Event Name</h3>
 		  			</div>
 		  		</div>	
 		  	</section>	  	
 	  	</div><!--end of text-->
 	  	<footer>
-	  		<?php require_once("footer.php"); ?>
+	  		<?php require_once("../footer.php"); ?>
 	  	</footer>
 	  	</div><!--end of wrapper-->
 	</body>

@@ -35,7 +35,7 @@
 		<meta name="author" content="What's Going On Team">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		
-		<link href="cssMain.css" rel="stylesheet" type="text/css" />
+		<link href="styles/cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 			a[href="event.php"]
 			{

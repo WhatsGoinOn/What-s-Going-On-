@@ -8,7 +8,7 @@
 		<meta name="author" content="wetzel">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		
-		<link href="cssMain.css" rel="stylesheet" type="text/css" />		
+		<link href="../styles/cssMain.css" rel="stylesheet" type="text/css" />		
 
 		<style type="text/css">
 			a[href="userProfile.php"]
@@ -26,18 +26,18 @@
 		<header>
 			<h1><img src="" alt="What's Going On?" /></h1>
 			<div id="login">
-				<?php require_once("login/loginHandler.php"); ?> 
+				<?php require_once("../login/loginHandler.php"); ?> 
 			</div>			
 		</header>
 		<div id="text">
 		<nav>
- 		 	<?php require_once("navigation.php"); ?>
+ 		 	<?php require_once("../navigation.php"); ?>
 	  	</nav>
 	  
 	  	<section>
 	  		<div id="userInfo">
 	  			<h1>Name of the User</h1>
-		  		<img src="eventImage.jpg" alt="Profile Picture">
+		  		<img src="../images/eventImage.jpg" alt="Profile Picture">
 		  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>
 		  		<label for="browseImage">Select Image</label>	
 				<input type="button" id="browseImage" value="Browse" onclick=""/><br>
@@ -46,22 +46,22 @@
 	  		<div id="savedEvents">
 	  			<h1>Saved Events</h1>
 	  			<div>
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+	  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
 	  			<h3>Event Name</h3>
 	  			</div>
 	  			<div>
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+	  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
 	  			<h3>Event Name</h3>
 	  			</div>
 	  			<div>
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+	  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
 	  			<h3>Event Name</h3>
 	  			</div>
 	  		</div>	  		
 	  	</section>	  	
 	  	</div><!--end of text-->
 	  	<footer>
-	  		<?php require_once("footer.php"); ?>
+	  		<?php require_once("../footer.php"); ?>
 	  	</footer>
 	   </div><!--end of wrapper-->	
 	</body>

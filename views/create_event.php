@@ -24,9 +24,9 @@ if (isset($createEvent)) {
 		<meta name="author" content="wetzel">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		
-		<link href="cssMain.css" rel="stylesheet" type="text/css" />
+		<link href="../styles/cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			a[href="createEvent.php"]
+			a[href="create_event.php"]
 			{
 				display:block;
 				background-color: #E65C00;
@@ -50,12 +50,12 @@ if (isset($createEvent)) {
 		<header>
 			<h1><img src="" alt="What's Going On?" /></h1>
 			<div id="login">
-				<?php require_once("login/loginHandler.php");?> 
+				<?php require_once("../login/loginHandler.php");?> 
 			</div>			
 		</header>
 		<div id="text">
 		<nav>
- 		 	<?php require_once("navigation.php"); ?>
+ 		 	<?php require_once("../navigation.php"); ?>
 	  	</nav>
 	  
 	  	<section id="createEventSection">
@@ -165,7 +165,7 @@ if (isset($createEvent)) {
 	  	</section>
 	  	</div><!--end of text-->
 		  	<footer>
-		  		<?php require_once("footer.php"); ?>
+		  		<?php require_once("../footer.php"); ?>
 		  	</footer>
 	  	</div><!--end of wrapper-->
 	</body>

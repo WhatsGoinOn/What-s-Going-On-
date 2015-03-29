@@ -8,7 +8,7 @@
 		<meta name="author" content="wetzel">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 		
-		<link href="cssMain.css" rel="stylesheet" type="text/css" />
+		<link href="styles/cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
 			a[href="default.php"]
 			{
@@ -39,7 +39,7 @@
 	  	<section>
 	  		<h1>Featured Upcoming Events!</h1><br/>
 	  		
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!" >
+	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!" >
 	  		<div class="eventName">
 	  			<h3>Event Name</h3>  
 	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
@@ -50,7 +50,7 @@
 					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>		  			
 	  		</div>
 	  		
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
 	  		<div class="eventName">
 	  			<h3>Event Name</h3>
 	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
@@ -61,7 +61,7 @@
 					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
 	  		</div>
 	  		
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
 	  		<div class="eventName">
 	  			<h3>Event Name</h3>
 	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
@@ -72,7 +72,7 @@
 					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
 	  		</div>
 	  		
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
 	  		<div class="eventName">
 	  			<h3>Event Name</h3>
 	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
@@ -83,7 +83,7 @@
 					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>	
 	  		</div>
 	  		
-	  			<img src="eventImage.jpg" alt="IMAGE HERE!">
+	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
 	  		<div class="eventName">
 	  			<h3>Event Name</h3>
 	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
