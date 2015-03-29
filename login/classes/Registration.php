@@ -103,10 +103,19 @@ class Registration
                     // if user has been added successfully
                     if ($query_new_user_insert) {
                         session_destroy();                        
-                        session_start();
+                        session_start();                        
+                        // database query, getting the ID of the inserted user 
+                        $sql = "SELECT Username, ID
+                                FROM account
+                                WHERE Username = '" . $user_name . "';";
+                        $result_of_register_check = $this->db_connection->query($sql);
+                        // get result row (as an object)
+                        $result_row = $result_of_register_check->fetch_object();
+                        // write user data into PHP SESSION (a file on your server)                       
                         $_SESSION['user_name'] = $user_name;
-                        $_SESSION['user_login_status'] = 1;
-                        
+                        $_SESSION['user_login_status'] = 1;  
+                        $_SESSION['user_id'] = $result_row->ID;
+                                              
                         header('Location: ../default.php');
                     } else {
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
