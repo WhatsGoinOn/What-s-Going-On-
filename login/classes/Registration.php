@@ -116,7 +116,7 @@ class Registration
                         $_SESSION['user_login_status'] = 1;  
                         $_SESSION['user_id'] = $result_row->ID;
                                               
-                        header('Location: ../views/profile.php');
+                        header('Location: /WhatsGoingOn/views/userProfile.php');
                     } else {
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
                     }
