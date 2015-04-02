@@ -13,6 +13,7 @@ html, body
 	font-family:"Lucida Grande", Times, serif;
 	font-size:1em;
 	line-height:1.5em;
+	height:100%;
 }
 
 /*styling main content*/
@@ -235,6 +236,7 @@ footer
     text-align: center;
     line-height:1.5em;
     clear:both;
+    bottom:0;
 }
 
 
