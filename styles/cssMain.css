@@ -237,6 +237,8 @@ footer
     line-height:1.5em;
     clear:both;
     bottom:0;
+    position:absolute;
+    width:80%;
 }
 
 
