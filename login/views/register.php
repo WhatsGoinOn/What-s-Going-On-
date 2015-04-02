@@ -23,7 +23,7 @@ if (isset($registration)) {
     
     <title>Whats Going On? - Register</title>   
     
-    <link href="styles/cssMain.css" rel="stylesheet" type="text/css" />       
+    <link href="../styles/cssMain.css" rel="stylesheet" type="text/css" />       
     
     <script type="text/javascript">
         function Validate()
@@ -77,44 +77,52 @@ if (isset($registration)) {
 </head>
 
 <body>
-    <header>
-        <h1><img src="" alt="What's Going On?"></h1>                   
-    </header>
-    
-    <nav>
-        <?php include_once ("../navigation.php") ?>            
-    </nav>
-    
-    <form method="post" action="/WhatsGoingOn/login/registrationHandler.php" name="registerform">
+    <div id="wrapper">
+        <header>
+            <h1><img src="" alt="What's Going On?"></h1>                   
+        </header>
         
-        <fieldset>
-            <legend>Create Account:</legend>
-            <div>
-                <!-- the user name input field uses a HTML5 pattern check -->
-                <label for="login_input_username">Username:</label>
-                <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" 
-                    value="<?php if(isset($_SESSION['userName'])){echo htmlspecialchars($_SESSION['userName']);} ?>" required /><br>
-            
-                <!-- the email input field uses a HTML5 email type check -->
-                <label for="login_input_email">Email:</label>
-                <input id="login_input_email" class="login_input" type="email" name="user_email"
-                    value="<?php if(isset($_SESSION['userEmail'])){echo htmlspecialchars($_SESSION['userEmail']);} ?>" required /><br>
-            
-                <label for="login_input_password_new">Password:</label>
-                <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" /><br>
-            
-                <label for="login_input_password_repeat">Repeat Password:</label>
-                <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" /><br>
-                
-                Is this a business account?
-                <input type="radio" name="is_business" value="0" checked>No 
-                <input type="radio" name="is_business" value="1">Yes<br><br>
-                
-                <input type="submit" onclick="return Validate()" name="register" value="Sign Up" />
-            </div>
-        </fieldset>
+        <nav>
+            <?php include_once ("../navigation.php") ?>            
+        </nav>
         
-    </form>
+        <section>
+            <form method="post" action="/WhatsGoingOn/login/registrationHandler.php" name="registerform">
+                
+                <fieldset>
+                    <legend>Create Account:</legend>
+                    <div>
+                        <!-- the user name input field uses a HTML5 pattern check -->
+                        <label for="login_input_username">Username:</label>
+                        <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" 
+                            value="<?php if(isset($_SESSION['userName'])){echo htmlspecialchars($_SESSION['userName']);} ?>" required /><br>
+                    
+                        <!-- the email input field uses a HTML5 email type check -->
+                        <label for="login_input_email">Email:</label>
+                        <input id="login_input_email" class="login_input" type="email" name="user_email"
+                            value="<?php if(isset($_SESSION['userEmail'])){echo htmlspecialchars($_SESSION['userEmail']);} ?>" required /><br>
+                    
+                        <label for="login_input_password_new">Password:</label>
+                        <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" /><br>
+                    
+                        <label for="login_input_password_repeat">Repeat Password:</label>
+                        <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" /><br>
+                        
+                        Is this a business account?
+                        <input type="radio" name="is_business" value="0" checked>No 
+                        <input type="radio" name="is_business" value="1">Yes<br><br>
+                        
+                        <input type="submit" onclick="return Validate()" name="register" value="Sign Up" />
+                    </div>
+                </fieldset>
+                
+            </form>
+        </section>
+        
+        <footer>                
+            <?php require_once("../footer.php"); ?>
+        </footer>
+    </div>
 </body>
 
 <?php 
