@@ -77,6 +77,7 @@ if (isset($registration)) {
 </head>
 
 <body>
+	<div id="wrapper">
     <header>
         <h1><img src="" alt="What's Going On?"></h1>                   
     </header>
@@ -115,6 +116,7 @@ if (isset($registration)) {
         </fieldset>
         
     </form>
+ </div><!--end of wrapper-->
 </body>
 
 <?php 
