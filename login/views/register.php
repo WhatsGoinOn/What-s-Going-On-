@@ -23,7 +23,7 @@ if (isset($registration)) {
     
     <title>Whats Going On? - Register</title>   
     
-    <link href="styles/cssMain.css" rel="stylesheet" type="text/css" />       
+    <link href="../styles/cssMain.css" rel="stylesheet" type="text/css" />       
     
     <script type="text/javascript">
         function Validate()
