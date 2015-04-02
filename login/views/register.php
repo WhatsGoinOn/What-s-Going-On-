@@ -3,7 +3,7 @@
 if (isset($registration)) {
     if ($registration->errors) {
         foreach ($registration->errors as $error) {
-            echo $error;
+            echo $error . "<br>";            
         }
     }
     if ($registration->messages) {
@@ -12,6 +12,8 @@ if (isset($registration)) {
         }
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +34,13 @@ if (isset($registration)) {
             var PasswordVerify = document.getElementById("login_input_password_repeat");
             EmailEdit = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
             
-            if (Username.length >= 2 && Username.length <= 64)    
+            if (Username.value === "" || Email.value === "" || Password.value === "" || PasswordVerify === "")
+            {
+                alert("Please fill in all fields.");
+                Username.focus();
+                return false;
+            }            
+            else if (Username.length >= 2 && Username.length <= 64)    
             {
                 alert("Username must be 2-64 characters in length.");
                 Username.focus();
@@ -84,11 +92,13 @@ if (isset($registration)) {
             <div>
                 <!-- the user name input field uses a HTML5 pattern check -->
                 <label for="login_input_username">Username:</label>
-                <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" required /><br>
+                <input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" 
+                    value="<?php if(isset($_SESSION['userName'])){echo htmlspecialchars($_SESSION['userName']);} ?>" required /><br>
             
                 <!-- the email input field uses a HTML5 email type check -->
                 <label for="login_input_email">Email:</label>
-                <input id="login_input_email" class="login_input" type="email" name="user_email" required /><br>
+                <input id="login_input_email" class="login_input" type="email" name="user_email"
+                    value="<?php if(isset($_SESSION['userEmail'])){echo htmlspecialchars($_SESSION['userEmail']);} ?>" required /><br>
             
                 <label for="login_input_password_new">Password:</label>
                 <input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" required autocomplete="off" /><br>
@@ -106,3 +116,14 @@ if (isset($registration)) {
         
     </form>
 </body>
+
+<?php 
+if(isset($_SESSION['userName']))
+    {
+        unset($_SESSION['userName']);
+    } 
+if(isset($_SESSION['userEmail']))
+{
+    unset($_SESSION['userEmail']);
+}
+?>
