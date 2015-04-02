@@ -77,24 +77,11 @@ if (isset($registration)) {
 </head>
 
 <body>
-<<<<<<< HEAD
-    <div id="wrapper">
+	<div id="wrapper">
         <header>
             <h1><img src="" alt="What's Going On?"></h1>                   
         </header>
-=======
-	<div id="wrapper">
-    <header>
-        <h1><img src="" alt="What's Going On?"></h1>                   
-    </header>
     
-    <nav>
-        <?php include_once ("../navigation.php") ?>            
-    </nav>
-    
-    <form method="post" action="/WhatsGoingOn/login/registrationHandler.php" name="registerform">
->>>>>>> e0f242abbc3b482348f96b81b8445aa8ea129602
-        
         <nav>
             <?php include_once ("../navigation.php") ?>            
         </nav>
@@ -132,15 +119,14 @@ if (isset($registration)) {
             </form>
         </section>
         
-<<<<<<< HEAD
         <footer>                
             <?php require_once("../footer.php"); ?>
         </footer>
     </div>
-=======
+
     </form>
  </div><!--end of wrapper-->
->>>>>>> e0f242abbc3b482348f96b81b8445aa8ea129602
+
 </body>
 
 <?php 
