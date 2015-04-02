@@ -38,9 +38,8 @@
 	  		<div id="userInfo">
 	  			<h1>Name of the User</h1>
 		  		<img src="../images/eventImage.jpg" alt="Profile Picture">
-		  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>
-		  		<label for="browseImage">Select Image</label>	
-				<input type="button" id="browseImage" value="Browse" onclick=""/><br>
+		  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>	
+				<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
 	  		</div>
 	  		
 	  		<div id="savedEvents">
