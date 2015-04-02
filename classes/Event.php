@@ -16,7 +16,8 @@
 		public $Title;
 		public $Image;
 		public $Description;
-		public $DateTime;
+		public $StartDateTime;
+		public $EndDateTime;
 		public $Address;
 		public $City;
 		public $State;
@@ -36,7 +37,7 @@
 			if (is_numeric($_id)) {
 				try {
 					$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-					$sql = $pdo->prepare("SELECT OwnerID, Title, Image, Description, DateTime, Address, City, State, ZIP, Cost, IsCancelled
+					$sql = $pdo->prepare("SELECT OwnerID, Title, Image, Description, StartDateTime, EndDateTime, Address, City, State, ZIP, Cost, IsCancelled
 	                        FROM event
 	                        WHERE ID = :id");
 					$sql->bindParam(':id', $_id, PDO::PARAM_INT);
@@ -49,7 +50,8 @@
 						$this->Title = $result_row["Title"];
 						$this->Image = $result_row["Image"];
 						$this->Description = $result_row["Description"];
-						$this->DateTime = $result_row["DateTime"];
+						$this->StartDateTime = $result_row["StartDateTime"];
+						$this->EndDateTime = $result_row["EndDateTime"];
 						$this->Address = $result_row["Address"];
 						$this->City = $result_row["City"];
 						$this->State = $result_row["State"];
