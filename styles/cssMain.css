@@ -1,8 +1,9 @@
 @import url(reset.css);
 
-body
+html, body
 {
 	background-color:#A0A0A0;
+	height: 100%;
 }
 #wrapper
 {
