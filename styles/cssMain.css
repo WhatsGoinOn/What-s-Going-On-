@@ -4,6 +4,7 @@ html, body
 {
 	background-color:#A0A0A0;
 	height: 100%;
+	overflow:scroll;
 }
 #wrapper
 {
