@@ -242,4 +242,13 @@ footer
     width:80%;
 }
 
+.imgSub {
+	height: 100%;
+}
 
+/*Event Page---------------------------*/
+.eventImage {
+	width: 300px;
+	height: 200px;
+	overflow: hidden;
+}
