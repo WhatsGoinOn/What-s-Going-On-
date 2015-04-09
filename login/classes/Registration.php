@@ -23,7 +23,9 @@ class Registration
     * you know, when you do "$registration = new Registration();" */    
     public function __construct()
     {
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
         
         if (isset($_POST["register"])) {
             $this->registerNewUser();
