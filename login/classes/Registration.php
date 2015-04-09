@@ -23,7 +23,9 @@ class Registration
     * you know, when you do "$registration = new Registration();" */    
     public function __construct()
     {
-        session_start();
+    	if(!isset($_SESSION)) {
+		     session_start();
+		}
         
         if (isset($_POST["register"])) {
             $this->registerNewUser();
@@ -118,8 +120,11 @@ class Registration
 
                     // if user has been added successfully
                     if ($query_new_user_insert) {
-                        session_destroy();                        
-                        session_start();                        
+                    	if(!isset($_SESSION)) {
+						     session_start();
+						}
+                        session_destroy();
+                        session_start();
                         // database query, getting the ID of the inserted user 
                         $sql = "SELECT Username, ID
                                 FROM account
