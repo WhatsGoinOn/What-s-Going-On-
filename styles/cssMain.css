@@ -3,7 +3,7 @@
 html, body
 {
 	background-color:#A0A0A0;
-	height: 100%;
+	height:auto;
 	overflow:scroll;
 }
 #wrapper
@@ -237,9 +237,7 @@ footer
     text-align: center;
     line-height:1.5em;
     clear:both;
-    bottom:0;
-    position:absolute;
-    width:80%;
+    
 }
 
 
