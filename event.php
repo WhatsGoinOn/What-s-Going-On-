@@ -67,7 +67,9 @@
 	  		<?php if ($eventExists) { ?>
 		  		<div id="eventName">
 		  			<h1><?php echo($event->Title); ?></h1>
-		  			<img src="images/<?php echo($event->Image); ?>" alt="Event image" width="300" height="200">
+		  			<div class="eventImage">
+		  				<img class="imgSub" src="images/<?php echo($event->Image); ?>" alt="Event image">
+		  			</div>
 		  			<p><?php echo($event->Description); ?></p>	  			
 		  		</div>	
 		  		
