@@ -68,7 +68,7 @@
 		  		<div id="eventName">
 		  			<h1><?php echo($event->Title); ?></h1>
 		  			<div class="eventImage">
-		  				<img class="imgSub" src="images/<?php echo($event->Image); ?>" alt="Event image">
+		  				<img class="imgSub" src="image.php?id=<?php echo($event->ImageID); ?>" alt="Event image">
 		  			</div>
 		  			<p><?php echo($event->Description); ?></p>	  			
 		  		</div>	
