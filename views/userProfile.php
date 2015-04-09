@@ -65,7 +65,7 @@
 	  	<section>
 	  		<?php
 	  		if ($userExists) {
-	  			if (isset($_SESSION['user_id']  $_SESSION['user_id'] == $user->ID) {
+	  			if (isset($_SESSION['user_id']) &&  $_SESSION['user_id'] == $user->ID) {
 			?>
 			  		<div id="userInfo">
 			  			<h1><?php echo($user->Name) ?></h1>
