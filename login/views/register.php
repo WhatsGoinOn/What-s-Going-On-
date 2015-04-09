@@ -17,13 +17,20 @@ if (isset($registration)) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html class="register" lang="en">
 <head>  
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Whats Going On? - Register</title>   
     
-    <link href="../styles/cssMain.css" rel="stylesheet" type="text/css" />       
+    <link href="../styles/cssMain.css" rel="stylesheet" type="text/css" /> 
+    
+    <style type="text/css">
+    	section
+    	{
+    		background-color:white;
+    	}
+    </style>     
     
     <script type="text/javascript">
         function Validate()
@@ -76,8 +83,8 @@ if (isset($registration)) {
     </script>       
 </head>
 
-<body>
-	<div id="wrapper">
+<body class="register">
+	<div id="wrapperRegistration">
         <header>
             <h1><img src="" alt="What's Going On?"></h1>                   
         </header>
@@ -86,7 +93,7 @@ if (isset($registration)) {
             <?php include_once ("../navigation.php") ?>            
         </nav>
         
-        <section>
+        <section id="registerSection">
             <form method="post" action="/WhatsGoingOn/login/registrationHandler.php" name="registerform">
                 
                 <fieldset>
@@ -119,7 +126,7 @@ if (isset($registration)) {
             </form>
         </section>
         
-        <footer>                
+        <footer id="footer">                
             <?php require_once("../footer.php"); ?>
         </footer>
     </div>
