@@ -63,7 +63,7 @@
 	  	</nav>
 	  
 	  	<section>
-<<<<<<< HEAD
+
 	  		<div id="userInfo">
 	  			<h1>Name of the User</h1>
 		  		<img src="../images/eventImage.jpg" alt="Profile Picture">
@@ -92,7 +92,7 @@
 	  			<h3>Event Name</h3>
 	  			</div>
 	  		</div>	  		
-=======
+
 	  		<?php
 	  		if ($userExists) {
 	  			if (isset($_SESSION['user_id']) &&  $_SESSION['user_id'] == $user->ID) {
@@ -152,7 +152,6 @@
 				} else { ?><!--If username is left off or invalid-->
 		  		<p>Invalid user.</p>
 		  	<?php } ?>
->>>>>>> 010079ab5105314eb99ff15f3b38acedf5ad71b9
 	  	</section>	  	
 	  	</div><!--end of text-->
 	  	<footer>
