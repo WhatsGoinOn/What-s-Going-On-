@@ -81,8 +81,8 @@ class Registration
                 // escaping, additionally removing everything that could be (html/javascript-) code
                 $user_name = $this->db_connection->real_escape_string(strip_tags($_POST['user_name'], ENT_QUOTES));
                 $user_email = $this->db_connection->real_escape_string(strip_tags($_POST['user_email'], ENT_QUOTES));
-                $user_isBusiness = $_POST['is_business'];
-                $user_password = $_POST['user_password_new'];
+                $user_isBusiness = $this->db_connection->real_escape_string(strip_tags($_POST['is_business'], ENT_QUOTES));
+                $user_password = $this->db_connection->real_escape_string(strip_tags($_POST['user_password_new'], ENT_QUOTES));
                        
                 // create password hashing object
                 $password_hasher = new PasswordHash(8, FALSE);
