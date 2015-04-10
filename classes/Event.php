@@ -77,13 +77,13 @@
 
         private function createNewEvent()
         {
-            $userStartDate = $_POST['startDate'];
-            $startDateArray = explode('/', $userStartDate);
-            $userEndDate = $_POST['endDate'];
-            $endDateArray = explode('/', $userEndDate);
+            $startDate = $_POST['startDate'];
+            $startDateArray = explode('/', $startDate);
+            $endDate = $_POST['endDate'];
+            $endDateArray = explode('/', $endDate);
             
             //Make sure all fields have valid data                
-            if (empty($_POST['eventName'])){
+            if (empty($_POST['title'])){
                 $this->errors[] = "Enter an event name";
             }elseif(empty($_POST['address'])){
                 $this->errors[] = "Enter an address";
@@ -111,7 +111,9 @@
                 $this->errors[] = "Select an end time";
             }elseif ($_POST['end_am_pm'] === ""){
                 $this->errors[] = "Select a meridiem for the end time";            
-            }elseif (!empty($_POST['eventName'])
+            }elseif (strlen($_POST['description']) > 500){
+                $this->errors[] = "Only 500 chartacters allowed in the description"; 
+            }elseif (!empty($_POST['title'])
                     && !empty($_POST['address'])
                     && !empty($_POST['city'])
                     && $_POST['state'] !== ""
@@ -124,7 +126,8 @@
                     && !empty($_POST['endDate'])
                     && checkdate($endDateArray[0], $endDateArray[1], $endDateArray[2])
                     && $_POST['endTime'] !== ""
-                    && $_POST['end_am_pm'] !== "")
+                    && $_POST['end_am_pm'] !== ""
+                    && strlen($_POST['description']) <= 500)
             {
                 // create a database connection
                 $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -136,6 +139,9 @@
                 
                 // if no connection errors (= working database connection)
                 if (!$this->db_connection->connect_errno) {
+                    if (!isset($_SESSION)) {
+                        session_start();
+                    }
                     $user_id = $_SESSION['user_id'];
                     
                     // escaping, additionally removing everything that could be (html/javascript-) code                    
@@ -145,27 +151,27 @@
                     $city = $this->db_connection->real_escape_string(strip_tags($_POST['city'], ENT_QUOTES));
                     $state = $this->db_connection->real_escape_string(strip_tags($_POST['state'], ENT_QUOTES));
                     $zip = $this->db_connection->real_escape_string(strip_tags($_POST['zip'], ENT_QUOTES));
-                    $cost = $this->db_connection->real_escape_string(strip_tags($_POST['cost'], ENT_QUOTES));
-                    $startDate = $this->db_connection->real_escape_string(strip_tags($_POST['startDate'], ENT_QUOTES));
                     $startTime = $this->db_connection->real_escape_string(strip_tags($_POST['startTime'], ENT_QUOTES));
-                    $endDate = $this->db_connection->real_escape_string(strip_tags($_POST['endDate'], ENT_QUOTES));
                     $endTime = $this->db_connection->real_escape_string(strip_tags($_POST['endTime'], ENT_QUOTES));
                     $start_am_pm = $this->db_connection->real_escape_string(strip_tags($_POST['start_am_pm'], ENT_QUOTES));
                     $end_am_pm = $this->db_connection->real_escape_string(strip_tags($_POST['end_am_pm'], ENT_QUOTES));
+                    $isFree = $this->db_connection->real_escape_string(strip_tags($_POST['isFree'], ENT_QUOTES));
+                    $startDateTime;
+                    $endDateTime;
                     
                     // Get the time in the correct format
                     if ($start_am_pm === "AM"){
                         $startDateTime = $startDate . " " . $startTime;
                     } else {
                         $startTimeArray = explode(':', $startTime);
-                        $startTime = ($startTimeArray[0] + 12) . $startTimeArray[1];
+                        $startTime = ($startTimeArray[0] + 12) . ":" . $startTimeArray[1];
                         $startDateTime = $startDate . " " . $startTime;
                     }
                     if ($end_am_pm === "AM"){
                         $endDateTime = $endDate . " " . $endTime;
                     } else {
                         $endTimeArray = explode(':', $endTime);
-                        $endTime = ($endTimeArray[0] + 12) . $endTimeArray[1];
+                        $endTime = ($endTimeArray[0] + 12) . ":" . $endTimeArray[1];
                         $endDateTime = $endDate . " " . $endTime;
                     } 
                     
@@ -179,27 +185,14 @@
                         $this->errors[] = "Sorry, that event has already been created.";                    
                     } else {
                         // write new event data into database
-                        $sql = "INSERT INTO event (Username, Password, Email, IsBusiness)
-                                VALUES('" . $user_name . "', '" . $user_password_hash . "', '" . $user_email . "', '" . $user_isBusiness . "');";
+                        $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree)
+                                VALUES('" . $_SESSION['user_id'] . "', '" . $title . "', '" . $description . "', '" . $startDateTime . "',
+                                '" . $endDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', '" . $isFree . "');";
                         $query_new_event_insert = $this->db_connection->query($sql);
     
                         // if event has been added successfully
                         if ($query_new_event_insert) {
-                            session_destroy();                        
-                            session_start();                        
-                            // database query, getting the ID of the inserted user 
-                            $sql = "SELECT Username, ID
-                                    FROM account
-                                    WHERE Username = '" . $user_name . "';";
-                            $result_of_register_check = $this->db_connection->query($sql);
-                            // get result row (as an object)
-                            $result_row = $result_of_register_check->fetch_object();
-                            // write user data into PHP SESSION (a file on your server)                       
-                            $_SESSION['user_name'] = $user_name;
-                            $_SESSION['user_login_status'] = 1;  
-                            $_SESSION['user_id'] = $result_row->ID;
-                                                  
-                            header('Location: /WhatsGoingOn/views/userProfile.php');
+                            echo "Event Created";
                         } else {
                             $this->errors[] = "Sorry, your event creation failed. Please go back and try again.";
                         }

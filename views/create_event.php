@@ -1,13 +1,13 @@
 <?php
 // show potential errors / feedback (from createEvent object)
-if (isset($createEvent)) {
-    if ($createEvent->errors) {
-        foreach ($createEvent->errors as $error) {
+if (isset($event)) {
+    if ($event->errors) {
+        foreach ($event->errors as $error) {
             echo $error;
         }
     }
-    if ($createEvent->messages) {
-        foreach ($createEvent->messages as $message) {
+    if ($event->messages) {
+        foreach ($event->messages as $message) {
             echo $message;
         }
     }
@@ -74,8 +74,8 @@ if (isset($createEvent)) {
 						<label for="title">Event Name:</label>  
 		  					<input type="text" id="title" name="title" placeholder="Name" required/><br>
 		  				Is this event free?
-                        <input type="radio" name="is_free" value="0">Yes 
-                        <input type="radio" name="is_free" value="1">No<br>
+                        <input type="radio" name="isFree" value="0">Yes 
+                        <input type="radio" name="isFree" value="1">No<br>
 		  				<label for="address">Address:</label>  
                             <input type="text" id="address" name="address" placeholder="Address" required/><br>  					
 						<label for="city">City:</label>  
@@ -143,10 +143,10 @@ if (isset($createEvent)) {
     							<option value="WI">Wisconsin</option>
     							<option value="WY">Wyoming</option>
     						</select><br>	
-						<label for="zipCode">Zip Code:</label>  
-				  			<input type="text" id="zipCode" name="zipCode" placeholder="five digits (ex - 12345)" required /><br>
+						<label for="zip">Zip Code:</label>  
+				  			<input type="text" id="zip" name="zip" placeholder="five digits (12345)" required /><br>
 				  		<label for="startDate">Start Date:</label>  
-                            <input type="text" id="startDate" name="startDate" placeholder="Start Date" required /><br>
+                            <input type="text" id="startDate" name="startDate" placeholder="Start Date (00/00/0000)" required /><br>
                         <label for="startTime">Start Time:</label>
                             <select name="startTime" id="startTime" required>
                                 <option value="">Select Start Time</option>
@@ -174,7 +174,7 @@ if (isset($createEvent)) {
                                 <option value="PM">PM</option>
                             </select><br>
                         <label for="endDate">End Date:</label>  
-                            <input type="text" id="endDate" name="endDate" placeholder="End Date" required /><br>
+                            <input type="text" id="endDate" name="endDate" placeholder="End Date (00/00/0000)" required /><br>
                         <label for="endTime" id="endTimeLabel">End Time:</label>
                             <select name="endTime" id="endTime" required>
                                 <option value="">Select End Time</option>
