@@ -1,3 +1,31 @@
+<?php
+	require_once('../login/config/db.php');
+	require_once('../classes/User.php');
+	
+	$userExists = true; //Variable to determine rendering of profile or not
+	
+	$user = new User();
+	if (!empty($_GET["user"])) {
+		$user->fetchFromUsername($_GET["user"]);
+	} else {
+		$userExists = false;
+	}
+	// show potential errors / feedback (from user object)
+	if (isset($user)) {
+	    if ($user->errors) {
+	        foreach ($user->errors as $error) {
+	            //echo $error;
+	            $userExists = false;
+	        }
+	    }
+	    if ($user->messages) {
+	        foreach ($user->messages as $message) {
+	            //echo $message;
+	        }
+	    }
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -35,6 +63,7 @@
 	  	</nav>
 	  
 	  	<section>
+<<<<<<< HEAD
 	  		<div id="userInfo">
 	  			<h1>Name of the User</h1>
 		  		<img src="../images/eventImage.jpg" alt="Profile Picture">
@@ -63,6 +92,67 @@
 	  			<h3>Event Name</h3>
 	  			</div>
 	  		</div>	  		
+=======
+	  		<?php
+	  		if ($userExists) {
+	  			if (isset($_SESSION['user_id']) &&  $_SESSION['user_id'] == $user->ID) {
+			?>
+			  		<div id="userInfo">
+			  			<h1><?php echo($user->Name) ?></h1>
+				  		<div class="profileImage">
+				  			<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  		</div>
+						<
+						<input type="button" id="browseImage" value="Browse" onclick=""/><br>
+				  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>	
+						<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
+			  		</div>
+			  		
+			  		<div id="savedEvents">
+			  			<h1>Attending Events</h1>
+			  			<div>
+			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
+			  			<h3>Event Name</h3>
+			  			</div>
+			  			<div>
+			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
+			  			<h3>Event Name</h3>
+			  			</div>
+			  			<div>
+			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
+			  			<h3>Event Name</h3>
+			  			</div>
+			  		</div>	  		
+			  		
+		  	<?php } else { ?> <!--If the viewer is not viewing their profile-->
+		  			<div id="userInfo">
+			  			<h1><?php echo($user->Name) ?></h1>
+				  		<div class="profileImage">
+				  			<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  		</div>
+				  		<p>Bio.</p><br>
+			  		</div>
+			  		
+			  		<div id="savedEvents">
+			  			<h1>Attending Events</h1>
+			  			<div>
+			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
+			  			<h3>Event Name</h3>
+			  			</div>
+			  			<div>
+			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
+			  			<h3>Event Name</h3>
+			  			</div>
+			  			<div>
+			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
+			  			<h3>Event Name</h3>
+			  			</div>
+			  		</div>
+				<?php }
+				} else { ?><!--If username is left off or invalid-->
+		  		<p>Invalid user.</p>
+		  	<?php } ?>
+>>>>>>> 010079ab5105314eb99ff15f3b38acedf5ad71b9
 	  	</section>	  	
 	  	</div><!--end of text-->
 	  	<footer>
