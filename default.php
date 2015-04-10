@@ -36,7 +36,7 @@
          		 	<?php require_once("navigation.php"); ?>
         	  	</nav>
         	  
-        	  	<section>
+        	  	<section class="defaultSection">
         	  		<h1>Featured Upcoming Events!</h1><br/>
         	  		
     	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!" >
