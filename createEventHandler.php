@@ -6,7 +6,7 @@ require_once("classes/Event.php");
 
 // create the createEvent object. when this object is created, it will do all new event stuff automatically
 // so this single line handles the entire new event process.
-$Event = new Event();
+$event = new Event();
 
 // show the create event view (with the new event form, and messages/errors)
 include("views/create_event.php");
