@@ -12,17 +12,6 @@ if (isset($createEvent)) {
         }
     }
 }
-
-if (!isset($_SESSION))
-{
-    session_start();
-}
-
-if (!isset($_SESSION['user_name']))
-{
-    header('Location: /WhatsGoingOn/default.php');
-    die();
-}
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +50,14 @@ if (!isset($_SESSION['user_name']))
 		<header>
 			<h1><img src="" alt="What's Going On?" /></h1>
 			<div id="login">
-				<?php require_once("login/loginHandler.php");?> 
+				<?php 
+				    require_once("login/loginHandler.php");                    
+                    if (!isset($_SESSION['user_name']))
+                    {
+                        header('Location: /WhatsGoingOn/default.php');
+                        die();
+                    }
+				?> 
 			</div>			
 		</header>
 		<div id="text">
