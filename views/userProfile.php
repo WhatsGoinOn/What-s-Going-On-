@@ -63,39 +63,9 @@
 	  	</nav>
 	  
 	  	<section>
-
-	  		<div id="userInfo">
-	  			<h1>Name of the User</h1>
-		  		<img src="../images/eventImage.jpg" alt="Profile Picture">
-
-		  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>
-		  		
-				<input type="button" id="browseImage" value="Browse" onclick=""/><br>
-
-		  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>	
-				<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
-
-	  		</div>
-	  		
-	  		<div id="savedEvents">
-	  			<h1>Saved Events</h1>
-	  			<div>
-	  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-	  			<h3>Event Name</h3>
-	  			</div>
-	  			<div>
-	  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-	  			<h3>Event Name</h3>
-	  			</div>
-	  			<div>
-	  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-	  			<h3>Event Name</h3>
-	  			</div>
-	  		</div>	  		
-
 	  		<?php
 	  		if ($userExists) {
-	  			if (isset($_SESSION['user_id']) &&  $_SESSION['user_id'] == $user->ID) {
+	  			if (isset($_SESSION['user_name']) &&  $_SESSION['user_name'] == $user->Username) {
 			?>
 			  		<div id="userInfo">
 			  			<h1><?php echo($user->Name) ?></h1>
