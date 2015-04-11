@@ -23,9 +23,10 @@ class Registration
     * you know, when you do "$registration = new Registration();" */    
     public function __construct()
     {
-		if (!isset($_SESSION)) {
-			session_start();
-		}
+		if (!isset($_SESSION['id']))
+        {
+            session_start();            
+        }
         
         if (isset($_POST["register"])) {
             $this->registerNewUser();
@@ -122,17 +123,19 @@ class Registration
                     if ($query_new_user_insert) {
                         session_destroy();
                         session_start();
-                        // database query, getting the ID of the inserted user 
+                        $last_id = $conn->insert_id;
+                        /*// database query, getting the ID of the inserted user 
                         $sql = "SELECT Username, ID
                                 FROM account
                                 WHERE Username = '" . $user_name . "';";
                         $result_of_register_check = $this->db_connection->query($sql);
                         // get result row (as an object)
-                        $result_row = $result_of_register_check->fetch_object();
+                        $result_row = $result_of_register_check->fetch_object();*/
                         // write user data into PHP SESSION (a file on your server)                       
                         $_SESSION['user_name'] = $user_name;
                         $_SESSION['user_login_status'] = 1;  
-                        $_SESSION['user_id'] = $result_row->ID;
+                        $_SESSION['user_id'] = $last_id;
+                        session_write_close();
                                               
                         header('Location: /WhatsGoingOn/views/userProfile.php');
                     } else {

@@ -139,10 +139,12 @@
                 
                 // if no connection errors (= working database connection)
                 if (!$this->db_connection->connect_errno) {
-                    if (!isset($_SESSION)) {
-                        session_start();
+                    if (!isset($_SESSION['id']))
+                    {
+                        session_start();            
                     }
                     $user_id = $_SESSION['user_id'];
+                    session_write_close();
                     
                     // escaping, additionally removing everything that could be (html/javascript-) code                    
                     $title = $this->db_connection->real_escape_string(strip_tags($_POST['title'], ENT_QUOTES));
@@ -186,13 +188,13 @@
                     } else {
                         // write new event data into database
                         $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree)
-                                VALUES('" . $_SESSION['user_id'] . "', '" . $title . "', '" . $description . "', '" . $startDateTime . "',
+                                VALUES('" . $user_id . "', '" . $title . "', '" . $description . "', '" . $startDateTime . "',
                                 '" . $endDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', '" . $isFree . "');";
                         $query_new_event_insert = $this->db_connection->query($sql);
     
                         // if event has been added successfully
                         if ($query_new_event_insert) {
-                            echo "Event Created";
+                            
                         } else {
                             $this->errors[] = "Sorry, your event creation failed. Please go back and try again.";
                         }
