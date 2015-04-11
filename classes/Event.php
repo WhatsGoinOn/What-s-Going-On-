@@ -143,8 +143,16 @@
                     {
                         session_start();            
                     }
-                    $user_id = $_SESSION['user_id'];
+                    $user_name = $_SESSION['user_name'];
                     session_write_close();
+                    // database query, getting the ID of the user 
+                    $sql = "SELECT ID, Username
+                            FROM account
+                            WHERE Username = '" . $user_name . "';";
+                    $get_user = $this->db_connection->query($sql);
+                    // get result row (as an object)
+                    $result_row = $get_user->fetch_object();
+                    $user_id = $result_row->ID; 
                     
                     // escaping, additionally removing everything that could be (html/javascript-) code                    
                     $title = $this->db_connection->real_escape_string(strip_tags($_POST['title'], ENT_QUOTES));
