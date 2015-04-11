@@ -152,7 +152,7 @@
                     $get_user = $this->db_connection->query($sql);
                     // get result row (as an object)
                     $result_row = $get_user->fetch_object();
-                    $user_id = $result_row->ID; 
+                    $userID = $result_row->ID; 
                     
                     // escaping, additionally removing everything that could be (html/javascript-) code                    
                     $title = $this->db_connection->real_escape_string(strip_tags($_POST['title'], ENT_QUOTES));
@@ -171,18 +171,39 @@
                     
                     // Get the time in the correct format
                     if ($start_am_pm === "AM"){
-                        $startDateTime = $startDate . " " . $startTime;
+                        $startTimeArray = explode(':', $startTime);
+                        if ($startTimeArray[0] === "12"){
+                            $startTime = ($startTimeArray[0] - 12) . ":" . $startTimeArray[1];
+                            $startDateTime = $startDate . " " . $startTime;
+                            $this->errors[] = $startDateTime;
+                        } else {
+                            $startDateTime = $startDate . " " . $startTime;
+                        }                       
                     } else {
                         $startTimeArray = explode(':', $startTime);
-                        $startTime = ($startTimeArray[0] + 12) . ":" . $startTimeArray[1];
-                        $startDateTime = $startDate . " " . $startTime;
+                        if ($startTimeArray[0] != "12"){                            
+                            $startTime = ($startTimeArray[0] + 12) . ":" . $startTimeArray[1];
+                            $startDateTime = $startDate . " " . $startTime;
+                        } else {
+                            $startDateTime = $startDate . " " . $startTime;
+                        }                   
                     }
                     if ($end_am_pm === "AM"){
-                        $endDateTime = $endDate . " " . $endTime;
+                        $endTimeArray = explode(':', $endTime);
+                        if ($endTimeArray[0] === "12"){
+                            $endTime = ($endTimeArray[0] - 12) . ":" . $endTimeArray[1];
+                            $endDateTime = $endDate . " " . $endTime;
+                        } else {
+                            $endDateTime = $endDate . " " . $endTime;
+                        }    
                     } else {
                         $endTimeArray = explode(':', $endTime);
-                        $endTime = ($endTimeArray[0] + 12) . ":" . $endTimeArray[1];
-                        $endDateTime = $endDate . " " . $endTime;
+                        if ($endTimeArray[0] != "12"){
+                            $endTime = ($endTimeArray[0] + 12) . ":" . $endTimeArray[1];
+                            $endDateTime = $endDate . " " . $endTime;
+                        } else {
+                            $endDateTime = $endDate . " " . $endTime;
+                        }                       
                     } 
                     
                     // check if the user entered eventName, startDateTime, zip already exist in the same record
@@ -193,10 +214,13 @@
     
                     if ($query_check->num_rows == 1) {
                         $this->errors[] = "Sorry, that event has already been created.";                    
+                        
+                        $this->errors[] = $title;
+                        $this->errors[] = $zip;
                     } else {
                         // write new event data into database
                         $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree)
-                                VALUES('" . $user_id . "', '" . $title . "', '" . $description . "', '" . $startDateTime . "',
+                                VALUES('" . $userID . "', '" . $title . "', '" . $description . "', '" . $startDateTime . "',
                                 '" . $endDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', '" . $isFree . "');";
                         $query_new_event_insert = $this->db_connection->query($sql);
     
