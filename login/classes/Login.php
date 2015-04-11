@@ -62,7 +62,7 @@ class Login
                 $user_name = $this->db_connection->real_escape_string($_POST['user_name']);
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT Username, Password, ID
+                $sql = "SELECT ID, Username, Password
                         FROM account
                         WHERE Username = '" . $user_name . "';";
                 $result_of_login_check = $this->db_connection->query($sql);
