@@ -175,7 +175,6 @@
                         if ($startTimeArray[0] === "12"){
                             $startTime = ($startTimeArray[0] - 12) . ":" . $startTimeArray[1];
                             $startDateTime = $startDate . " " . $startTime;
-                            $this->errors[] = $startDateTime;
                         } else {
                             $startDateTime = $startDate . " " . $startTime;
                         }                       
@@ -213,10 +212,7 @@
                     $query_check = $this->db_connection->query($sql);
     
                     if ($query_check->num_rows == 1) {
-                        $this->errors[] = "Sorry, that event has already been created.";                    
-                        
-                        $this->errors[] = $title;
-                        $this->errors[] = $zip;
+                        $this->errors[] = "Sorry, that event has already been created.";
                     } else {
                         // write new event data into database
                         $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree)
