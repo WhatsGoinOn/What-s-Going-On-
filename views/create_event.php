@@ -82,7 +82,7 @@ if (isset($event)) {
 			  				<input type="text" id="city" name="city" placeholder="City" required/><br>			  		    
 			  			<label for="state">State:</label>
     						<select name="state" id="state" required>
-    							<option value="">Select State</option>
+    							<option value="">State:</option>
     							<option value="AL">Alabama</option>
     							<option value="AK">Alaska</option>
     							<option value="AS">American Samoa</option>
@@ -144,12 +144,12 @@ if (isset($event)) {
     							<option value="WY">Wyoming</option>
     						</select><br>	
 						<label for="zip">Zip Code:</label>  
-				  			<input type="text" id="zip" name="zip" placeholder="five digits (12345)" required /><br>
+				  			<input type="text" id="zip" name="zip" placeholder="five digit zip" required /><br>
 				  		<label for="startDate">Start Date:</label>  
-                            <input type="text" id="startDate" name="startDate" placeholder="Start Date (00/00/0000)" required /><br>
+                            <input type="text" id="startDate" name="startDate" placeholder="Start Date (MM/DD/YYYY)" required /><br>
                         <label for="startTime">Start Time:</label>
                             <select name="startTime" id="startTime" required>
-                                <option value="">Select Start Time</option>
+                                <option value="">Start Time:</option>
                                 <?php  
                                     $min = "00";
                                     $hour = 12;
@@ -174,10 +174,10 @@ if (isset($event)) {
                                 <option value="PM">PM</option>
                             </select><br>
                         <label for="endDate">End Date:</label>  
-                            <input type="text" id="endDate" name="endDate" placeholder="End Date (00/00/0000)" required /><br>
+                            <input type="text" id="endDate" name="endDate" placeholder="End Date (MM/DD/YYYY)" required /><br>
                         <label for="endTime" id="endTimeLabel">End Time:</label>
                             <select name="endTime" id="endTime" required>
-                                <option value="">Select End Time</option>
+                                <option value="">End Time:</option>
                                 <?php 
                                 $min = "00";
                                 $hour = 12;
