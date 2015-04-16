@@ -1,4 +1,5 @@
-<?php	
+<?php
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -33,11 +34,40 @@ class Event
 	public $IsFree;
 	public $IsCancelled;
 	
-	public function __construct() 
-	{            
+	public function __construct() {            
 		if (isset($_POST["createEvent"])) {
             $this->createNewEvent();
         }
+	}
+	
+	public function setValues($id,
+						  $ownerID,
+						  $title,
+						  $image,
+						  $imageID,
+						  $description,
+						  $startDateTime,
+						  $endDateTime,
+						  $address,
+						  $city,
+						  $state,
+						  $zip,
+						  $isFree,
+						  $isCancelled) {
+		$this->ID = $id;
+		$this->OwnerID = $ownerID;
+		$this->Title = $title;
+		$this->Image = $image;
+		$this->ImageID = $imageID;
+		$this->Description = $description;
+		$this->StartDateTime = $startDateTime;
+		$this->EndDateTime = $endDateTime;
+		$this->Address = $address;
+		$this->City = $city;
+		$this->State = $state;
+		$this->ZIP = $zip;
+		$this->IsFree = $isFree;
+		$this->IsCancelled = $isCancelled;
 	}
 	
 	public function getFullAddress() {
