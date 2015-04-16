@@ -98,7 +98,7 @@
 					$pdo = null;
 				} catch(PDOException $e) {
 					$this->errors[] = $e->getMessage();
-=======
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
