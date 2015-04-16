@@ -1,4 +1,8 @@
 <?php
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+
 	require_once('../login/config/db.php');
 	require_once('../classes/User.php');
 	
@@ -6,7 +10,6 @@
 		require_once('../classes/Upload.php');
 		$upload = new Upload();
 		$upload->uploadImage(1);
-		$upload = null;
 	}
 	
 	$userExists = true; //Variable to determine rendering of profile or not
@@ -84,12 +87,34 @@
 				  			<?php } ?>
 				  		</div>
 						<form method="post" enctype="multipart/form-data">
+							<?php
+							// show potential errors / feedback (from upload object)
+							if (isset($upload)) {
+							    if ($upload->errors) {
+							    	echo '<p class="error">';
+							        foreach ($upload->errors as $error) {
+							            echo $error;
+							        }
+									echo '</p>';
+							    }
+							    if ($upload->messages) {
+							    	echo '<p class="message">';
+							        foreach ($login->messages as $message) {
+							            echo $message;
+							        }
+									echo '</p>';
+							    }
+							}
+							?>
 							<input type="hidden" name="MAX_FILE_SIZE" value="65535">
+							<label for="userfile">Upload profile photo (max 63KB):</label>
 							<input name="userfile" type="file" id="userfile">
-							<input name="upload" type="submit" class="box" id="upload" value=" Upload ">
+							<input name="upload" type="submit" id="upload" value="Upload">
 						</form>
-				  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>	
-						<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
+						<form method="post">
+					  		<textarea rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea>
+							<input name="updateBio" type="submit" id="upload" value="Update Bio">
+						</form>
 			  		</div>
 			  		
 			  		<div id="savedEvents">
@@ -118,7 +143,7 @@
 				  				<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
 				  			<?php } ?>
 				  		</div>
-				  		<p>Bio.</p><br>
+				  		<p><?php echo($user->Bio); ?></p><br>
 			  		</div>
 			  		
 			  		<div id="savedEvents">

@@ -9,11 +9,21 @@
 	     */
 	    public $messages = array();
 		
+		function GUID()
+		{
+		    if (function_exists('com_create_guid') === true)
+		    {
+		        return trim(com_create_guid(), '{}');
+		    }
+		
+		    return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+		}
+		
 		public function uploadImage($_purpose) {
 			//$_purpose is int for type of image (profile, event, etc.)
 			//1 - Profile
 			//2 - Event
-			if (isset($_type)) {
+			if (is_int($_type) && $_type > 0 && $type <= 2) {
 				if (isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0)  {
 					if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
 						$maxSize = 65535;
@@ -23,7 +33,7 @@
 							$fileType = $_FILES['userfile']['type'];
 							
 							if (!(false === array_search($fileType, array('image/jpeg', 'image/gif', 'image/png'), true))) {
-								$fileName = $_FILES['userfile']['name'];
+								$fileName = GUID();
 								$content = fopen($_FILES['userfile']['tmp_name'], 'rb');
 								
 								try {
@@ -39,9 +49,41 @@
 									$sql->bindParam(':size', $fileSize, PDO::PARAM_STR, 32);
 									
 									$sql->execute();
-									$pdo = null;
+									$sql = null;									
 									
-									$this->errors[] = "File $fileName uploaded";
+									$this->messages[] = "File $fileName uploaded";
+									
+									//Now that file is uploaded, grab id of image
+									$sql = $pdo->prepare("SELECT ID FROM images WHERE Name = :name");
+									$sql->bindParam(':name', $fileName, PDO::PARAM_STR, 64);
+									
+									$sql->execute();
+									
+									while ($result_row = $sql->fetch()) {
+										//Set object variables
+										$imageID = $result_row["ID"];
+									}
+									$sql = null;
+									
+									if ($_type == 1) {
+										//Grab user
+										$user = new User();
+										$user->fetchFromUsername($_SESSION["user_name"]);
+										//Delete old profile image
+										if ($user->ImageID != null) {
+											$sql = $pdo->prepare("DELETE FROM images WHERE ID = :id");					
+											$sql->bindParam(':id', $user->ImageID, PDO::PARAM_INT);
+											$sql->execute();
+											$sql = null;
+										}
+										//Set new profile image
+										$user->ImageID = $imageID;
+										$user->updateImage();
+									} elseif ($_type == 2) {
+										
+									}
+									
+									$pdo = null;
 								} catch(PDOException $e) {
 									$this->errors[] = 'Error : ' .$e->getMessage();
 								}
