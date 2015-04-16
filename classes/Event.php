@@ -1,103 +1,4 @@
 <?php
-	class Event
-	{
-		/**
-	     * @var array Collection of error messages
-	     */
-	    public $errors = array();
-		/**
-	     * @var array Collection of messages
-	     */
-	    public $messages = array();
-		
-		//Set to default values
-		public $ID;
-		public $OwnerID;
-		public $Title;
-		public $Image;
-		public $ImageID;
-		public $Description;
-		public $StartDateTime;
-		public $EndDateTime;
-		public $Address;
-		public $City;
-		public $State;
-		public $ZIP;
-		public $IsFree;
-		public $IsCancelled;
-		
-		public function __construct() {
-			if (isset($_POST["createEvent"])) {
-                $this->createNewEvent();
-            }
-		}
-		
-		public function setValues($id,
-								  $ownerID,
-								  $title,
-								  $image,
-								  $imageID,
-								  $description,
-								  $startDateTime,
-								  $endDateTime,
-								  $address,
-								  $city,
-								  $state,
-								  $zip,
-								  $isFree,
-								  $isCancelled) {
-			$this->ID = $id;
-			$this->OwnerID = $ownerID;
-			$this->Title = $title;
-			$this->Image = $image;
-			$this->ImageID = $imageID;
-			$this->Description = $description;
-			$this->StartDateTime = $startDateTime;
-			$this->EndDateTime = $endDateTime;
-			$this->Address = $address;
-			$this->City = $city;
-			$this->State = $state;
-			$this->ZIP = $zip;
-			$this->IsFree = $isFree;
-			$this->IsCancelled = $isCancelled;
-		}
-		
-		public function getFullAddress() {
-			return $this->Address . ', ' . $this->City . ', ' . $this->State;
-		}
-		
-		public function fetchFromId($_id) {
-			if (is_numeric($_id)) {
-				try {
-					$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-					$sql = $pdo->prepare("SELECT OwnerID, Title, Image, ImageID, Description, StartDateTime, EndDateTime, Address, City, State, ZIP, IsFree, IsCancelled
-	                        FROM event
-	                        WHERE ID = :id");
-					$sql->bindParam(':id', $_id, PDO::PARAM_INT);
-					$sql->execute();
-					
-					while ($result_row = $sql->fetch()) {
-						//Set object variables
-						$this->ID = intval($_id);
-						$this->OwnerID = $result_row["OwnerID"];
-						$this->Title = $result_row["Title"];
-						$this->Image = $result_row["Image"];
-						$this->ImageID = $result_row["ImageID"];
-						$this->Description = $result_row["Description"];
-						$this->StartDateTime = $result_row["StartDateTime"];
-						$this->EndDateTime = $result_row["EndDateTime"];
-						$this->Address = $result_row["Address"];
-						$this->City = $result_row["City"];
-						$this->State = $result_row["State"];
-						$this->ZIP = $result_row["ZIP"];
-						$this->IsFree = $result_row["IsFree"];
-						$this->IsCancelled = $result_row["IsCancelled"];
-					}
-					
-					$sql->closeCursor();
-					$pdo = null;
-				} catch(PDOException $e) {
-					$this->errors[] = $e->getMessage();
 
 function test_input($data) {
     $data = trim($data);
@@ -133,11 +34,40 @@ class Event
 	public $IsFree;
 	public $IsCancelled;
 	
-	public function __construct() 
-	{            
+	public function __construct() {            
 		if (isset($_POST["createEvent"])) {
             $this->createNewEvent();
         }
+	}
+	
+	public function setValues($id,
+						  $ownerID,
+						  $title,
+						  $image,
+						  $imageID,
+						  $description,
+						  $startDateTime,
+						  $endDateTime,
+						  $address,
+						  $city,
+						  $state,
+						  $zip,
+						  $isFree,
+						  $isCancelled) {
+		$this->ID = $id;
+		$this->OwnerID = $ownerID;
+		$this->Title = $title;
+		$this->Image = $image;
+		$this->ImageID = $imageID;
+		$this->Description = $description;
+		$this->StartDateTime = $startDateTime;
+		$this->EndDateTime = $endDateTime;
+		$this->Address = $address;
+		$this->City = $city;
+		$this->State = $state;
+		$this->ZIP = $zip;
+		$this->IsFree = $isFree;
+		$this->IsCancelled = $isCancelled;
 	}
 	
 	public function getFullAddress() {
