@@ -223,6 +223,31 @@ input[type=submit]:hover, #map input[type=button]:hover
 	border-radius: 0px;
 	width:28%;
 }
+/*Regitser Page-------------------------------------*/
+#registerSection label
+{
+	margin-left:1%;
+	padding:0.7%;
+	width: 11%;
+	float: left;
+	clear:both;
+}
+#registerSection input
+{
+	width: 16%;
+	margin:0.7%;
+	height: 20px;
+}
+#registerButton
+{
+	height: 2.5em;
+	margin-top:1%;
+	margin-bottom:2%;
+	cursor: pointer;
+	font-size:0.9em;
+	border-radius:0.4em;
+	box-shadow: 0.5em 0.5em 0.5em #888888;
+}
 
 footer
 {
