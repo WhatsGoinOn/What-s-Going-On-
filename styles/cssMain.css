@@ -224,6 +224,21 @@ input[type=submit]:hover, #map input[type=button]:hover
 	width:28%;
 }
 /*Regitser Page-------------------------------------*/
+.register
+{
+	background-color:#A0A0A0;
+	height:100%;
+}
+#wrapperRegistration
+{
+	width: 80%;
+	margin:auto;
+	background-color: white;
+	font-family:"Lucida Grande", Times, serif;
+	font-size:1em;
+	line-height:1.5em;
+	height:100%;
+}
 #registerSection label
 {
 	margin-left:1%;
@@ -247,6 +262,11 @@ input[type=submit]:hover, #map input[type=button]:hover
 	font-size:0.9em;
 	border-radius:0.4em;
 	box-shadow: 0.5em 0.5em 0.5em #888888;
+}
+#registerSection legend
+{
+	margin-left:2%;
+	margin-bottom:1%;
 }
 
 footer
@@ -274,24 +294,9 @@ footer
     position:fixed;
     width:80%;   
 }
-.register
-{
-	background-color:#A0A0A0;
-	height:100%;
-}
-#wrapperRegistration
-{
-	width: 80%;
-	margin:auto;
-	background-color: white;
-	font-family:"Lucida Grande", Times, serif;
-	font-size:1em;
-	line-height:1.5em;
-	height:100%;
-}
 
-
-.imgSub {
+.imgSub
+{
 	height: 100%;
 }
 
