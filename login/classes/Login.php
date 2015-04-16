@@ -24,7 +24,7 @@ class Login
     public function __construct()
     {
         // create/read session, absolutely necessary
-        if (!isset($_SESSION['id']))
+        if (!isset($_SESSION))
         {
             session_start();            
         }
@@ -96,7 +96,7 @@ class Login
     public function doLogout()
     {
         // delete the session of the user
-        if (!isset($_SESSION['id']))
+        if (!isset($_SESSION))
         {
             session_start();            
         }

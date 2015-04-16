@@ -23,7 +23,7 @@ class Registration
     * you know, when you do "$registration = new Registration();" */    
     public function __construct()
     {
-		if (!isset($_SESSION['id']))
+		if (!isset($_SESSION))
         {
             session_start();            
         }
