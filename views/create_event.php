@@ -110,7 +110,7 @@ function delegateErrors($errorMsg){
 					<div>
 						<label for="title">Event Name:</label>  
 		  					<input type="text" id="title" name="title" placeholder="Name"
-		  					   value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" />
+		  					   value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" required />
 		  					       <?php if(isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
@@ -286,7 +286,7 @@ function delegateErrors($errorMsg){
                                             }
                                         }
                                     }
-                                } ?><br>
+                                } ?>
                         AM<input type="radio" name="start_am_pm" value="AM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'AM') { echo 'checked';} } ?>> 
                         PM<input type="radio" name="start_am_pm" value="PM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'PM') { echo 'checked';} } ?>>
                             <?php if(isset($event)) {
@@ -352,7 +352,7 @@ function delegateErrors($errorMsg){
                                             }
                                         }
                                     }
-                                } ?><br>
+                                } ?>
                         AM<input type="radio" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?>> 
                         PM<input type="radio" name="end_am_pm" value="PM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'PM') { echo 'checked';} } ?>>
                             <?php if(isset($event)) {

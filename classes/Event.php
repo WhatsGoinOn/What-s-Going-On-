@@ -230,31 +230,37 @@ class Event
         session_write_close();
         
         //Set up error messages
-        
-        //Make sure all fields have valid data                
         if (empty($_POST['title'])){
             $this->errors[] = "Enter an event name";
-        }elseif (empty($_POST['address'])){
+        }
+        if (empty($_POST['address'])){
             $this->errors[] = "Enter an address";
-        }elseif (empty($_POST['city'])){
+        }
+        if (empty($_POST['city'])){
             $this->errors[] = "Enter a city name";
-        }elseif ($_POST['state'] === ""){
+        }
+        if ($_POST['state'] === ""){
             $this->errors[] = "Select a state name";
-        }elseif (empty($_POST['zip'])){
+        }
+        if (empty($_POST['zip'])){
             $this->errors[] = "Enter a five digit zip code";
         }else if (!preg_match("#[0-9]{5}#", $_POST['zip'])){
             $this->errors[] = "Zip code must be five numerical digits";
-        }elseif (empty($_POST['startDate'])){
+        }
+        if (empty($_POST['startDate'])){
             $this->errors[] = "Enter a start date";
         }elseif (!checkdate($startDateArray[0], $startDateArray[1], $startDateArray[2])){
             $this->errors[] = "Enter a valid start date";
         }elseif ($todaysDateTime > $startDateTime){
             $this->errors[] = "Enter a start date and time that has not already passed";
-        }elseif ($_POST['startTime'] === ""){
+        }
+        if ($_POST['startTime'] === ""){
             $this->errors[] = "Select a start time";
-        }elseif ($_POST['start_am_pm'] === ""){
+        }
+        if ($_POST['start_am_pm'] === ""){
             $this->errors[] = "Select a meridiem for the start time";
-        }elseif (empty($_POST['endDate'])){
+        }
+        if (empty($_POST['endDate'])){
             $this->errors[] = "Enter an end date";
         }elseif (!checkdate($endDateArray[0], $endDateArray[1], $endDateArray[2])) {
             $this->errors[] = "Enter a valid end date";
@@ -262,14 +268,39 @@ class Event
             $this->errors[] = "Enter an end date and time that has not already passed";
         }elseif ($startDateTime > $endDateTime){
             $this->errors[] = "Enter an end date and time that is later than the start time date";
-        }elseif ($_POST['endTime'] === ""){
+        }
+        if ($_POST['endTime'] === ""){
             $this->errors[] = "Select an end time";
-        }elseif ($_POST['end_am_pm'] === ""){
+        }
+        if ($_POST['end_am_pm'] === ""){
             $this->errors[] = "Select a meridiem for the end time";            
-        }elseif (empty($_POST['description'])){
+        }
+        if (empty($_POST['description'])){
             $this->errors[] = "Enter a description";
         }elseif (strlen($_POST['description']) > 500){
             $this->errors[] = "Only 500 chartacters allowed in the description"; 
+        }
+            
+        //Make sure all fields have valid data                
+        if (empty($_POST['title'])){
+        }elseif (empty($_POST['address'])){
+        }elseif (empty($_POST['city'])){
+        }elseif ($_POST['state'] === ""){
+        }elseif (empty($_POST['zip'])){
+        }else if (!preg_match("#[0-9]{5}#", $_POST['zip'])){
+        }elseif (empty($_POST['startDate'])){
+        }elseif (!checkdate($startDateArray[0], $startDateArray[1], $startDateArray[2])){
+        }elseif ($todaysDateTime > $startDateTime){
+        }elseif ($_POST['startTime'] === ""){
+        }elseif ($_POST['start_am_pm'] === ""){
+        }elseif (empty($_POST['endDate'])){
+        }elseif (!checkdate($endDateArray[0], $endDateArray[1], $endDateArray[2])) {
+        }elseif ($todaysDateTime > $endDateTime){
+        }elseif ($startDateTime > $endDateTime){
+        }elseif ($_POST['endTime'] === ""){
+        }elseif ($_POST['end_am_pm'] === ""){         
+        }elseif (empty($_POST['description'])){
+        }elseif (strlen($_POST['description']) > 500){
         }elseif (!empty($_POST['title'])
             && !empty($_POST['address'])
             && !empty($_POST['city'])
@@ -370,5 +401,5 @@ class Event
         } else {
             $this->errors[] = "An unknown error occurred.";
         }
-    }    
+    }   
 }
