@@ -23,7 +23,10 @@ class Registration
     * you know, when you do "$registration = new Registration();" */    
     public function __construct()
     {
-		session_start();
+		if (!isset($_SESSION))
+        {
+            session_start();            
+        }
         
         if (isset($_POST["register"])) {
             $this->registerNewUser();
@@ -81,8 +84,8 @@ class Registration
                 // escaping, additionally removing everything that could be (html/javascript-) code
                 $user_name = $this->db_connection->real_escape_string(strip_tags($_POST['user_name'], ENT_QUOTES));
                 $user_email = $this->db_connection->real_escape_string(strip_tags($_POST['user_email'], ENT_QUOTES));
-                $user_isBusiness = $_POST['is_business'];
-                $user_password = $_POST['user_password_new'];
+                $user_isBusiness = $this->db_connection->real_escape_string(strip_tags($_POST['is_business'], ENT_QUOTES));
+                $user_password = $this->db_connection->real_escape_string(strip_tags($_POST['user_password_new'], ENT_QUOTES));
                        
                 // create password hashing object
                 $password_hasher = new PasswordHash(8, FALSE);
@@ -121,16 +124,17 @@ class Registration
                         session_destroy();
                         session_start();
                         // database query, getting the ID of the inserted user 
-                        $sql = "SELECT Username, ID
+                        $sql = "SELECT ID, Username
                                 FROM account
                                 WHERE Username = '" . $user_name . "';";
-                        $result_of_register_check = $this->db_connection->query($sql);
+                        $get_inserted_user = $this->db_connection->query($sql);
                         // get result row (as an object)
-                        $result_row = $result_of_register_check->fetch_object();
+                        $result_row = $get_inserted_user->fetch_object();
                         // write user data into PHP SESSION (a file on your server)                       
                         $_SESSION['user_name'] = $user_name;
                         $_SESSION['user_login_status'] = 1;  
                         $_SESSION['user_id'] = $result_row->ID;
+                        session_write_close();
                                               
                         header('Location: /WhatsGoingOn/views/userProfile.php');
                     } else {

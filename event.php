@@ -45,16 +45,6 @@
 				color: #FFFFFF;
 				font-weight:bold;
 			}
-			
-			.imgSub {
-				max-height: 100%;
-			}
-			
-			.eventImage {
-				width: 300px;
-				height: 200px;
-				overflow: hidden;
-			}
 		</style>		
 
 	</head>

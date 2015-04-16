@@ -16,7 +16,7 @@ if (isset($login)) {
 ?>
 
 <!-- login form box -->
-<form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" name="loginform">
+<form method="post" name="loginform">
 
     
     <input id="login_input_name" class="login_input" placeholder="username" type="text" name="user_name" required /><br>

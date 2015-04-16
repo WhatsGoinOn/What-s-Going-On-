@@ -1,6 +1,16 @@
 <?php
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+
 	require_once('../login/config/db.php');
 	require_once('../classes/User.php');
+	
+	if (isset($_POST["upload"])) {
+		require_once('../classes/Upload.php');
+		$upload = new Upload();
+		$upload->uploadImage(1);
+	}
 	
 	$userExists = true; //Variable to determine rendering of profile or not
 	
@@ -65,17 +75,46 @@
 	  	<section>
 	  		<?php
 	  		if ($userExists) {
-	  			if (isset($_SESSION['user_id']  $_SESSION['user_id'] == $user->ID) {
+	  			if (isset($_SESSION['user_name']) &&  $_SESSION['user_name'] == $user->Username) {
 			?>
 			  		<div id="userInfo">
 			  			<h1><?php echo($user->Name) ?></h1>
 				  		<div class="profileImage">
-				  			<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php if ($user->ImageID == null) { ?>
+				  				<img class="imgSub" src="../images/avatar.gif" alt="Default Profile Picture">
+				  			<?php } else { ?>
+				  				<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php } ?>
 				  		</div>
-						<
-						<input type="button" id="browseImage" value="Browse" onclick=""/><br>
-				  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>	
-						<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
+						<form method="post" enctype="multipart/form-data">
+							<?php
+							// show potential errors / feedback (from upload object)
+							if (isset($upload)) {
+							    if ($upload->errors) {
+							    	echo '<p class="error">';
+							        foreach ($upload->errors as $error) {
+							            echo $error;
+							        }
+									echo '</p>';
+							    }
+							    if ($upload->messages) {
+							    	echo '<p class="message">';
+							        foreach ($login->messages as $message) {
+							            echo $message;
+							        }
+									echo '</p>';
+							    }
+							}
+							?>
+							<input type="hidden" name="MAX_FILE_SIZE" value="65535">
+							<label for="userfile">Upload profile photo (max 63KB):</label>
+							<input name="userfile" type="file" id="userfile">
+							<input name="upload" type="submit" id="upload" value="Upload">
+						</form>
+						<form method="post">
+					  		<textarea rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea>
+							<input name="updateBio" type="submit" id="upload" value="Update Bio">
+						</form>
 			  		</div>
 			  		
 			  		<div id="savedEvents">
@@ -98,9 +137,13 @@
 		  			<div id="userInfo">
 			  			<h1><?php echo($user->Name) ?></h1>
 				  		<div class="profileImage">
-				  			<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php if ($user->ImageID == null) { ?>
+				  				<img class="imgSub" src="../images/avatar.gif" alt="Default Profile Picture">
+				  			<?php } else { ?>
+				  				<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php } ?>
 				  		</div>
-				  		<p>Bio.</p><br>
+				  		<p><?php echo($user->Bio); ?></p><br>
 			  		</div>
 			  		
 			  		<div id="savedEvents">

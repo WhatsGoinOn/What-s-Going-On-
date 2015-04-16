@@ -24,7 +24,11 @@ class Login
     public function __construct()
     {
         // create/read session, absolutely necessary
-		session_start();
+        if (!isset($_SESSION))
+        {
+            session_start();            
+        }
+        
         // check the possible login actions:
         // if user tried to log out (happen when user clicks logout button)
         if (isset($_GET["logout"])) {
@@ -58,7 +62,7 @@ class Login
                 $user_name = $this->db_connection->real_escape_string($_POST['user_name']);
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT Username, Password, ID
+                $sql = "SELECT ID, Username, Password
                         FROM account
                         WHERE Username = '" . $user_name . "';";
                 $result_of_login_check = $this->db_connection->query($sql);
@@ -74,6 +78,7 @@ class Login
                         $_SESSION['user_name'] = $result_row->Username;
                         $_SESSION['user_login_status'] = 1;
 						$_SESSION['user_id'] = $result_row->ID;
+						session_write_close();
                     } else {
                         $this->errors[] = "Wrong password. Try again.";
                     }
@@ -91,9 +96,10 @@ class Login
     public function doLogout()
     {
         // delete the session of the user
-        if(!isset($_SESSION)) {
-		     session_start();
-		}
+        if (!isset($_SESSION))
+        {
+            session_start();            
+        }
         $_SESSION = array();
         session_destroy();
         // return a little feeedback message

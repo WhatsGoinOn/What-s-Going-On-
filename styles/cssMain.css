@@ -73,19 +73,13 @@ nav a:hover
 {
 	padding-bottom:30px;
 }
-section img, #savedEvents img, #results img
+.defaultSection img, #savedEvents img, #results img
 {
 	width:150px;
 	height:100px;
 	float:left;
 	clear:left;
 	padding-right:24px;
-}
-#eventArticle img
-{
-	/*Overwrite for event article image size*/
-	width:300px;
-	height:200px;
 }
 
 #nearbyEvents img, #savedEvents img
@@ -298,11 +292,25 @@ footer
 .imgSub
 {
 	height: 100%;
+	position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
 }
 
 /*Event Page---------------------------*/
 .eventImage {
+	position: relative;
 	width: 300px;
 	height: 200px;
+	overflow: hidden;
+}
+
+.profileImage {
+	position: relative;
+	width: 100px;
+	height: 100px;
 	overflow: hidden;
 }
