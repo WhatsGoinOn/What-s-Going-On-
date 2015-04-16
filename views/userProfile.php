@@ -2,6 +2,13 @@
 	require_once('../login/config/db.php');
 	require_once('../classes/User.php');
 	
+	if (isset($_POST["upload"])) {
+		require_once('../classes/Upload.php');
+		$upload = new Upload();
+		$upload->uploadImage(1);
+		$upload = null;
+	}
+	
 	$userExists = true; //Variable to determine rendering of profile or not
 	
 	$user = new User();
@@ -70,10 +77,17 @@
 			  		<div id="userInfo">
 			  			<h1><?php echo($user->Name) ?></h1>
 				  		<div class="profileImage">
-				  			<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php if ($user->ImageID == null) { ?>
+				  				<img class="imgSub" src="../images/avatar.gif" alt="Default Profile Picture">
+				  			<?php } else { ?>
+				  				<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php } ?>
 				  		</div>
-						<
-						<input type="button" id="browseImage" value="Browse" onclick=""/><br>
+						<form method="post" enctype="multipart/form-data">
+							<input type="hidden" name="MAX_FILE_SIZE" value="65535">
+							<input name="userfile" type="file" id="userfile">
+							<input name="upload" type="submit" class="box" id="upload" value=" Upload ">
+						</form>
 				  		<textarea rows="11" cols="50" placeholder="User Bio"></textarea><br>	
 						<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
 			  		</div>
@@ -98,7 +112,11 @@
 		  			<div id="userInfo">
 			  			<h1><?php echo($user->Name) ?></h1>
 				  		<div class="profileImage">
-				  			<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php if ($user->ImageID == null) { ?>
+				  				<img class="imgSub" src="../images/avatar.gif" alt="Default Profile Picture">
+				  			<?php } else { ?>
+				  				<img class="imgSub" src="../image.php?id=<?php echo($user->ImageID) ?>" alt="Profile Picture">
+				  			<?php } ?>
 				  		</div>
 				  		<p>Bio.</p><br>
 			  		</div>
