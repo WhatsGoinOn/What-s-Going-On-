@@ -9,8 +9,7 @@
 	     */
 	    public $messages = array();
 		
-		function GUID()
-		{
+		function createGuid() {
 		    if (function_exists('com_create_guid') === true)
 		    {
 		        return trim(com_create_guid(), '{}');
@@ -23,7 +22,7 @@
 			//$_purpose is int for type of image (profile, event, etc.)
 			//1 - Profile
 			//2 - Event
-			if (is_int($_type) && $_type > 0 && $type <= 2) {
+			if (is_int($_purpose) && $_purpose > 0 && $_purpose <= 2) {
 				if (isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0)  {
 					if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
 						$maxSize = 65535;
@@ -33,7 +32,7 @@
 							$fileType = $_FILES['userfile']['type'];
 							
 							if (!(false === array_search($fileType, array('image/jpeg', 'image/gif', 'image/png'), true))) {
-								$fileName = GUID();
+								$fileName = $this->createGuid();
 								$content = fopen($_FILES['userfile']['tmp_name'], 'rb');
 								
 								try {
@@ -65,7 +64,7 @@
 									}
 									$sql = null;
 									
-									if ($_type == 1) {
+									if ($_purpose == 1) {
 										//Grab user
 										$user = new User();
 										$user->fetchFromUsername($_SESSION["user_name"]);
@@ -79,8 +78,8 @@
 										//Set new profile image
 										$user->ImageID = $imageID;
 										$user->updateImage();
-									} elseif ($_type == 2) {
-										
+									} elseif ($_purpose == 2) {
+										//event
 									}
 									
 									$pdo = null;
