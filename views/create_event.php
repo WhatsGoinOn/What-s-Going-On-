@@ -1,31 +1,3 @@
-<?php
-// show potential errors / feedback (from createEvent object)
-if (isset($event)) {
-    if ($event->errors) {
-        foreach ($event->errors as $error) {
-            echo $error . "<br>";
-        }
-    }
-    if ($event->messages) {
-        foreach ($event->messages as $message) {
-            echo $message;
-        }
-    }
-}
-
-function delegateErrors($errorMsg){
-    if(isset($event)) {
-        if ($event->errors) {
-            foreach ($event->errors as $error) {
-                if($error == $errorMsg){
-                    echo $error;
-                }
-            }
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
