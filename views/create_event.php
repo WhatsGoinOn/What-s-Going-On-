@@ -111,9 +111,9 @@ function delegateErrors($errorMsg){
                                                                                                                                           }
                                                                                                                                         }
                                                                                                                                     } ?><br>
-		  				<label for="" this event free?
-                        <input type="radio" name="isFree" value="0" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '0') { echo 'checked';} } ?>>Yes 
-                        <input type="radio" name="isFree" value="1" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '1') { echo 'checked';} } ?>>No<br>
+		  				<label for="radioBtn">Is this event free?</label> 
+                        <input class="radioBtn" type="radio" name="isFree" value="0" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '0') { echo 'checked';} } ?>>Yes 
+                        <input class="radioBtn" type="radio" name="isFree" value="1" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '1') { echo 'checked';} } ?>>No<br>
 		  				<label for="address">Address:</label>  
                             <input type="text" id="address" name="address" placeholder="Address"
                                 value="<?php if(isset($_SESSION['address'])){echo htmlspecialchars($_SESSION['address']);} ?>" required/><br>  					
