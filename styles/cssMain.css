@@ -237,7 +237,7 @@ input[type=submit]:hover, #map input[type=button]:hover
 {
 	margin-left:1%;
 	padding:0.7%;
-	width: 11%;
+	width: 20%;
 	float: left;
 	clear:both;
 }
@@ -247,11 +247,16 @@ input[type=submit]:hover, #map input[type=button]:hover
 	margin:0.7%;
 	height: 20px;
 }
-#registerButton
+#registerSection .radioButtons	
+{
+	width:2%;
+}
+#registerSection #registerButton
 {
 	height: 2.5em;
 	margin-top:1%;
 	margin-bottom:2%;
+	margin-left:-21%;
 	cursor: pointer;
 	font-size:0.9em;
 	border-radius:0.4em;
@@ -261,6 +266,11 @@ input[type=submit]:hover, #map input[type=button]:hover
 {
 	margin-left:2%;
 	margin-bottom:1%;
+}
+#registerSection p
+{
+	font-size:1em;
+	margin-left:-10%;
 }
 
 footer

@@ -115,9 +115,9 @@ if (isset($registration)) {
                         <label for="login_input_password_repeat">Repeat Password:</label>
                         <input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" required autocomplete="off" /><br>
                         
-                        <p>Is this a business account?</p>
-                        <input type="radio" name="is_business" value="0" checked>No 
-                        <input type="radio" name="is_business" value="1">Yes<br><br>
+                        <label for="radioButtons">Is this a business account?</label>
+                        <input class="radioButtons" type="radio" name="is_business" value="0" checked>No 
+                        <input class="radioButtons" type="radio" name="is_business" value="1">Yes<br><br>
                         
                         <input id="registerButton" type="submit" onclick="return Validate()" name="register" value="Sign Up" />
                     </div>
