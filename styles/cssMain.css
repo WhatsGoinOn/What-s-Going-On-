@@ -217,6 +217,7 @@ input[type=submit]:hover, #map input[type=button]:hover
 	border-radius: 0px;
 	width:28%;
 }
+<<<<<<< HEAD
 /*Regitser Page-------------------------------------*/
 .register
 {
@@ -272,6 +273,8 @@ input[type=submit]:hover, #map input[type=button]:hover
 	font-size:1em;
 	margin-left:-10%;
 }
+=======
+>>>>>>> 1b298f4787ce62b468abbacd8c3f72fd0beff267
 
 footer
 {
@@ -298,9 +301,24 @@ footer
     position:fixed;
     width:80%;   
 }
-
-.imgSub
+.register
 {
+	background-color:#A0A0A0;
+	height:100%;
+}
+#wrapperRegistration
+{
+	width: 80%;
+	margin:auto;
+	background-color: white;
+	font-family:"Lucida Grande", Times, serif;
+	font-size:1em;
+	line-height:1.5em;
+	height:100%;
+}
+
+
+.imgSub {
 	height: 100%;
 	position: absolute;
     top: -9999px;
