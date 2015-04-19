@@ -290,9 +290,9 @@ footer
     line-height:1.5em;   
 }
 /*Footer for Create Account page---------------------------------------------*/
-#footer
+#footer, footer
 {
-	clear:left;
+	clear:all;
 	border-top: 0.1em solid black;
     background-color:rgb(166,102,12);	
     color: #FFFFFF;
