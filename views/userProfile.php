@@ -108,11 +108,11 @@
 							?>
 							<input type="hidden" name="MAX_FILE_SIZE" value="65535">
 							<label for="userfile">Upload profile photo (max 63KB):</label>
-							<input name="userfile" type="file" id="userfile">
+							<input name="userfile" type="file" id="userfile"><br/>
 							<input name="upload" type="submit" id="upload" value="Upload">
 						</form>
 						<form method="post">
-					  		<textarea rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea>
+					  		<textarea rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea><br/>
 							<input name="updateBio" type="submit" id="upload" value="Update Bio">
 						</form>
 			  		</div>
@@ -157,7 +157,7 @@
 			  			<h3>Event Name</h3>
 			  			</div>
 			  			<div>
-			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
+			  			<img style="margin-bottom: 10%;" src="../images/eventImage.jpg" alt="IMAGE HERE!">
 			  			<h3>Event Name</h3>
 			  			</div>
 			  		</div>

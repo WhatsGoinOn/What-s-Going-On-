@@ -267,7 +267,7 @@ function delegateErrors($errorMsg){
 				  		<input type="checkbox" id="community" name="chk_tags[]" value="Community" />Community<br>				  			
 				  		<input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
 				  				
-				  		<input type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>			  			
+				  		<input style="margin-bottom: 4%; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>			  			
 					</div>
 				</fieldset>	
 			</form>		  			
