@@ -216,9 +216,17 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 	width: 16%;
 	height: 20px;
 }
+#createEventSection input[type=checkbox]
+{
+	width:2%;
+}
 #zip
 {
 	margin-bottom:10px;
+}
+textarea
+{
+	
 }
 #createEventSection select
 {
