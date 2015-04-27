@@ -218,8 +218,8 @@ function delegateErrors($errorMsg){
                                     }
                                 ?>
                             </select>
-                        AM<input type="radio" name="start_am_pm" value="AM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'AM') { echo 'checked';} } ?>> 
-                        PM<input type="radio" name="start_am_pm" value="PM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'PM') { echo 'checked';} } ?>><br>
+                        AM<input type="radio" class="radioBtn" name="start_am_pm" value="AM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'AM') { echo 'checked';} } ?>> 
+                        PM<input type="radio" class="radioBtn" name="start_am_pm" value="PM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'PM') { echo 'checked';} } ?>><br>
                         <label for="endDate">End Date:</label>  
                             <input type="text" id="endDate" name="endDate" placeholder="(month/day/year)"
                                 value="<?php if(isset($_SESSION['endDate'])){echo htmlspecialchars($_SESSION['endDate']);} ?>" required /><br>
@@ -251,12 +251,12 @@ function delegateErrors($errorMsg){
                                     }
                                 }?>
 				  			</select>
-                        AM<input type="radio" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?>> 
-                        PM<input type="radio" name="end_am_pm" value="PM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'PM') { echo 'checked';} } ?>><br>
+                        AM<input type="radio" class="radioBtn" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?>> 
+                        PM<input type="radio" class="radioBtn" name="end_am_pm" value="PM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'PM') { echo 'checked';} } ?>><br>
 	  					<textarea rows="10" cols="50" name="description" placeholder="Description Here!"><?php if(isset($_SESSION['description'])){echo htmlspecialchars($_SESSION['description']);} ?></textarea><br>
 						<img src="eventImage.jpg" alt="IMAGE HERE!" width="200" height="200"><br>
 						<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
-						<p>Select appropriate tags (min 1):</p><br>
+						<p style="font-size: 0.9em;">Select appropriate tags (min 1):</p><br>
 						<input type="checkbox" id="music" name="chk_tags[]" value="Music" />Music<br>							
 						<input type="checkbox" id="sports" name="chk_tags[]" value="Sports" />Sports<br>				  			
 				  		<input type="checkbox" id="annual" name="chk_tags[]" value="Annual" />Annual<br>				  			
@@ -267,7 +267,7 @@ function delegateErrors($errorMsg){
 				  		<input type="checkbox" id="community" name="chk_tags[]" value="Community" />Community<br>				  			
 				  		<input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
 				  				
-				  		<input type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/>			  			
+				  		<input type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>			  			
 					</div>
 				</fieldset>	
 			</form>		  			
