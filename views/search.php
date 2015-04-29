@@ -17,6 +17,10 @@
 				color: #FFFFFF;
 				font-weight:bold;
 			}
+			#wrapper
+			{
+				height:100px;
+			}
 		</style>		
 
 	</head>

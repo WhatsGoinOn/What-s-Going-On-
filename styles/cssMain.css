@@ -4,7 +4,7 @@ body
 {
 	background-color:#A0A0A0;
 }
-#wrapper
+body #wrapper
 {
 	width: 80%;
 	margin:auto;
@@ -12,6 +12,8 @@ body
 	font-family:"Lucida Grande", Times, serif;
 	font-size:1em;
 	line-height:1.5em;
+	min-height:800px;
+	overflow:auto;
 }
 
 /*styling main content*/
@@ -126,7 +128,7 @@ section h1, legend
 {
 	display:inline-table;
 }
-#map input[type=button]
+#map input[type=button] 
 {
 	height: 2.5em;
 	width: 100%;
@@ -182,7 +184,7 @@ input[type=checkbox]
 {
 	margin-right:2em;
 }
-input[type=submit]
+input[type=submit], #createEventSection input[type=button]
 {
 	height: 2.2em;
 	margin-top:1%;
@@ -192,7 +194,7 @@ input[type=submit]
 	border-radius:0.4em;
 	box-shadow: 0.5em 0.5em 0.5em #888888;
 }
-input[type=submit]:hover, #map input[type=button]:hover
+input[type=submit]:hover, #map input[type=button]:hover, #createEventSection input[type=button]:hover
 {
 	color:#FF6600;
 }
@@ -201,14 +203,30 @@ input[type=submit]:hover, #map input[type=button]:hover
 {
 	margin-left:1%;
 	padding:0.7%;
-	width: 11%;
+	width: 15%;
 	float: left;
 	clear:both;
+}
+#createEventSection textarea, img
+{
+	margin-left: 1.5%;
 }
 #createEventSection input
 {
 	width: 16%;
 	height: 20px;
+}
+#createEventSection input[type=checkbox]
+{
+	width:2%;
+}
+#zip
+{
+	margin-bottom:10px;
+}
+textarea
+{
+	
 }
 #createEventSection select
 {
@@ -217,6 +235,72 @@ input[type=submit]:hover, #map input[type=button]:hover
 	border-radius: 0px;
 	width:28%;
 }
+#createEventSection .radioBtn
+{
+	width:2%;
+	height:2em;
+	margin-bottom:10px;
+	margin-top:15px;
+}
+
+
+/*Regitser Page-------------------------------------*/
+.register
+{
+	background-color:#A0A0A0;
+	height:100%;
+}
+#wrapperRegistration
+{
+	width: 80%;
+	margin:auto;
+	background-color: white;
+	font-family:"Lucida Grande", Times, serif;
+	font-size:1em;
+	line-height:1.5em;
+	height:100%;
+}
+#registerSection label
+{
+	margin-left:1%;
+	padding:0.7%;
+	width: 20%;
+	float: left;
+	clear:both;
+}
+#registerSection input
+{
+	width: 16%;
+	margin:0.7%;
+	height: 20px;
+}
+#registerSection .radioButtons	
+{
+	width:2%;
+}
+#registerSection #registerButton
+{
+	height: 2.5em;
+	margin-top:1%;
+	margin-bottom:2%;
+	margin-left:-21%;
+	cursor: pointer;
+	font-size:0.9em;
+	border-radius:0.4em;
+	box-shadow: 0.5em 0.5em 0.5em #888888;
+}
+#registerSection legend
+{
+	margin-left:2%;
+	margin-bottom:1%;
+}
+#registerSection p
+{
+	font-size:1em;
+	margin-left:-10%;
+}
+=======
+>>>>>>> 1b298f4787ce62b468abbacd8c3f72fd0beff267
 
 footer
 {
@@ -229,9 +313,9 @@ footer
     line-height:1.5em;   
 }
 /*Footer for Create Account page---------------------------------------------*/
-#footer
+#footer, footer
 {
-	clear:left;
+	clear:all;
 	border-top: 0.1em solid black;
     background-color:rgb(166,102,12);	
     color: #FFFFFF;
