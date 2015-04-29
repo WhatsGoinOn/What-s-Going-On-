@@ -180,7 +180,7 @@ class Event
             } else {
                 $endDateTime = new DateTime($endDate . " " . $endTime);
             }                       
-        } 
+        }        
         
         //set the session variables        
         if (!isset($_SESSION['id'])){
@@ -188,6 +188,9 @@ class Event
         }
         if (!empty($_POST['title'])){
             $_SESSION['title'] = $_POST['title'];
+        }
+        if (!empty($_POST['isFree'])){
+            $_SESSION['isFree'] = $_POST['isFree'];
         }
         if (!empty($_POST['address'])){
             $_SESSION['address'] = $_POST['address'];
@@ -208,7 +211,7 @@ class Event
         if ($_POST['startTime'] != "" && $todaysDateTime < $startDateTime){
             $_SESSION['startTime'] = $_POST['startTime'];
         }
-        if ($_POST['start_am_pm'] != "" && $todaysDateTime < $startDateTime){
+        if (!empty($_POST['start_am_pm']) && $todaysDateTime < $startDateTime){
             $_SESSION['start_am_pm'] = $_POST['start_am_pm'];
         }
         if (!empty($_POST['endDate']) && $todaysDateTime < $endDateTime && $startDateTime < $endDateTime
@@ -218,10 +221,10 @@ class Event
         if ($_POST['endTime'] != "" && $todaysDateTime < $endDateTime && $startDateTime < $endDateTime){
             $_SESSION['endTime'] = $_POST['endTime'];
         }
-        if ($_POST['end_am_pm'] != "" && $todaysDateTime < $endDateTime && $startDateTime < $endDateTime){
+        if (!empty($_POST['end_am_pm']) && $todaysDateTime < $endDateTime && $startDateTime < $endDateTime){
             $_SESSION['end_am_pm'] = $_POST['end_am_pm'];
         }
-        if ($_POST['isFree'] != ""){
+        if (!empty($_POST['isFree'])){
             $_SESSION['isFree'] = $_POST['isFree'];
         }
         if (strlen($_POST['description']) <= 500 && $_POST['description'] != ""){
@@ -257,7 +260,7 @@ class Event
         if ($_POST['startTime'] === ""){
             $this->errors[] = "Select a start time";
         }
-        if ($_POST['start_am_pm'] === ""){
+        if (empty($_POST['start_am_pm'])){
             $this->errors[] = "Select a meridiem for the start time";
         }
         if (empty($_POST['endDate'])){
@@ -272,7 +275,7 @@ class Event
         if ($_POST['endTime'] === ""){
             $this->errors[] = "Select an end time";
         }
-        if ($_POST['end_am_pm'] === ""){
+        if (empty($_POST['end_am_pm'])){
             $this->errors[] = "Select a meridiem for the end time";            
         }
         if (empty($_POST['description'])){
@@ -352,7 +355,12 @@ class Event
                 $city = $this->db_connection->real_escape_string(strip_tags($_POST['city'], ENT_QUOTES));
                 $state = $this->db_connection->real_escape_string(strip_tags($_POST['state'], ENT_QUOTES));
                 $zip = $this->db_connection->real_escape_string(strip_tags($_POST['zip'], ENT_QUOTES));                    
-                $isFree = $this->db_connection->real_escape_string(strip_tags($_POST['isFree'], ENT_QUOTES));                   
+                $isFree = $this->db_connection->real_escape_string(strip_tags($_POST['isFree'], ENT_QUOTES)); 
+                if ($isFree == "Yes"){
+                    $isFree = 0;
+                }elseif($isFree == "No"){
+                    $isFree = 1;
+                }               
                 
                 $convertedStartDateTime = $startDateTime->format('Y-m-d H:i:s');
                 $convertedEndDateTime = $endDateTime->format('Y-m-d H:i:s');

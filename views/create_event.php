@@ -92,9 +92,9 @@
                                             }
                                         }
                                     } ?><br>
-		  				Is this event free?    
-		  				Yes<input type="radio" name="isFree" value="0" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '0') { echo 'checked';} } ?>>
-                        No<input type="radio" name="isFree" value="1" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '1') { echo 'checked';} } ?>><br>
+		  				Is this event free?  
+                        Yes<input type="radio" name="isFree" value="Yes" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == 'Yes') { echo 'checked';} } ?> required> 
+                        No<input type="radio" name="isFree" value="No" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) ==  'No') { echo 'checked';} } ?>><br>
 		  				<label for="address">Address:</label>  
                             <input type="text" id="address" name="address" placeholder="Address"
                                 value="<?php if(isset($_SESSION['address'])){echo htmlspecialchars($_SESSION['address']);} ?>" required/>
@@ -259,7 +259,7 @@
                                         }
                                     }
                                 } ?>
-                        AM<input type="radio" name="start_am_pm" value="AM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'AM') { echo 'checked';} } ?>> 
+                        AM<input type="radio" name="start_am_pm" value="AM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'AM') { echo 'checked';} } ?> required> 
                         PM<input type="radio" name="start_am_pm" value="PM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'PM') { echo 'checked';} } ?>>
                             <?php if(isset($event)) {
                                 if ($event->errors) {
@@ -325,7 +325,7 @@
                                         }
                                     }
                                 } ?>
-                        AM<input type="radio" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?>> 
+                        AM<input type="radio" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?> required> 
                         PM<input type="radio" name="end_am_pm" value="PM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'PM') { echo 'checked';} } ?>>
                             <?php if(isset($event)) {
                                 if ($event->errors) {
