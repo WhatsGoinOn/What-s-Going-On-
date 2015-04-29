@@ -73,6 +73,7 @@
 		  			<p><?php echo($event->StartDateTime);?></p>
 		  			<p><?php echo($event->Address);?></p>
 		  			<p><?php echo($event->City);?>&nbsp;<?php echo($event->State);?>&nbsp;<?php echo($event->ZIP);?></p>
+		  			<hr>
 		  			<p><?php echo($event->Description); ?></p>	  			
 		  		</div>	
 		  		
