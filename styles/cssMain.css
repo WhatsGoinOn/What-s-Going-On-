@@ -368,3 +368,8 @@ footer
 	height: 100px;
 	overflow: hidden;
 }
+
+#eventName p{
+	font-size:1em;
+	width:200px;
+}
