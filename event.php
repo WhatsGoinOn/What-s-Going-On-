@@ -70,6 +70,9 @@
 		  			<div class="eventImage">
 		  				<img class="imgSub" src="image.php?id=<?php echo($event->ImageID); ?>" alt="Event image">
 		  			</div>
+		  			<p><?php echo($event->Date);?></p>
+		  			<p><?php echo($event->Address);?></p>
+		  			<p><?php echo($event->City);?><?php echo($event->State);?><?php echo($event->ZIP);?></p>
 		  			<p><?php echo($event->Description); ?></p>	  			
 		  		</div>	
 		  		
