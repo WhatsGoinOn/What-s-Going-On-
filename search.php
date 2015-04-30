@@ -75,7 +75,7 @@
 					for ($i = 0; $i < $events->getCount(); $i++) {
 						$event = $events->getItem($i);
 						$event->displayEventItem();
-						echo("<hr class=\"eventItemSeparator\" />");
+						
 					}
 				} else {
 					echo("<p>No events to display.</p>");

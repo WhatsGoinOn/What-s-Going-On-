@@ -93,7 +93,7 @@ class Event
 					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
 					<p>$this->City, $this->State $this->ZIP</p>
 					<p>$this->StartDateTime - $this->EndDateTime</p>
-					<p>$desc</p>
+					<p>$desc</p><br/>
 				</div>
 			</div>
 EOL;
