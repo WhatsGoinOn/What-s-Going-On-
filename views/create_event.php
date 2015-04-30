@@ -384,7 +384,11 @@ if (isset($event)) {
 				  		<input type="checkbox" id="community" name="chk_tags[]" value="Community" />Community<br>				  			
 				  		<input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
 				  				
+<<<<<<< HEAD
+				  		<input style="margin-bottom: 4%; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>			  			
+=======
 				  		<input type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/>			  			
+>>>>>>> b2a7cb9834724343d43b1cbeee01323aea9114c7
 					</div>
 				</fieldset>	
 			</form>		  			
