@@ -103,7 +103,7 @@ if (isset($event)) {
 					<div>
 						<label for="title">Event Name:</label>  
 		  					<input type="text" id="title" name="title" placeholder="Name"
-		  					   value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" />
+		  					   value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" required/>
 		  					       <?php if(isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
