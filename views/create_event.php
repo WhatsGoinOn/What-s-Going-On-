@@ -364,7 +364,7 @@ if (isset($event)) {
                                 if ($event->errors) {
                                     foreach ($event->errors as $error) {
                                         if($error == "Enter a description"){
-                                            echo $error;
+                                            echo "<span class='error'>" . $error . "</span>";
                                         }elseif($error == "Only 500 chartacters allowed in the description"){
                                             echo "<span class='error'>" . $error . "</span>";
                                         }
