@@ -448,7 +448,7 @@
                         <input type="checkbox" id="community" name="chk_tags[]" value="Community" />Community<br>                           
                         <input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
                                 
-                        <input type="submit" value="Update Event" onclick="return Validate()" name="updateEvent"/>                      
+                        <input style="margin-bottom: 4%; height: 2em;" type="submit" value="Update Event" onclick="return Validate()" name="updateEvent"/>                      
                     </div>
                 </fieldset> 
             </form>                 
