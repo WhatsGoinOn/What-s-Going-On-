@@ -48,6 +48,26 @@
  		 	<?php require_once("navigation.php"); ?>
 	  	</nav>
 	  
+	  	<section id="searchForm">
+	  		<form action="" method="get">
+	  			<input name="keyword" type="text" placeholder="Keyword"
+	  				<?php if (isset($_GET['keyword']) && !empty($_GET['keyword'])) { echo("value=\"" . $_GET['keyword']) . '"'; } ?>/> 
+	  			<input name="zip" type="text" placeholder="ZIP"
+	  				<?php if (isset($_GET['zip']) && !empty($_GET['zip'])) { echo("value=\"" . $_GET['zip']) . '"'; } ?>/>
+	  			<input name="date" type="text" placeholder="Date"
+	  				<?php if (isset($_GET['date']) && !empty($_GET['date'])) { echo("value=\"" . $_GET['date']) . '"'; } ?>/>
+	  			<br />
+	  			<input name="allowcancelled" type="checkbox"
+	  				<?php if (isset($_GET['allowcancelled'])) { echo("checked"); } ?>/>
+	  			<label for="allowcancelled">Allow cancelled events.</label>
+	  			<br />
+	  			<input name="allowover" type="checkbox"
+	  				<?php if (isset($_GET['allowover'])) { echo("checked"); } ?>/>
+	  			<label for="allowover">Allow events that are over.</label>
+	  			<br />
+	  			<input type="submit" value="Search"/>
+	  		</form>
+	  	</section>
 	  	<section id="searchList">
 			<?php
 				if (isset($events) && $events->getCount() > 0) {
