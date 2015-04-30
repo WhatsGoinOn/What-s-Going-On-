@@ -123,7 +123,7 @@ if (isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
                                                 if($error == "Enter an address"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }
                                             }
                                         }
@@ -135,7 +135,7 @@ if (isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
                                                 if($error == "Enter a city name"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }
                                             }
                                         }
@@ -207,7 +207,7 @@ if (isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
                                                 if($error == "Select a state name"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }
                                             }
                                         }
@@ -219,11 +219,11 @@ if (isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
                                                 if($error == "Enter a five digit zip code"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }elseif($error == "Zip code must be five numerical digits"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }elseif($error == "Sorry, please enter a valid zipcode"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }
                                             }
                                         }
@@ -235,11 +235,11 @@ if (isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
                                                 if($error == "Enter a start date"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }elseif($error == "Enter a valid start date"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }elseif($error == "Enter a start date and time that has not already passed"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }
                                             }
                                         }
@@ -277,7 +277,7 @@ if (isset($event)) {
                                     if ($event->errors) {
                                         foreach ($event->errors as $error) {
                                             if($error == "Select a start time"){
-                                                echo $error;
+                                                echo "<span class='error'>" . $error . "</span>";
                                             }
                                         }
                                     }
@@ -288,7 +288,7 @@ if (isset($event)) {
                                 if ($event->errors) {
                                     foreach ($event->errors as $error) {
                                         if($error == "Select a meridiem for the start time"){
-                                            echo $error;
+                                            echo "<span class='error'>" . $error . "</span>";
                                         }
                                     }
                                 }
@@ -300,13 +300,13 @@ if (isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
                                                 if($error == "Enter an end date"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }elseif($error == "Enter a valid end date"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }elseif($error == "Enter an end date and time that has not already passed"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }elseif($error == "Enter an end date and time that is later than the start time date"){
-                                                    echo $error;
+                                                    echo "<span class='error'>" . $error . "</span>";
                                                 }
                                             }
                                         }
@@ -343,7 +343,7 @@ if (isset($event)) {
                                     if ($event->errors) {
                                         foreach ($event->errors as $error) {
                                             if($error == "Select a end time"){
-                                                echo $error;
+                                                echo "<span class='error'>" . $error . "</span>";
                                             }
                                         }
                                     }
@@ -354,7 +354,7 @@ if (isset($event)) {
                                 if ($event->errors) {
                                     foreach ($event->errors as $error) {
                                         if($error == "Select a meridiem for the end time"){
-                                            echo $error;
+                                            echo "<span class='error'>" . $error . "</span>";
                                         }
                                     }
                                 }
@@ -366,7 +366,7 @@ if (isset($event)) {
                                         if($error == "Enter a description"){
                                             echo $error;
                                         }elseif($error == "Only 500 chartacters allowed in the description"){
-                                            echo $error;
+                                            echo "<span class='error'>" . $error . "</span>";
                                         }
                                     }
                                 }
