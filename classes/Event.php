@@ -684,10 +684,10 @@ class Event
                             Address = '" . $address . "', City = '" . $city . "', State = '" . $state . "', Zip = '" . $zip . "', 
                             IsFree = '" . $isFree . "' WHERE ID = '" . $eventID . "'";
                             
-                            $query_new_event_insert = $this->db_connection->query($sql);
+                            $query_update_event_insert = $this->db_connection->query($sql);
 
                     // if event has been updated successfully
-                    if ($query_new_event_insert) {
+                    if ($query_update_event_insert) {
                         if (!isset($_SESSION['id']))
                         {
                             session_start();            
