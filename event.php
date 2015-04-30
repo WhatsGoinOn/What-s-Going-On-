@@ -105,7 +105,7 @@
 						}
 					} ?>
 	  	</section>
-	  	
+	  	</div>
 	  	<footer>
 	  		<?php require_once("footer.php"); ?>
 	  	</footer>
