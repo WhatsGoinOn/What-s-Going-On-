@@ -1,3 +1,24 @@
+<?php
+// show potential errors / feedback (from event object)
+if (isset($event)) {
+    if ($event->errors) {
+        foreach ($event->errors as $error) {
+            if ($error == "Sorry, your event creation failed. Please go back and try again." 
+                || $error == "Sorry, no database connection."
+                || $error == "An unknown error occurred."
+                || $error == "Sorry, that event has already been created."){
+                echo $error . "<br>";
+            }            
+        }
+    }
+    if ($event->messages) {
+        foreach ($event->messages as $message) {
+            echo $message;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -200,6 +221,8 @@
                                                 if($error == "Enter a five digit zip code"){
                                                     echo $error;
                                                 }elseif($error == "Zip code must be five numerical digits"){
+                                                    echo $error;
+                                                }elseif($error == "Sorry, please enter a valid zipcode"){
                                                     echo $error;
                                                 }
                                             }
