@@ -113,7 +113,7 @@ if (isset($event)) {
                                             }
                                         }
                                     } ?><br>
-		  				Is this event free?  
+		  				<label>Is this event free?</label>  
                         Yes<input type="radio" class="radioBtn" name="isFree" value="Yes" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == 'Yes') { echo 'checked';} } ?> required> 
                         No<input type="radio" class="radioBtn" name="isFree" value="No" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) ==  'No') { echo 'checked';} } ?>><br>
 		  				<label for="address">Address:</label>  
