@@ -78,6 +78,27 @@ class Event
 		return $this->Address . ', ' . $this->City . ', ' . $this->State;
 	}
 	
+	public function displayEventItem() {
+		if (strlen($this->Description) > 100) {
+			$desc = substr($this->Description, 0, 100) . "...";
+		} else {
+			$desc = $this->Description;
+		}
+		echo <<<EOL
+			<div class="eventItem">
+				<div class="eventImageSmall">
+					<img class="imgSub" src="image.php?id=$this->ImageID">
+				</div>
+				<div class="eventItemInfo">
+					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
+					<p>$this->City, $this->State $this->ZIP</p>
+					<p>$this->StartDateTime - $this->EndDateTime</p>
+					<p>$desc</p>
+				</div>
+			</div>
+EOL;
+	}
+	
 	public function fetchFromId($_id) {
 		if (is_numeric($_id)) {
 			try {
