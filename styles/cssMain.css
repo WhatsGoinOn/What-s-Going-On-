@@ -398,3 +398,7 @@ footer
 	font-size:1em;
 	width:200px;
 }
+
+#eventName .descriptionE{
+	width:500px;
+}
