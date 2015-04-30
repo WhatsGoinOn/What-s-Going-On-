@@ -70,7 +70,8 @@
 		  			<div class="eventImage">
 		  				<img class="imgSub" src="image.php?id=<?php echo($event->ImageID); ?>" alt="Event image">
 		  			</div>
-		  			<p><?php echo($event->StartDateTime);?></p>
+		  			<?php $startDate = date("d/m/Y", strtotime($event->StartDateTime));?>
+		  			<p>><?php echo($startDate)?></p>
 		  			<p><?php echo($event->Address);?></p>
 		  			<p><?php echo($event->City);?>&nbsp;<?php echo($event->State);?>&nbsp;<?php echo($event->ZIP);?></p>
 		  			<hr>
