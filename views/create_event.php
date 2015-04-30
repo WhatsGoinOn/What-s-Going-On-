@@ -1,9 +1,14 @@
 <?php
-// show potential errors / feedback (from createEvent object)
+// show potential errors / feedback (from event object)
 if (isset($event)) {
     if ($event->errors) {
         foreach ($event->errors as $error) {
-            echo $error . "<br>";
+            if ($error == "Sorry, your event creation failed. Please go back and try again." 
+                || $error == "Sorry, no database connection."
+                || $error == "An unknown error occurred."
+                || $error == "Sorry, that event has already been created."){
+                echo $error . "<br>";
+            }            
         }
     }
     if ($event->messages) {
@@ -11,10 +16,6 @@ if (isset($event)) {
             echo $message;
         }
     }
-}
-
-function delegateErrors($errorMsg){
-    
 }
 ?>
 
@@ -102,24 +103,43 @@ function delegateErrors($errorMsg){
 					<div>
 						<label for="title">Event Name:</label>  
 		  					<input type="text" id="title" name="title" placeholder="Name"
-		  					   value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" /><?php if(isset($event)) {
-		  					                                                                                                          if ($event->errors) {
-		  					                                                                                                              foreach ($event->errors as $error) {
-		  					                                                                                                                  if($error == "Enter an event name"){
-		  					                                                                                                                      echo $error;
-		  					                                                                                                                  }
-                                                                                                                                          }
-                                                                                                                                        }
-                                                                                                                                    } ?><br>
-		  				<label for="radioBtn">Is this event free?</label> 
-                        <input class="radioBtn" type="radio" name="isFree" value="0" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '0') { echo 'checked';} } ?>>Yes 
-                        <input class="radioBtn" type="radio" name="isFree" value="1" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == '1') { echo 'checked';} } ?>>No<br>
+		  					   value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" />
+		  					       <?php if(isset($event)) {
+                                        if ($event->errors) {
+                                            foreach ($event->errors as $error) {
+                                                if($error == "Enter an event name"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }
+                                            }
+                                        }
+                                    } ?><br>
+		  				Is this event free?  
+                        Yes<input type="radio" name="isFree" value="Yes" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == 'Yes') { echo 'checked';} } ?> required> 
+                        No<input type="radio" name="isFree" value="No" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) ==  'No') { echo 'checked';} } ?>><br>
 		  				<label for="address">Address:</label>  
                             <input type="text" id="address" name="address" placeholder="Address"
-                                value="<?php if(isset($_SESSION['address'])){echo htmlspecialchars($_SESSION['address']);} ?>" required/><br>  					
+                                value="<?php if(isset($_SESSION['address'])){echo htmlspecialchars($_SESSION['address']);} ?>" required/>
+                                    <?php if(isset($event)) {
+                                        if ($event->errors) {
+                                            foreach ($event->errors as $error) {
+                                                if($error == "Enter an address"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }
+                                            }
+                                        }
+                                    } ?><br>  					
 						<label for="city">City:</label>  
 			  				<input type="text" id="city" name="city" placeholder="City"
-			  				   value="<?php if(isset($_SESSION['city'])){echo htmlspecialchars($_SESSION['city']);} ?>" required/><br>			  		    
+			  				   value="<?php if(isset($_SESSION['city'])){echo htmlspecialchars($_SESSION['city']);} ?>" required/>
+			  				       <?php if(isset($event)) {
+                                        if ($event->errors) {
+                                            foreach ($event->errors as $error) {
+                                                if($error == "Enter a city name"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }
+                                            }
+                                        }
+                                    } ?><br>			  		    
 			  			<label for="state">State:</label>
     						<select name="state" id="state" required>
     							<option value="" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == '') { echo 'selected="selected"';} } ?>>State:</option>
@@ -182,13 +202,48 @@ function delegateErrors($errorMsg){
     							<option value="WV" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'WV') { echo 'selected="selected"';} } ?>>West Virginia</option>
     							<option value="WI" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'WI') { echo 'selected="selected"';} } ?>>Wisconsin</option>
     							<option value="WY" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'WY') { echo 'selected="selected"';} } ?>>Wyoming</option>
-    						</select><br>	
+    						</select>
+    						    <?php if(isset($event)) {
+                                        if ($event->errors) {
+                                            foreach ($event->errors as $error) {
+                                                if($error == "Select a state name"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }
+                                            }
+                                        }
+                                    } ?><br>	
 						<label for="zip">Zip Code:</label>  
 				  			<input type="text" id="zip" name="zip" placeholder="five digit zip"
-				  			   value="<?php if(isset($_SESSION['zip'])){echo htmlspecialchars($_SESSION['zip']);} ?>" required /><br>
+				  			   value="<?php if(isset($_SESSION['zip'])){echo htmlspecialchars($_SESSION['zip']);} ?>" required />
+				  			       <?php if(isset($event)) {
+                                        if ($event->errors) {
+                                            foreach ($event->errors as $error) {
+                                                if($error == "Enter a five digit zip code"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }elseif($error == "Zip code must be five numerical digits"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }elseif($error == "Sorry, please enter a valid zipcode"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }
+                                            }
+                                        }
+                                    } ?><br>
 				  		<label for="startDate">Start Date:</label>  
                             <input type="text" id="startDate" name="startDate" placeholder="(month/day/year)"
-                                value="<?php if(isset($_SESSION['startDate'])){echo htmlspecialchars($_SESSION['startDate']);} ?>" required /><br>
+                                value="<?php if(isset($_SESSION['startDate'])){echo htmlspecialchars($_SESSION['startDate']);} ?>" required />
+                                    <?php if(isset($event)) {
+                                        if ($event->errors) {
+                                            foreach ($event->errors as $error) {
+                                                if($error == "Enter a start date"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }elseif($error == "Enter a valid start date"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }elseif($error == "Enter a start date and time that has not already passed"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }
+                                            }
+                                        }
+                                    } ?><br>
                         <label for="startTime">Start Time:</label>
                             <select name="startTime" id="startTime" required>
                                 <option value="">Start Time:</option>
@@ -218,11 +273,44 @@ function delegateErrors($errorMsg){
                                     }
                                 ?>
                             </select>
-                        AM<input type="radio" class="radioBtn" name="start_am_pm" value="AM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'AM') { echo 'checked';} } ?>> 
-                        PM<input type="radio" class="radioBtn" name="start_am_pm" value="PM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'PM') { echo 'checked';} } ?>><br>
+                                <?php if(isset($event)) {
+                                    if ($event->errors) {
+                                        foreach ($event->errors as $error) {
+                                            if($error == "Select a start time"){
+                                                echo "<span class='error'>" . $error . "</span>";
+                                            }
+                                        }
+                                    }
+                                } ?>
+                        AM<input type="radio" name="start_am_pm" value="AM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'AM') { echo 'checked';} } ?> required> 
+                        PM<input type="radio" name="start_am_pm" value="PM" <?php if(isset($_SESSION['start_am_pm'])){if(($_SESSION['start_am_pm']) == 'PM') { echo 'checked';} } ?>>
+                            <?php if(isset($event)) {
+                                if ($event->errors) {
+                                    foreach ($event->errors as $error) {
+                                        if($error == "Select a meridiem for the start time"){
+                                            echo "<span class='error'>" . $error . "</span>";
+                                        }
+                                    }
+                                }
+                            } ?><br>
                         <label for="endDate">End Date:</label>  
                             <input type="text" id="endDate" name="endDate" placeholder="(month/day/year)"
-                                value="<?php if(isset($_SESSION['endDate'])){echo htmlspecialchars($_SESSION['endDate']);} ?>" required /><br>
+                                value="<?php if(isset($_SESSION['endDate'])){echo htmlspecialchars($_SESSION['endDate']);} ?>" required />
+                                    <?php if(isset($event)) {
+                                        if ($event->errors) {
+                                            foreach ($event->errors as $error) {
+                                                if($error == "Enter an end date"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }elseif($error == "Enter a valid end date"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }elseif($error == "Enter an end date and time that has not already passed"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }elseif($error == "Enter an end date and time that is later than the start time date"){
+                                                    echo "<span class='error'>" . $error . "</span>";
+                                                }
+                                            }
+                                        }
+                                    } ?><br>
                         <label for="endTime" id="endTimeLabel">End Time:</label>
                             <select name="endTime" id="endTime" required>
                                 <option value="">End Time:</option>
@@ -251,12 +339,41 @@ function delegateErrors($errorMsg){
                                     }
                                 }?>
 				  			</select>
-                        AM<input type="radio" class="radioBtn" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?>> 
-                        PM<input type="radio" class="radioBtn" name="end_am_pm" value="PM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'PM') { echo 'checked';} } ?>><br>
-	  					<textarea rows="10" cols="50" name="description" placeholder="Description Here!"><?php if(isset($_SESSION['description'])){echo htmlspecialchars($_SESSION['description']);} ?></textarea><br>
+				  			   <?php if(isset($event)) {
+                                    if ($event->errors) {
+                                        foreach ($event->errors as $error) {
+                                            if($error == "Select a end time"){
+                                                echo "<span class='error'>" . $error . "</span>";
+                                            }
+                                        }
+                                    }
+                                } ?>
+                        AM<input type="radio" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?> required> 
+                        PM<input type="radio" name="end_am_pm" value="PM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'PM') { echo 'checked';} } ?>>
+                            <?php if(isset($event)) {
+                                if ($event->errors) {
+                                    foreach ($event->errors as $error) {
+                                        if($error == "Select a meridiem for the end time"){
+                                            echo "<span class='error'>" . $error . "</span>";
+                                        }
+                                    }
+                                }
+                            } ?><br>
+	  					<textarea rows="10" cols="50" name="description" placeholder="Description Here!"><?php if(isset($_SESSION['description'])){echo htmlspecialchars($_SESSION['description']);} ?></textarea>
+	  					    <?php if(isset($event)) {
+                                if ($event->errors) {
+                                    foreach ($event->errors as $error) {
+                                        if($error == "Enter a description"){
+                                            echo $error;
+                                        }elseif($error == "Only 500 chartacters allowed in the description"){
+                                            echo "<span class='error'>" . $error . "</span>";
+                                        }
+                                    }
+                                }
+                            } ?><br>
 						<img src="eventImage.jpg" alt="IMAGE HERE!" width="200" height="200"><br>
 						<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
-						<p style="font-size: 0.9em;">Select appropriate tags (min 1):</p><br>
+						<p>Select appropriate tags (min 1):</p><br>
 						<input type="checkbox" id="music" name="chk_tags[]" value="Music" />Music<br>							
 						<input type="checkbox" id="sports" name="chk_tags[]" value="Sports" />Sports<br>				  			
 				  		<input type="checkbox" id="annual" name="chk_tags[]" value="Annual" />Annual<br>				  			
@@ -267,7 +384,11 @@ function delegateErrors($errorMsg){
 				  		<input type="checkbox" id="community" name="chk_tags[]" value="Community" />Community<br>				  			
 				  		<input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
 				  				
+<<<<<<< HEAD
 				  		<input style="margin-bottom: 4%; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>			  			
+=======
+				  		<input type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/>			  			
+>>>>>>> b2a7cb9834724343d43b1cbeee01323aea9114c7
 					</div>
 				</fieldset>	
 			</form>		  			

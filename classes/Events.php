@@ -85,10 +85,10 @@
 	   		//http://stackoverflow.com/questions/16865747/pdo-prepared-statement-with-optional-parameters
 	   		$where = array();
 			
-			if (isset($_GET['keyword'])) { $where[] = 'Title LIKE :keyword'; }
-			if (isset($_GET['zip'])) { $where[] = 'ZIP = :zip'; }
-			if (isset($_GET['date'])) { $where[] = 'DATE(StartDateTime) <= :date AND DATE(EndDateTime) >= :date'; }
-			
+			if (isset($_GET['keyword']) && !empty($_GET['keyword'])) { $where[] = 'Title LIKE :keyword'; }
+			if (isset($_GET['zip']) && !empty($_GET['zip'])) { $where[] = 'ZIP = :zip'; }
+			if (isset($_GET['date']) && !empty($_GET['date'])) { $where[] = 'DATE(StartDateTime) <= :date AND DATE(EndDateTime) >= :date'; }
+				
 			if (count($where) > 0) {
 				//parameters that don't allow a search on their own
 				if (!isset($_GET['allowcancelled'])) { $where[] = '(IsCancelled IS NULL OR IsCancelled <> 1)'; }
@@ -106,12 +106,12 @@
 					
 					$sql->bindParam(':offset', $offset, PDO::PARAM_INT);
 					$sql->bindParam(':amount', $perPage, PDO::PARAM_INT);
-					if (isset($_GET['keyword'])) {
+					if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
 						$keyword = '%' . $_GET['keyword'] . '%';
 						$sql->bindParam(':keyword', $keyword, PDO::PARAM_STR);
 					}
-					if (isset($_GET['zip'])) { $sql->bindParam(':zip', $_GET['zip'], PDO::PARAM_STR, 5); }
-					if (isset($_GET['date'])) { $sql->bindParam(':date', $_GET['date'], PDO::PARAM_STR); }
+					if (isset($_GET['zip']) && !empty($_GET['zip'])) { $sql->bindParam(':zip', $_GET['zip'], PDO::PARAM_STR, 5); }
+					if (isset($_GET['date']) && !empty($_GET['date'])) { $sql->bindParam(':date', $_GET['date']); }
 					$sql->execute();
 					
 					while ($result_row = $sql->fetch()) {

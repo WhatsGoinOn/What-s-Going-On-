@@ -51,9 +51,14 @@ header a
 /*styling horizontal navigation*/
 nav
 {
-	margin-left:20%;
-	margin-right:12%;
+	width: 100%;
 	text-align:center;
+	overflow: auto;
+}
+nav ul {
+	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 nav a
 {
@@ -362,9 +367,34 @@ footer
 	overflow: hidden;
 }
 
+.eventImageSmall {
+	float: left;
+	position: relative;
+	width: 150px;
+	height: 100px;
+	overflow: hidden;
+}
+
+.eventItem {
+	clear: both;
+}
+
+.eventItemInfo {
+	float: left;
+}
+
+.eventItemSeparator {
+	width: 80%;
+}
+
 .profileImage {
 	position: relative;
 	width: 100px;
 	height: 100px;
 	overflow: hidden;
+}
+
+#eventName p{
+	font-size:1em;
+	width:200px;
 }
