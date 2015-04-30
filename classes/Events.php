@@ -111,7 +111,7 @@
 						$sql->bindParam(':keyword', $keyword, PDO::PARAM_STR);
 					}
 					if (isset($_GET['zip']) && !empty($_GET['zip'])) { $sql->bindParam(':zip', $_GET['zip'], PDO::PARAM_STR, 5); }
-					if (isset($_GET['date']) && !empty($_GET['date'])) { $sql->bindParam(':date', $_GET['date'], PDO::PARAM_STR); }
+					if (isset($_GET['date']) && !empty($_GET['date'])) { $sql->bindParam(':date', $_GET['date']); }
 					$sql->execute();
 					
 					while ($result_row = $sql->fetch()) {
