@@ -48,6 +48,21 @@
  		 	<?php require_once("navigation.php"); ?>
 	  	</nav>
 	  
+	  	<section id="searchForm">
+	  		<form action="" method="get">
+	  			<input name="keyword" type="text" placeholder="Keyword"/> 
+	  			<input name="zip" type="text" placeholder="Zip"/>
+	  			<input name="date" type="text" placeholder="Date"/>
+	  			<br />
+	  			<input name="allowcancelled" type="checkbox"/>
+	  			<label for="allowcancelled">Allow cancelled events.</label>
+	  			<br />
+	  			<input name="allowover" type="checkbox"/>
+	  			<label for="allowover">Allow events that are over.</label>
+	  			<br />
+	  			<input type="submit" value="Search"/>
+	  		</form>
+	  	</section>
 	  	<section id="searchList">
 			<?php
 				if (isset($events) && $events->getCount() > 0) {
