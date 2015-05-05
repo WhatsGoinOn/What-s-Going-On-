@@ -99,6 +99,39 @@ class Event
 EOL;
 	}
 	
+	public function displayOwnedEventItem() {
+		// A duplicate of displayEventItem() with a link to cancel and update
+		if (strlen($this->Description) > 100) {
+			$desc = substr($this->Description, 0, 100) . "...";
+		} else {
+			$desc = $this->Description;
+		}
+		$link = htmlspecialchars("//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", ENT_QUOTES, 'UTF-8');
+		
+		echo <<<EOL
+			<div class="eventItem">
+				<div class="eventImageSmall">
+					<img class="imgSub" src="image.php?id=$this->ImageID">
+				</div>
+				<div class="eventItemInfo">
+					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
+					<p>$this->City, $this->State $this->ZIP</p>
+					<p>$this->StartDateTime - $this->EndDateTime</p>
+					<p>$desc</p>
+					<br/>
+					<a href="/WhatsGoingOn/updateEventHandler.php?id=$this-ID">Edit</a>
+					<span>&nbsp;&nbsp;</span>
+					<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
+						<input type="hidden" name="source" value="$link">
+						<input type="hidden" name="eventId" value="$this->ID">
+						<input class="linkButton" type="submit" value="Cancel Event">
+					</form>
+					<br/>
+				</div>
+			</div>
+EOL;
+	}
+	
 	public function fetchFromId($_id) {
 		if (is_numeric($_id)) {
 			try {
@@ -136,6 +169,19 @@ EOL;
         	//Inputted id was not valid
         	$this->errors[] = "Given id is not valid number.";
         }
+	}
+
+	public function cancelEvent() {
+		try {
+			$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			$sql = $pdo->prepare("UPDATE event SET IsCancelled = 1 WHERE ID = :id");
+			$sql->bindParam(':id', $this->ID, PDO::PARAM_INT);
+			$sql->execute();
+			
+			$pdo = null;
+		} catch(PDOException $e) {
+			$this->errors[] = $e->getMessage();
+		}
 	}
 
     private function createNewEvent(){
