@@ -114,18 +114,17 @@ EOL;
 					<img class="imgSub" src="image.php?id=$this->ImageID">
 				</div>
 				<div class="eventItemInfo">
-					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
-					<p>$this->City, $this->State $this->ZIP</p>
-					<p>$this->StartDateTime - $this->EndDateTime</p>
-					<p>$desc</p>
-					<br/>
-					<a href="/WhatsGoingOn/updateEventHandler.php?id=$this-ID">Edit</a>
+					<h3><a href="/WhatsGoingOn/event.php?id=$this->ID">$this->Title</a></h3>
+					<a href="/WhatsGoingOn/updateEventHandler.php?id=$this->ID">Edit</a>
 					<span>&nbsp;&nbsp;</span>
 					<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
 						<input type="hidden" name="source" value="$link">
 						<input type="hidden" name="eventId" value="$this->ID">
-						<input class="linkButton" type="submit" value="Cancel Event">
+						<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
 					</form>
+					<p>$this->City, $this->State $this->ZIP</p>
+					<p>$this->StartDateTime - $this->EndDateTime</p>
+					<p>$desc</p>
 					<br/>
 				</div>
 			</div>

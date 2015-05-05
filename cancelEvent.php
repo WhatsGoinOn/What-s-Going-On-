@@ -8,13 +8,11 @@
 		require_once('classes/Event.php');
 		require_once('classes/User.php');
 	
-		
-		
 		if (isset($_POST['eventId'])) {
 			$event = new Event();
-			$event->fetchFrommId($_POST['eventId']);
+			$event->fetchFromId($_POST['eventId']);
 			
-			$user = new Event();
+			$user = new User();
 			$user->fetchFromUsername($_SESSION['user_name']);
 			
 			if ($event->OwnerID == $user->ID) {

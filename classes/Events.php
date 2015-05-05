@@ -39,47 +39,7 @@
 		    }
 	    }
 		
-		//========== Search functions ==========
-		public function searchTest($page, $perPage = 10) {
-			try {
-				$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-				$sql = $pdo->prepare("SELECT OwnerID, Title, Image, ImageID, Description, StartDateTime, EndDateTime, Address, City, State, ZIP, IsFree, IsCancelled
-                        FROM event
-                        LIMIT :offset, :amount");
-				$offset = $page * $perPage;
-				$sql->bindParam(':offset', $offset, PDO::PARAM_INT);
-				$sql->bindParam(':amount', $perPage, PDO::PARAM_INT);
-				$sql->execute();
-				
-				while ($result_row = $sql->fetch()) {
-					//Create event and set variables
-					$event = new Event();
-					$event->ID = intval($_id);
-					$event->OwnerID = $result_row["OwnerID"];
-					$event->Title = $result_row["Title"];
-					$event->Image = $result_row["Image"];
-					$event->ImageID = $result_row["ImageID"];
-					$event->Description = $result_row["Description"];
-					$event->StartDateTime = $result_row["StartDateTime"];
-					$event->EndDateTime = $result_row["EndDateTime"];
-					$event->Address = $result_row["Address"];
-					$event->City = $result_row["City"];
-					$event->State = $result_row["State"];
-					$event->ZIP = $result_row["ZIP"];
-					$event->IsFree = $result_row["IsFree"];
-					$event->IsCancelled = $result_row["IsCancelled"];
-					
-					//Add event to collection
-					$this->addItem($event);
-					$event = null;
-				}
-				
-				$pdo = null;
-			} catch(PDOException $e) {
-				$this->errors[] = $e->getMessage();
-			}
-		}
-		
+		//========== Search functions ==========		
 		public function search($page, $perPage = 10) {
 	   		//Actual search function, just add additional stuff to where clause as stuff is included
 	   		//http://stackoverflow.com/questions/16865747/pdo-prepared-statement-with-optional-parameters
@@ -143,6 +103,53 @@
 				}
 			} else {
 				$this->errors[] = 'No parameters listed for search.';
+			}
+	    }
+
+		public function searchOwned($ownerID) {
+			if (isset($ownerID) && is_numeric($ownerID)) {
+				try {
+					$query = 'SELECT ID, OwnerID, Title, Image, ImageID, Description, StartDateTime, EndDateTime, Address, City, State, ZIP, IsFree, IsCancelled
+	                        FROM event 
+	                        WHERE (IsCancelled IS NULL OR IsCancelled <> 1) 
+	                        AND EndDateTime > NOW() 
+	                        AND OwnerID = :ownerid
+							ORDER BY StartDateTime ASC';
+					$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+					$sql = $pdo->prepare($query);
+					
+					$sql->bindParam(':ownerid', $ownerID, PDO::PARAM_INT);
+					$sql->execute();
+					
+					while ($result_row = $sql->fetch()) {
+						//Create event and set variables
+						$event = new Event();
+						$event->ID = $result_row["ID"];
+						$event->OwnerID = $result_row["OwnerID"];
+						$event->Title = $result_row["Title"];
+						$event->Image = $result_row["Image"];
+						$event->ImageID = $result_row["ImageID"];
+						$event->Description = $result_row["Description"];
+						$event->StartDateTime = $result_row["StartDateTime"];
+						$event->EndDateTime = $result_row["EndDateTime"];
+						$event->Address = $result_row["Address"];
+						$event->City = $result_row["City"];
+						$event->State = $result_row["State"];
+						$event->ZIP = $result_row["ZIP"];
+						$event->IsFree = $result_row["IsFree"];
+						$event->IsCancelled = $result_row["IsCancelled"];
+						
+						//Add event to collection
+						$this->addItem($event);
+						$event = null;
+					}
+					
+					$pdo = null;
+				} catch(PDOException $e) {
+					$this->errors[] = $e->getMessage();
+				}
+			} else {
+				$this->errors[] = 'Owner ID invalid.';
 			}
 	    }
 	}

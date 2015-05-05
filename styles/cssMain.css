@@ -397,3 +397,18 @@ footer
 #eventName .descriptionE{
 	width:1000px;
 }
+
+/* Cancelling events */
+.cancelEvent {
+	display: inline;
+}
+
+.linkButton {
+	color: blue;
+	text-decoration: underline;
+	background: none;
+	border: none; 
+	padding:0 !important;
+	font: inherit;
+	cursor: pointer;
+}
