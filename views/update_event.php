@@ -437,7 +437,7 @@
                                     }
                                 }
                             } ?><br>
-                        <img src="eventImage.jpg" alt="IMAGE HERE!" width="200" height="200"><br>
+                        <img src="<?php echo "image.php?id=" . $event->ImageID ?>" alt="IMAGE HERE!"><br>
                         <input type="button" id="browseImage" value="Select Image" onclick=""/><br>
                         <p>Select appropriate tags (min 1):</p><br>
                         <input type="checkbox" id="music" name="chk_tags[]" value="Music" />Music<br>                           
