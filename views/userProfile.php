@@ -5,7 +5,10 @@
 
 	require_once('../login/config/db.php');
 	require_once('../classes/User.php');
+	require_once("../classes/Event.php");
+	require_once("../classes/Events.php");
 	
+	//If uploading new profile image
 	if (isset($_POST["upload"])) {
 		require_once('../classes/Upload.php');
 		$upload = new Upload();
@@ -17,6 +20,16 @@
 	$user = new User();
 	if (!empty($_GET["user"])) {
 		$user->fetchFromUsername($_GET["user"]);
+		
+		if (isset($_POST["bio"])) {
+			if ($user->Username == $_SESSION['user_name']) {
+				$user->Bio = $_POST['bio'];
+				$user->updateProfile();
+				// re-fetch user to maintain concurrency, probably not necessary
+				$user->fetchFromId($user->ID);
+			}
+		}
+		
 	} else {
 		$userExists = false;
 	}
@@ -27,6 +40,10 @@
 	            //echo $error;
 	            $userExists = false;
 	        }
+	    } else {
+	    	//Search for events the user owns
+	    	$events = new Events();
+			$events->searchOwned($user->ID);
 	    }
 	    if ($user->messages) {
 	        foreach ($user->messages as $message) {
@@ -112,26 +129,26 @@
 							<input name="upload" type="submit" id="upload" value="Upload">
 						</form>
 						<form method="post">
-					  		<textarea rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea><br/>
-							<input name="updateBio" type="submit" id="upload" value="Update Bio">
+					  		<textarea name="bio" id="bio" rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea><br/>
+							<input name="updateBio" type="submit" id="updateBio" value="Update Bio">
 						</form>
 			  		</div>
 			  		
-			  		<div id="savedEvents">
-			  			<h1>Attending Events</h1>
-			  			<div>
-			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-			  			<h3>Event Name</h3>
-			  			</div>
-			  			<div>
-			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-			  			<h3>Event Name</h3>
-			  			</div>
-			  			<div>
-			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-			  			<h3>Event Name</h3>
-			  			</div>
-			  		</div>	  		
+			  		<h1>Owned Events</h1>
+			  		<section id="searchList">
+						<?php
+							if (isset($events) && $events->getCount() > 0) {
+								//Display events
+								for ($i = 0; $i < $events->getCount(); $i++) {
+									$event = $events->getItem($i);
+									$event->displayOwnedEventItem();
+									
+								}
+							} else {
+								echo("<p>You own no events.</p>");
+							}
+						?>
+				  	</section>  		
 			  		
 		  	<?php } else { ?> <!--If the viewer is not viewing their profile-->
 		  			<div id="userInfo">
@@ -146,21 +163,21 @@
 				  		<p><?php echo($user->Bio); ?></p><br>
 			  		</div>
 			  		
-			  		<div id="savedEvents">
-			  			<h1>Attending Events</h1>
-			  			<div>
-			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-			  			<h3>Event Name</h3>
-			  			</div>
-			  			<div>
-			  			<img src="../images/eventImage.jpg" alt="IMAGE HERE!">
-			  			<h3>Event Name</h3>
-			  			</div>
-			  			<div>
-			  			<img style="margin-bottom: 10%;" src="../images/eventImage.jpg" alt="IMAGE HERE!">
-			  			<h3>Event Name</h3>
-			  			</div>
-			  		</div>
+			  		<h1>Owned Events</h1>
+			  		<section id="searchList">
+						<?php
+							if (isset($events) && $events->getCount() > 0) {
+								//Display events
+								for ($i = 0; $i < $events->getCount(); $i++) {
+									$event = $events->getItem($i);
+									$event->displayEventItem();
+									
+								}
+							} else {
+								echo("<p>This user owns no events.</p>");
+							}
+						?>
+				  	</section>
 				<?php }
 				} else { ?><!--If username is left off or invalid-->
 		  		<p>Invalid user.</p>

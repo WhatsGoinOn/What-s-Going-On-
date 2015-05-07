@@ -20,66 +20,68 @@
 
     if (!isset($_POST["updateEvent"])) {
         $event = new Event();
-        $eventID = 14;
-        $event->fetchFromId($eventID);
-        
-        if (!isset($_SESSION)){
-            session_start();            
+        if (isset($_GET["id"])) {
+            $eventID = $_GET["id"];            
+            $event->fetchFromId($eventID);
+            
+            if (!isset($_SESSION)){
+                session_start();            
+            }
+            $_SESSION['eventID'] = $eventID;
+            if ($event->IsFree == 0){
+                $isFree = "Yes";
+            }elseif($event->IsFree == 1){
+                $isFree = "No";
+            }
+            
+            $startDate = date("m/d/Y", strtotime($event->StartDateTime));
+            $endDate = date("m/d/Y", strtotime($event->EndDateTime));
+            $startTime = date("H:i", strtotime($event->StartDateTime));        
+            $endTime = date("H:i", strtotime($event->EndDateTime));
+            $start_am_pm;
+            $end_am_pm;
+            
+            $startTimeArray = explode(':', $startTime);
+            if ($startTimeArray[0] == 0){
+                $startTime = 12 . ":" . $startTimeArray[1];
+                $start_am_pm = "AM";
+            }elseif($startTimeArray[0] > 12){
+                $startTime = ($startTimeArray[0] - 12) . ":" . $startTimeArray[1];
+                $start_am_pm = "PM"; 
+            }elseif($startTimeArray[0] == 12){
+                $start_am_pm = "PM";
+            }else{
+                $start_am_pm = "AM";
+            } 
+            
+            $endTimeArray = explode(':', $endTime);
+            if ($endTimeArray[0] == 0){
+                $endTime = 12 . ":" . $endTimeArray[1];
+                $end_am_pm = "AM";
+            }elseif($endTimeArray[0] > 12){
+                $endTime = ($endTimeArray[0] - 12) . ":" . $endTimeArray[1];
+                $end_am_pm = "PM"; 
+            }elseif($endTimeArray[0] == 12){
+                $end_am_pm = "PM";
+            }else{
+                $end_am_pm = "AM";
+            }     
+            
+            $_SESSION['title'] = $event->Title;
+            $_SESSION['isFree'] = $isFree;
+            $_SESSION['address'] = $event->Address;
+            $_SESSION['city'] = $event->City;
+            $_SESSION['state'] = $event->State;
+            $_SESSION['zip'] = $event->ZIP;
+            $_SESSION['startDate'] = $startDate;
+            $_SESSION['startTime'] = $startTime;
+            $_SESSION['start_am_pm'] = $start_am_pm;
+            $_SESSION['endDate'] = $endDate;
+            $_SESSION['endTime'] = $endTime;
+            $_SESSION['end_am_pm'] = $end_am_pm;
+            $_SESSION['description'] = $event->Description;
+            session_write_close();
         }
-        
-        if ($event->IsFree == 0){
-            $isFree = "Yes";
-        }elseif($event->IsFree == 1){
-            $isFree = "No";
-        }
-        
-        $startDate = date("d/m/Y", strtotime($event->StartDateTime));
-        $endDate = date("d/m/Y", strtotime($event->EndDateTime));
-        $startTime = date("H:i", strtotime($event->StartDateTime));        
-        $endTime = date("H:i", strtotime($event->EndDateTime));
-        $start_am_pm;
-        $end_am_pm;
-        
-        $startTimeArray = explode(':', $startTime);
-        if ($startTimeArray[0] == 0){
-            $startTime = 12 . ":" . $startTimeArray[1];
-            $start_am_pm = "AM";
-        }elseif($startTimeArray[0] > 12){
-            $startTime = ($startTimeArray[0] - 12) . ":" . $startTimeArray[1];
-            $start_am_pm = "PM"; 
-        }elseif($startTimeArray[0] == 12){
-            $start_am_pm = "PM";
-        }else{
-            $start_am_pm = "AM";
-        } 
-        
-        $endTimeArray = explode(':', $endTime);
-        if ($endTimeArray[0] == 0){
-            $endTime = 12 . ":" . $endTimeArray[1];
-            $end_am_pm = "AM";
-        }elseif($endTimeArray[0] > 12){
-            $endTime = ($endTimeArray[0] - 12) . ":" . $endTimeArray[1];
-            $end_am_pm = "PM"; 
-        }elseif($endTimeArray[0] == 12){
-            $end_am_pm = "PM";
-        }else{
-            $end_am_pm = "AM";
-        }     
-        
-        $_SESSION['title'] = $event->Title;
-        $_SESSION['isFree'] = $isFree;
-        $_SESSION['address'] = $event->Address;
-        $_SESSION['city'] = $event->City;
-        $_SESSION['state'] = $event->State;
-        $_SESSION['zip'] = $event->ZIP;
-        $_SESSION['startDate'] = $startDate;
-        $_SESSION['startTime'] = $startTime;
-        $_SESSION['start_am_pm'] = $start_am_pm;
-        $_SESSION['endDate'] = $endDate;
-        $_SESSION['endTime'] = $endTime;
-        $_SESSION['end_am_pm'] = $end_am_pm;
-        $_SESSION['description'] = $event->Description;
-        session_write_close();
     }
 ?>
 
@@ -167,7 +169,7 @@
                     <div>
                         <label for="title">Event Name:</label>  
                             <input type="text" id="title" name="title" placeholder="Name"
-                               value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" />
+                               value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" required/>
                                    <?php if(isset($event)) {
                                         if ($event->errors) {
                                             foreach ($event->errors as $error) {
@@ -435,7 +437,7 @@
                                     }
                                 }
                             } ?><br>
-                        <img src="eventImage.jpg" alt="IMAGE HERE!" width="200" height="200"><br>
+                        <img src="<?php echo "image.php?id=" . $event->ImageID ?>" alt="IMAGE HERE!"><br>
                         <input type="button" id="browseImage" value="Select Image" onclick=""/><br>
                         <p>Select appropriate tags (min 1):</p><br>
                         <input type="checkbox" id="music" name="chk_tags[]" value="Music" />Music<br>                           
@@ -448,6 +450,7 @@
                         <input type="checkbox" id="community" name="chk_tags[]" value="Community" />Community<br>                           
                         <input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
                                 
+                        <input type="hidden" name="eventID" value="<?php echo htmlspecialchars($_SESSION['eventID'])?>">
                         <input style="margin-bottom: 4%; height: 2em;" type="submit" value="Update Event" onclick="return Validate()" name="updateEvent"/>                      
                     </div>
                 </fieldset> 

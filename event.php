@@ -1,12 +1,16 @@
-<?php
+<?php	
 	require_once("login/config/db.php");
 	require_once("classes/Event.php");
+	require_once("classes/User.php");
 	
 	$eventExists = true; //Variable to determine rendering of event or not
 	
 	$event = new Event();
 	if (!empty($_GET["id"])) {
 		$event->fetchFromId($_GET["id"]);
+		//fetch owner
+		$user = new User();
+		$user->fetchFromId($event->OwnerID);
 	} else {
 		$eventExists = false;
 	}
@@ -67,8 +71,26 @@
 	  		<?php if ($eventExists) { ?>
 		  		<div id="eventName">
 		  			<h1><?php echo($event->Title); ?></h1>
+		  			<?php
+		  				if ($user->Username == $_SESSION['user_name']) {
+		  					echo <<<EOL
+		  						<a href="/WhatsGoingOn/updateEventHandler.php?id=$event->ID">Edit</a>
+								<span>&nbsp;&nbsp;</span>
+								<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
+									<input type="hidden" name="eventId" value="$event->ID">
+									<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
+								</form>
+EOL;
+						}
+		  			?>
 		  			<div class="eventImage">
-		  				<img class="imgSub" src="image.php?id=<?php echo($event->ImageID); ?>" alt="Event image">
+		  				<?php
+			  				if ($event->ImageID == null) {
+			  					echo '<img class="imgSub" src="images/event.gif" alt="Event image">';
+			  				} else {
+			  					echo "<img class=\"imgSub\" src=\"image.php?id=<?php echo($event->ImageID); ?>\" alt=\"Event image\">";
+							}
+		  				?>
 		  			</div>
 		  			<?php $startDate = date("m/d/Y H:i:s", strtotime($event->StartDateTime));?>
 		  			<?php $endDate = date("m/d/Y H:i:s", strtotime($event->EndDateTime));?>
@@ -89,18 +111,6 @@
 						</iframe>
 					</div>	
 		  		</div>
-		  		
-		  		<!--
-		  		<div id="similarEvents">
-		  			<h1>Similar Events</h1>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="100" height="100">
-		  			<h3>Event Name</h3>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="100" height="100">
-		  			<h3>Event Name</h3>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="100" height="100">
-		  			<h3>Event Name</h3>
-		  		</div>
-		  		<!---->
 		  	<?php } else {
 				  		if (isset($event)) {
 						    if ($event->errors) {

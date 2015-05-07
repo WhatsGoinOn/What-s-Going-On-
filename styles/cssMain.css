@@ -80,14 +80,6 @@ nav a:hover
 {
 	padding-bottom:30px;
 }
-.defaultSection img, #savedEvents img, #results img
-{
-	width:150px;
-	height:100px;
-	float:left;
-	clear:left;
-	padding-right:24px;
-}
 
 #nearbyEvents img, #savedEvents img
 {
@@ -372,14 +364,22 @@ footer
 	width: 150px;
 	height: 100px;
 	overflow: hidden;
+	margin-right: 8px;
 }
 
 .eventItem {
 	clear: both;
+	width: 100%;
+	overflow: auto;
 }
 
 .eventItemInfo {
 	float: left;
+	width: 400px;
+}
+
+.eventItemInfo p {
+	line-height: 150%;
 }
 
 .eventItemSeparator {
@@ -400,4 +400,23 @@ footer
 
 #eventName .descriptionE{
 	width:1000px;
+}
+
+#searchList {
+	width: 100%;
+}
+
+/* Cancelling events */
+.cancelEvent {
+	display: inline;
+}
+
+.linkButton {
+	color: blue;
+	text-decoration: underline;
+	background: none;
+	border: none; 
+	padding:0 !important;
+	font: inherit;
+	cursor: pointer;
 }

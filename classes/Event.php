@@ -84,16 +84,59 @@ class Event
 		} else {
 			$desc = $this->Description;
 		}
+		if ($this->ImageID == null) {
+			$img = '<img class="imgSub" src="/WhatsGoingOn/images/event.gif">';
+		} else {
+			$img = "<img class=\"imgSub\" src=\"/WhatsGoingOn/image.php?id=$this->ImageID\">";
+		}
+		
 		echo <<<EOL
 			<div class="eventItem">
 				<div class="eventImageSmall">
-					<img class="imgSub" src="image.php?id=$this->ImageID">
+					$img
 				</div>
 				<div class="eventItemInfo">
 					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
 					<p>$this->City, $this->State $this->ZIP</p>
 					<p>$this->StartDateTime - $this->EndDateTime</p>
 					<p>$desc</p><br/>
+				</div>
+			</div>
+EOL;
+	}
+	
+	public function displayOwnedEventItem() {
+		// A duplicate of displayEventItem() with a link to cancel and update
+		if (strlen($this->Description) > 100) {
+			$desc = substr($this->Description, 0, 100) . "...";
+		} else {
+			$desc = $this->Description;
+		}
+		$link = htmlspecialchars("//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", ENT_QUOTES, 'UTF-8');
+		if ($this->ImageID == null) {
+			$img = '<img class="imgSub" src="/WhatsGoingOn/images/event.gif">';
+		} else {
+			$img = "<img class=\"imgSub\" src=\"/WhatsGoingOn/image.php?id=$this->ImageID\">";
+		}
+		
+		echo <<<EOL
+			<div class="eventItem">
+				<div class="eventImageSmall">
+					$img
+				</div>
+				<div class="eventItemInfo">
+					<h3><a href="/WhatsGoingOn/event.php?id=$this->ID">$this->Title</a></h3>
+					<a href="/WhatsGoingOn/updateEventHandler.php?id=$this->ID">Edit</a>
+					<span>&nbsp;&nbsp;</span>
+					<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
+						<input type="hidden" name="source" value="$link">
+						<input type="hidden" name="eventId" value="$this->ID">
+						<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
+					</form>
+					<p>$this->City, $this->State $this->ZIP</p>
+					<p>$this->StartDateTime - $this->EndDateTime</p>
+					<p>$desc</p>
+					<br/>
 				</div>
 			</div>
 EOL;
@@ -136,6 +179,19 @@ EOL;
         	//Inputted id was not valid
         	$this->errors[] = "Given id is not valid number.";
         }
+	}
+
+	public function cancelEvent() {
+		try {
+			$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+			$sql = $pdo->prepare("UPDATE event SET IsCancelled = 1 WHERE ID = :id");
+			$sql->bindParam(':id', $this->ID, PDO::PARAM_INT);
+			$sql->execute();
+			
+			$pdo = null;
+		} catch(PDOException $e) {
+			$this->errors[] = $e->getMessage();
+		}
 	}
 
     private function createNewEvent(){
@@ -403,35 +459,70 @@ EOL;
                 }elseif ($query_event_check->num_rows == 1) {
                     $this->errors[] = "Sorry, that event has already been created.";
                 } else {
-                    // write new event data into database
-                    $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree)
-                            VALUES('" . $userID . "', '" . $title . "', '" . $description . "', '" . $convertedStartDateTime . "',
-                            '" . $convertedEndDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', '" . $isFree . "');";
-                    $query_new_event_insert = $this->db_connection->query($sql);
-
-                    // if event has been added successfully
-                    if ($query_new_event_insert) {
-                        if (!isset($_SESSION['id']))
-                        {
-                            session_start();            
-                        }
-                        if(isset($_SESSION['title'])) unset($_SESSION['title']);
-                        if(isset($_SESSION['isFree'])) unset($_SESSION['isFree']);
-                        if(isset($_SESSION['address'])) unset($_SESSION['address']); 
-                        if(isset($_SESSION['city'])) unset($_SESSION['city']);
-                        if(isset($_SESSION['state'])) unset($_SESSION['state']); 
-                        if(isset($_SESSION['zip'])) unset($_SESSION['zip']);
-                        if(isset($_SESSION['startDate'])) unset($_SESSION['startDate']); 
-                        if(isset($_SESSION['startTime'])) unset($_SESSION['startTime']);
-                        if(isset($_SESSION['start_am_pm'])) unset($_SESSION['start_am_pm']);
-                        if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']); 
-                        if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
-                        if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
-                        if(isset($_SESSION['description'])) unset($_SESSION['description']);
-                        session_write_close();
-                    } else {
-                        $this->errors[] = "Sorry, your event creation failed. Please go back and try again.";
-                    }
+                	//If everything is good so far, and an image was included, attempt to upload the image first
+                	$upload = new Upload();
+					
+                	if (isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0)  {
+						$_imageID = $upload->uploadImage(0);
+						if(!$upload->errors && !is_numeric($_imageID)) {
+							$upload->errors[] = "There was an issue with the image upload.";
+						}
+					}
+					
+					if (count($upload->errors) <= 0) {
+	                    // write new event data into database
+	                    $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree, ImageID)
+	                            VALUES('" . $userID . "', '" . $title . "', '" . $description . "', '" . $convertedStartDateTime . "',
+	                            '" . $convertedEndDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', 
+	                            '" . $isFree . "', " . $_imageID . ");";
+	                    $query_new_event_insert = $this->db_connection->query($sql);
+						
+	                    // if event has been added successfully
+	                    if ($query_new_event_insert) {
+	                        if (!isset($_SESSION))
+	                        {
+	                            session_start();            
+	                        }
+	                        if(isset($_SESSION['title'])) unset($_SESSION['title']);
+	                        if(isset($_SESSION['isFree'])) unset($_SESSION['isFree']);
+	                        if(isset($_SESSION['address'])) unset($_SESSION['address']); 
+	                        if(isset($_SESSION['city'])) unset($_SESSION['city']);
+	                        if(isset($_SESSION['state'])) unset($_SESSION['state']); 
+	                        if(isset($_SESSION['zip'])) unset($_SESSION['zip']);
+	                        if(isset($_SESSION['startDate'])) unset($_SESSION['startDate']); 
+	                        if(isset($_SESSION['startTime'])) unset($_SESSION['startTime']);
+	                        if(isset($_SESSION['start_am_pm'])) unset($_SESSION['start_am_pm']);
+	                        if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']); 
+	                        if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
+	                        if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
+	                        if(isset($_SESSION['description'])) unset($_SESSION['description']);
+	                        session_write_close();
+							
+							$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+							$sql = $pdo->prepare("SELECT ID
+			                        FROM event
+			                        WHERE Title = :title
+			                        AND OwnerID = :ownerID
+			                        AND StartDateTime = :start");
+							$sql->bindParam(':title', $title, PDO::PARAM_STR);
+							$sql->bindParam(':ownerID', $userID, PDO::PARAM_INT);
+							$sql->bindParam(':start', $convertedStartDateTime);
+							$sql->execute();
+							
+							while ($result_row = $sql->fetch()) {
+								//Set variable for event
+								$_eventID = $result_row["ID"];
+							}
+							$pdo = null;
+							
+							header("Location: http://itweb.fvtc.edu/WhatsGoingOn/event.php?id=$_eventID");
+							exit();
+	                    } else {
+	                        $this->errors[] = "Sorry, your event creation failed. Please go back and try again.";
+	                    }
+	            	} else {
+	            		$this->errors[] = "There was an issue with the image upload.";
+	            	}
                 }
             } else {
                 $this->errors[] = "Sorry, no database connection.";
@@ -611,7 +702,7 @@ EOL;
         }elseif (strlen($_POST['description']) > 500){
             $this->errors[] = "Only 500 chartacters allowed in the description"; 
         }
-            
+         
         //Make sure all fields have valid data                
         if (empty($_POST['title'])){
         }elseif (empty($_POST['address'])){
@@ -675,12 +766,12 @@ EOL;
                 $state = $this->db_connection->real_escape_string(strip_tags($_POST['state'], ENT_QUOTES));
                 $zip = $this->db_connection->real_escape_string(strip_tags($_POST['zip'], ENT_QUOTES));                    
                 $isFree = $this->db_connection->real_escape_string(strip_tags($_POST['isFree'], ENT_QUOTES)); 
-                $eventID = 14;
+                $eventID = $this->db_connection->real_escape_string(strip_tags($_POST['eventID'], ENT_QUOTES));
                 if ($isFree == "Yes"){
                     $isFree = 0;
                 }elseif($isFree == "No"){
                     $isFree = 1;
-                }               
+                }
                 
                 $convertedStartDateTime = $startDateTime->format('Y-m-d H:i:s');
                 $convertedEndDateTime = $endDateTime->format('Y-m-d H:i:s');
@@ -709,7 +800,7 @@ EOL;
 
                     // if event has been updated successfully
                     if ($query_update_event_insert) {
-                        if (!isset($_SESSION['id']))
+                        if (!isset($_SESSION))
                         {
                             session_start();            
                         }
