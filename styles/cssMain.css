@@ -360,6 +360,7 @@ footer
 	width: 150px;
 	height: 100px;
 	overflow: hidden;
+	margin-right: 8px;
 }
 
 .eventItem {

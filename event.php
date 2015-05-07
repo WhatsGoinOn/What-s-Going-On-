@@ -84,7 +84,13 @@ EOL;
 						}
 		  			?>
 		  			<div class="eventImage">
-		  				<img class="imgSub" src="image.php?id=<?php echo($event->ImageID); ?>" alt="Event image">
+		  				<?php
+			  				if ($event->ImageID == null) {
+			  					echo '<img class="imgSub" src="images/event.gif" alt="Event image">';
+			  				} else {
+			  					echo "<img class=\"imgSub\" src=\"image.php?id=<?php echo($event->ImageID); ?>\" alt=\"Event image\">";
+							}
+		  				?>
 		  			</div>
 		  			<?php $startDate = date("m/d/Y H:i:s", strtotime($event->StartDateTime));?>
 		  			<?php $endDate = date("m/d/Y H:i:s", strtotime($event->EndDateTime));?>
