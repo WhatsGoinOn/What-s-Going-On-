@@ -27,11 +27,20 @@
 				color: #FFFFFF;
 				font-weight:bold;
 			}
-		</style>		
-
+		</style>
+		<!-- Stuff for calendar search -->		
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	    <script>
+			$(function() {
+		    	$( "#date" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+		  	});
+		</script>
 	</head>
 
-	<body>
+	<!-- init() is for calendar search -->
+	<body onload="init()">
 		<div id="wrapper">			
     		<header>
     			<h1><img src="" alt="What's Going On?"></h1>
@@ -62,13 +71,10 @@
         	  	</section>
         	  	
         	  	<aside>
-        	  		<!--Insert the Calendar here -->
-        	  		<h1>CALENDAR HERE</h1>
-        	  		<h4>Name and date of the event</h4>
-        	  		<h4>Name and date of the event</h4>
-        	  		<h4>Name and date of the event</h4>
-        	  		<h4>Name and date of the event</h4>
-        	  		<h4>Name and date of the event</h4>
+        	  		<form action="search.php" method="get">
+			            <input type="text" name="date" id="date" placeholder="Search by date">
+			            <input type="submit" value="Search">
+			        </form>
         	  	</aside>
     	  	</div><!--end of text-->
     	  	

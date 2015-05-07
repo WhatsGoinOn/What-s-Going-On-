@@ -31,10 +31,19 @@
 				font-weight:bold;
 			}
 		</style>		
-
+		<!-- Stuff for calendar search -->		
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	    <script>
+			$(function() {
+		    	$( "#date" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+		  	});
+		</script>
 	</head>
 
-	<body>
+	<!-- init() is for calendar search -->
+	<body onload="init()">
 		<div id="wrapper">
 			
 		<header>
@@ -54,7 +63,7 @@
 	  				<?php if (isset($_GET['keyword']) && !empty($_GET['keyword'])) { echo("value=\"" . $_GET['keyword']) . '"'; } ?>/> 
 	  			<input name="zip" type="text" placeholder="ZIP"
 	  				<?php if (isset($_GET['zip']) && !empty($_GET['zip'])) { echo("value=\"" . $_GET['zip']) . '"'; } ?>/>
-	  			<input name="date" type="text" placeholder="Date"
+	  			<input name="date" id="date" type="text" placeholder="Date"
 	  				<?php if (isset($_GET['date']) && !empty($_GET['date'])) { echo("value=\"" . $_GET['date']) . '"'; } ?>/>
 	  			<br />
 	  			<input name="allowcancelled" type="checkbox"
