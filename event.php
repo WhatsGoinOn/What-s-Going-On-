@@ -67,6 +67,7 @@
 	  		<?php if ($eventExists) { ?>
 		  		<div id="eventName">
 		  			<h1><?php echo($event->Title); ?></h1>
+		  			<a href="/WhatsGoingOn/updateEventHandler.php?id=<?php echo($event->ID); ?>">Edit</a>
 		  			<div class="eventImage">
 		  				<img class="imgSub" src="image.php?id=<?php echo($event->ImageID); ?>" alt="Event image">
 		  			</div>

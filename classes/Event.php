@@ -456,7 +456,7 @@ EOL;
 
                     // if event has been added successfully
                     if ($query_new_event_insert) {
-                        if (!isset($_SESSION['id']))
+                        if (!isset($_SESSION))
                         {
                             session_start();            
                         }
@@ -656,7 +656,7 @@ EOL;
         }elseif (strlen($_POST['description']) > 500){
             $this->errors[] = "Only 500 chartacters allowed in the description"; 
         }
-            
+         
         //Make sure all fields have valid data                
         if (empty($_POST['title'])){
         }elseif (empty($_POST['address'])){
@@ -720,12 +720,12 @@ EOL;
                 $state = $this->db_connection->real_escape_string(strip_tags($_POST['state'], ENT_QUOTES));
                 $zip = $this->db_connection->real_escape_string(strip_tags($_POST['zip'], ENT_QUOTES));                    
                 $isFree = $this->db_connection->real_escape_string(strip_tags($_POST['isFree'], ENT_QUOTES)); 
-                $eventID = 14;
+                $eventID = $this->db_connection->real_escape_string(strip_tags($_POST['eventID'], ENT_QUOTES));
                 if ($isFree == "Yes"){
                     $isFree = 0;
                 }elseif($isFree == "No"){
                     $isFree = 1;
-                }               
+                }
                 
                 $convertedStartDateTime = $startDateTime->format('Y-m-d H:i:s');
                 $convertedEndDateTime = $endDateTime->format('Y-m-d H:i:s');
@@ -754,7 +754,7 @@ EOL;
 
                     // if event has been updated successfully
                     if ($query_update_event_insert) {
-                        if (!isset($_SESSION['id']))
+                        if (!isset($_SESSION))
                         {
                             session_start();            
                         }
