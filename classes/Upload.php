@@ -20,9 +20,10 @@
 		
 		public function uploadImage($_purpose) {
 			//$_purpose is int for type of image (profile, event, etc.)
+			//0 - non-specific, just returns image ID
 			//1 - Profile
-			//2 - Event
-			if (is_int($_purpose) && $_purpose > 0 && $_purpose <= 2) {
+			//2 - Update Event
+			if (is_int($_purpose) && $_purpose >= 0 && $_purpose <= 2) {
 				if (isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0)  {
 					if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
 						$maxSize = 65535;
@@ -79,10 +80,13 @@
 										$user->ImageID = $imageID;
 										$user->updateImage();
 									} elseif ($_purpose == 2) {
-										//event
+										//update event
+										//If rest of update is incomplete/incorrect, it could wrongly ice the old image
+										//Thus, getting rid if isolated, unused images would have to be a db scheduled task									
 									}
 									
 									$pdo = null;
+									return $imageID;
 								} catch(PDOException $e) {
 									$this->errors[] = 'Error : ' .$e->getMessage();
 								}

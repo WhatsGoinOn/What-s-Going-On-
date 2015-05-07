@@ -448,35 +448,70 @@ EOL;
                 }elseif ($query_event_check->num_rows == 1) {
                     $this->errors[] = "Sorry, that event has already been created.";
                 } else {
-                    // write new event data into database
-                    $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree)
-                            VALUES('" . $userID . "', '" . $title . "', '" . $description . "', '" . $convertedStartDateTime . "',
-                            '" . $convertedEndDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', '" . $isFree . "');";
-                    $query_new_event_insert = $this->db_connection->query($sql);
-
-                    // if event has been added successfully
-                    if ($query_new_event_insert) {
-                        if (!isset($_SESSION))
-                        {
-                            session_start();            
-                        }
-                        if(isset($_SESSION['title'])) unset($_SESSION['title']);
-                        if(isset($_SESSION['isFree'])) unset($_SESSION['isFree']);
-                        if(isset($_SESSION['address'])) unset($_SESSION['address']); 
-                        if(isset($_SESSION['city'])) unset($_SESSION['city']);
-                        if(isset($_SESSION['state'])) unset($_SESSION['state']); 
-                        if(isset($_SESSION['zip'])) unset($_SESSION['zip']);
-                        if(isset($_SESSION['startDate'])) unset($_SESSION['startDate']); 
-                        if(isset($_SESSION['startTime'])) unset($_SESSION['startTime']);
-                        if(isset($_SESSION['start_am_pm'])) unset($_SESSION['start_am_pm']);
-                        if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']); 
-                        if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
-                        if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
-                        if(isset($_SESSION['description'])) unset($_SESSION['description']);
-                        session_write_close();
-                    } else {
-                        $this->errors[] = "Sorry, your event creation failed. Please go back and try again.";
-                    }
+                	//If everything is good so far, and an image was included, attempt to upload the image first
+                	$upload = new Upload();
+					
+                	if (isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0)  {
+						$_imageID = $upload->uploadImage(0);
+						if(!$upload->errors && !is_numeric($_imageID)) {
+							$upload->errors[] = "There was an issue with the image upload.";
+						}
+					}
+					
+					if (count($upload->errors) <= 0) {
+	                    // write new event data into database
+	                    $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree, ImageID)
+	                            VALUES('" . $userID . "', '" . $title . "', '" . $description . "', '" . $convertedStartDateTime . "',
+	                            '" . $convertedEndDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', 
+	                            '" . $isFree . "', " . $_imageID . ");";
+	                    $query_new_event_insert = $this->db_connection->query($sql);
+						
+	                    // if event has been added successfully
+	                    if ($query_new_event_insert) {
+	                        if (!isset($_SESSION))
+	                        {
+	                            session_start();            
+	                        }
+	                        if(isset($_SESSION['title'])) unset($_SESSION['title']);
+	                        if(isset($_SESSION['isFree'])) unset($_SESSION['isFree']);
+	                        if(isset($_SESSION['address'])) unset($_SESSION['address']); 
+	                        if(isset($_SESSION['city'])) unset($_SESSION['city']);
+	                        if(isset($_SESSION['state'])) unset($_SESSION['state']); 
+	                        if(isset($_SESSION['zip'])) unset($_SESSION['zip']);
+	                        if(isset($_SESSION['startDate'])) unset($_SESSION['startDate']); 
+	                        if(isset($_SESSION['startTime'])) unset($_SESSION['startTime']);
+	                        if(isset($_SESSION['start_am_pm'])) unset($_SESSION['start_am_pm']);
+	                        if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']); 
+	                        if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
+	                        if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
+	                        if(isset($_SESSION['description'])) unset($_SESSION['description']);
+	                        session_write_close();
+							
+							$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+							$sql = $pdo->prepare("SELECT ID
+			                        FROM event
+			                        WHERE Title = :title
+			                        AND OwnerID = :ownerID
+			                        AND StartDateTime = :start");
+							$sql->bindParam(':title', $title, PDO::PARAM_STR);
+							$sql->bindParam(':ownerID', $userID, PDO::PARAM_INT);
+							$sql->bindParam(':start', $convertedStartDateTime);
+							$sql->execute();
+							
+							while ($result_row = $sql->fetch()) {
+								//Set variable for event
+								$_eventID = $result_row["ID"];
+							}
+							$pdo = null;
+							
+							header("Location: http://itweb.fvtc.edu/WhatsGoingOn/event.php?id=$_eventID");
+							exit();
+	                    } else {
+	                        $this->errors[] = "Sorry, your event creation failed. Please go back and try again.";
+	                    }
+	            	} else {
+	            		$this->errors[] = "There was an issue with the image upload.";
+	            	}
                 }
             } else {
                 $this->errors[] = "Sorry, no database connection.";
