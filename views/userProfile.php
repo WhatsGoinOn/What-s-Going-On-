@@ -8,6 +8,7 @@
 	require_once("../classes/Event.php");
 	require_once("../classes/Events.php");
 	
+	//If uploading new profile image
 	if (isset($_POST["upload"])) {
 		require_once('../classes/Upload.php');
 		$upload = new Upload();
@@ -19,6 +20,16 @@
 	$user = new User();
 	if (!empty($_GET["user"])) {
 		$user->fetchFromUsername($_GET["user"]);
+		
+		if (isset($_POST["bio"])) {
+			if ($user->Username == $_SESSION['user_name']) {
+				$user->Bio = $_POST['bio'];
+				$user->updateProfile();
+				// re-fetch user to maintain concurrency, probably not necessary
+				$user->fetchFromId($user->ID);
+			}
+		}
+		
 	} else {
 		$userExists = false;
 	}
@@ -118,8 +129,8 @@
 							<input name="upload" type="submit" id="upload" value="Upload">
 						</form>
 						<form method="post">
-					  		<textarea rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea><br/>
-							<input name="updateBio" type="submit" id="upload" value="Update Bio">
+					  		<textarea name="bio" id="bio" rows="11" cols="50" placeholder="User Bio"><?php echo($user->Bio); ?></textarea><br/>
+							<input name="updateBio" type="submit" id="updateBio" value="Update Bio">
 						</form>
 			  		</div>
 			  		
