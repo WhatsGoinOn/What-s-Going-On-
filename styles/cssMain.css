@@ -372,10 +372,17 @@ footer
 
 .eventItem {
 	clear: both;
+	width: 100%;
+	overflow: auto;
 }
 
 .eventItemInfo {
 	float: left;
+	width: 400px;
+}
+
+.eventItemInfo p {
+	line-height: 150%;
 }
 
 .eventItemSeparator {
@@ -396,6 +403,10 @@ footer
 
 #eventName .descriptionE{
 	width:1000px;
+}
+
+#searchList {
+	width: 100%;
 }
 
 /* Cancelling events */

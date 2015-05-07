@@ -152,4 +152,47 @@
 				$this->errors[] = 'Owner ID invalid.';
 			}
 	    }
+
+		public function mainPageSearch() {
+			try {
+				$query = 'SELECT ID, OwnerID, Title, Image, ImageID, Description, StartDateTime, EndDateTime, Address, City, State, ZIP, IsFree, IsCancelled
+                        FROM event 
+                        WHERE (IsCancelled IS NULL OR IsCancelled <> 1) 
+                        AND EndDateTime > NOW()
+						ORDER BY StartDateTime ASC
+						LIMIT 0, 10';
+				$pdo = new PDO(DB_PDOHOST,DB_USER,DB_PASS,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+				$sql = $pdo->prepare($query);
+				
+				$sql->bindParam(':ownerid', $ownerID, PDO::PARAM_INT);
+				$sql->execute();
+				
+				while ($result_row = $sql->fetch()) {
+					//Create event and set variables
+					$event = new Event();
+					$event->ID = $result_row["ID"];
+					$event->OwnerID = $result_row["OwnerID"];
+					$event->Title = $result_row["Title"];
+					$event->Image = $result_row["Image"];
+					$event->ImageID = $result_row["ImageID"];
+					$event->Description = $result_row["Description"];
+					$event->StartDateTime = $result_row["StartDateTime"];
+					$event->EndDateTime = $result_row["EndDateTime"];
+					$event->Address = $result_row["Address"];
+					$event->City = $result_row["City"];
+					$event->State = $result_row["State"];
+					$event->ZIP = $result_row["ZIP"];
+					$event->IsFree = $result_row["IsFree"];
+					$event->IsCancelled = $result_row["IsCancelled"];
+					
+					//Add event to collection
+					$this->addItem($event);
+					$event = null;
+				}
+				
+				$pdo = null;
+			} catch(PDOException $e) {
+				$this->errors[] = $e->getMessage();
+			}
+		}
 	}
