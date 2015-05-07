@@ -388,7 +388,7 @@ if (isset($event)) {
                             } ?>
 						<!-- End Of Image Upload section -->			  				
 						<br/>
-				  		<input style="margin-bottom: 4%; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>
+				  		<input style="margin-bottom: 4%;margin-top:10px; margin-left:-160px; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>
 					</div>
 				</fieldset>	
 			</form>		  			
