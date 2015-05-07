@@ -6,13 +6,10 @@
 	$eventExists = true; //Variable to determine rendering of event or not
 	
 	$event = new Event();
+	$user = new User();
 	if (!empty($_GET["id"])) {
 		$event->fetchFromId($_GET["id"]);
-		if (isset($_SESSION['user_name'])) {
-			//fetch owner
-			$user = new User();
-			$user->fetchFromId($event->OwnerID);
-		}
+		$user->fetchFromId($event->OwnerID);
 	} else {
 		$eventExists = false;
 	}
@@ -52,7 +49,11 @@
 				font-weight:bold;
 			}
 		</style>		
-
+		<script>
+			function confirmCancel(eventName) {
+				return confirm("Are you sure you want to cancel '" + eventName + "'?");
+			}
+		</script>
 	</head>
 
 	<body>
@@ -79,7 +80,7 @@
 			  					echo <<<EOL
 			  						<a href="/WhatsGoingOn/updateEventHandler.php?id=$event->ID">Edit</a>
 									<span>&nbsp;&nbsp;</span>
-									<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
+									<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel('$event->Title');">
 										<input type="hidden" name="eventId" value="$event->ID">
 										<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
 									</form>

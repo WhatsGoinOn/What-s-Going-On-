@@ -99,9 +99,10 @@ class Event
 					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
 					<p>$this->City, $this->State $this->ZIP</p>
 					<p>$this->StartDateTime - $this->EndDateTime</p>
-					<p>$desc</p><br/>
+					<p>$desc</p>
 				</div>
 			</div>
+			<br/>
 EOL;
 	}
 	
@@ -128,7 +129,7 @@ EOL;
 					<h3><a href="/WhatsGoingOn/event.php?id=$this->ID">$this->Title</a></h3>
 					<a href="/WhatsGoingOn/updateEventHandler.php?id=$this->ID">Edit</a>
 					<span>&nbsp;&nbsp;</span>
-					<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
+					<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel('$this->Title');">
 						<input type="hidden" name="source" value="$link">
 						<input type="hidden" name="eventId" value="$this->ID">
 						<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
@@ -136,9 +137,9 @@ EOL;
 					<p>$this->City, $this->State $this->ZIP</p>
 					<p>$this->StartDateTime - $this->EndDateTime</p>
 					<p>$desc</p>
-					<br/>
 				</div>
 			</div>
+			<br/>
 EOL;
 	}
 	

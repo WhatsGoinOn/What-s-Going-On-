@@ -22,10 +22,9 @@
 		
 		<link href="styles/cssMain.css" rel="stylesheet" type="text/css" />
 		<style type="text/css">
-			a[href="search.php"]
+			a[href="/WhatsGoingOn/search.php"]
 			{
 				display:block;
-				width:3.5em;
 				background-color: #E65C00;
 				color: #FFFFFF;
 				font-weight:bold;
