@@ -84,10 +84,16 @@ class Event
 		} else {
 			$desc = $this->Description;
 		}
+		if ($this->ImageID == null) {
+			$img = '<img class="imgSub" src="/WhatsGoingOn/images/event.gif">';
+		} else {
+			$img = "<img class=\"imgSub\" src=\"/WhatsGoingOn/image.php?id=$this->ImageID\">";
+		}
+		
 		echo <<<EOL
 			<div class="eventItem">
 				<div class="eventImageSmall">
-					<img class="imgSub" src="image.php?id=$this->ImageID">
+					$img
 				</div>
 				<div class="eventItemInfo">
 					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
@@ -107,11 +113,16 @@ EOL;
 			$desc = $this->Description;
 		}
 		$link = htmlspecialchars("//$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]", ENT_QUOTES, 'UTF-8');
+		if ($this->ImageID == null) {
+			$img = '<img class="imgSub" src="/WhatsGoingOn/images/event.gif">';
+		} else {
+			$img = "<img class=\"imgSub\" src=\"/WhatsGoingOn/image.php?id=$this->ImageID\">";
+		}
 		
 		echo <<<EOL
 			<div class="eventItem">
 				<div class="eventImageSmall">
-					<img class="imgSub" src="image.php?id=$this->ImageID">
+					$img
 				</div>
 				<div class="eventItemInfo">
 					<h3><a href="/WhatsGoingOn/event.php?id=$this->ID">$this->Title</a></h3>

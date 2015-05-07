@@ -105,18 +105,6 @@ EOL;
 						</iframe>
 					</div>	
 		  		</div>
-		  		
-		  		<!--
-		  		<div id="similarEvents">
-		  			<h1>Similar Events</h1>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="100" height="100">
-		  			<h3>Event Name</h3>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="100" height="100">
-		  			<h3>Event Name</h3>
-		  			<img src="eventImage.jpg" alt="IMAGE HERE!" width="100" height="100">
-		  			<h3>Event Name</h3>
-		  		</div>
-		  		<!---->
 		  	<?php } else {
 				  		if (isset($event)) {
 						    if ($event->errors) {
