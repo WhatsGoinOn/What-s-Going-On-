@@ -1,3 +1,12 @@
+<?php
+	require_once("login/config/db.php");
+	require_once("classes/Event.php");
+	require_once("classes/Events.php");
+	
+	$events = new Events();
+	$events->mainPageSearch();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -37,62 +46,19 @@
         	  	</nav>
         	  
         	  	<section class="defaultSection">
-        	  		<h1>Featured Upcoming Events!</h1><br/>
-        	  		
-    	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!" >
-        	  		<div class="eventName">
-        	  			<h3>Event Name</h3>  
-        	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
-        	  				tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-        	  				quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        					Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum 
-        					dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit 
-        					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>		  			
-        	  		</div>
-        	  		
-    	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
-        	  		<div class="eventName">
-        	  			<h3>Event Name</h3>
-        	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
-        	  				tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-        	  				quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        					Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum 
-        					dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit 
-        					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-        	  		</div>
-        	  		
-    	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
-        	  		<div class="eventName">
-        	  			<h3>Event Name</h3>
-        	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
-        	  				tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-        	  				quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        					Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum 
-        					dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit 
-        					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-        	  		</div>
-        	  		
-    	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
-        	  		<div class="eventName">
-        	  			<h3>Event Name</h3>
-        	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
-        	  				tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-        	  				quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        					Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum 
-        					dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit 
-        					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>	
-        	  		</div>
-        	  		
-    	  			<img src="images/eventImage.jpg" alt="IMAGE HERE!">
-        	  		<div class="eventName">
-        	  			<h3>Event Name</h3>
-        	  			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
-        	  				tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-        	  				quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-        					Autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum 
-        					dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit 
-        					praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>	
-        	  		</div>	  		
+        	  		<h1>Upcoming Events</h1><br/>
+        	  		<?php
+	    	  			if (isset($events) && $events->getCount() > 0) {
+							//Display events
+							for ($i = 0; $i < $events->getCount(); $i++) {
+								$event = $events->getItem($i);
+								$event->displayEventItem();
+								
+							}
+						} else {
+							echo("<p>No events to display.</p>");
+						}
+					?>
         	  	</section>
         	  	
         	  	<aside>
