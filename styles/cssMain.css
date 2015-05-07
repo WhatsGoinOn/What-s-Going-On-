@@ -80,14 +80,6 @@ nav a:hover
 {
 	padding-bottom:30px;
 }
-.defaultSection img, #savedEvents img, #results img
-{
-	width:150px;
-	height:100px;
-	float:left;
-	clear:left;
-	padding-right:24px;
-}
 
 #nearbyEvents img, #savedEvents img
 {
@@ -247,6 +239,10 @@ textarea
 	margin-bottom:10px;
 	margin-top:15px;
 }
+.error
+{
+	color:red;
+}
 /*Regitser Page-------------------------------------*/
 .register
 {
@@ -368,6 +364,7 @@ footer
 	width: 150px;
 	height: 100px;
 	overflow: hidden;
+	margin-right: 8px;
 }
 
 .eventItem {

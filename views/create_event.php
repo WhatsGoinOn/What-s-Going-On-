@@ -96,7 +96,7 @@ if (isset($event)) {
 	  	</nav>
 	  
 	  	<section id="createEventSection">
-	  		<form id="createEvent" name="createEvent" method="post" action="/WhatsGoingOn/createEventHandler.php">		
+	  		<form id="createEvent" name="createEvent" method="post" action="/WhatsGoingOn/createEventHandler.php" enctype="multipart/form-data">		
 			
 				<fieldset>
 					<legend>Create Event:</legend>
@@ -371,19 +371,23 @@ if (isset($event)) {
                                     }
                                 }
                             } ?><br>
-						<img src="eventImage.jpg" alt="IMAGE HERE!" width="200" height="200"><br>
-						<input type="button" id="browseImage" value="Select Image" onclick=""/><br>
-						<p>Select appropriate tags (min 1):</p><br>
-						<input type="checkbox" id="music" name="chk_tags[]" value="Music" />Music<br>							
-						<input type="checkbox" id="sports" name="chk_tags[]" value="Sports" />Sports<br>				  			
-				  		<input type="checkbox" id="annual" name="chk_tags[]" value="Annual" />Annual<br>				  			
-				  		<input type="checkbox" id="party" name="chk_tags[]" value="Party" />Party<br>				  			
-				  		<input type="checkbox" id="kids" name="chk_tags[]" value="Kids" />Kids<br>				  			
-				  		<input type="checkbox" id="school" name="chk_tags[]" value="School" />School<br>				  			
-				  		<input type="checkbox" id="public" name="chk_tags[]" value="Public" />Public<br>				  			
-				  		<input type="checkbox" id="community" name="chk_tags[]" value="Community" />Community<br>				  			
-				  		<input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>				  				
-
+                        <!-- Image Upload section -->
+						<input type="hidden" name="MAX_FILE_SIZE" value="65535">
+						<label for="userfile">Event Image (max 63KB):</label>
+						<input name="userfile" type="file" id="userfile">
+						<?php if(isset($event)) {
+                                if ($event->errors) {
+                                    foreach ($event->errors as $error) {
+                                        if($error == "Enter a description"){
+                                            echo "<span class='error'>" . $error . "</span>";
+                                        }elseif($error == "There was an issue with the image upload."){
+                                            echo "<span class='error'>" . $error . "</span>";
+                                        }
+                                    }
+                                }
+                            } ?>
+						<!-- End Of Image Upload section -->			  				
+						<br/>
 				  		<input style="margin-bottom: 4%; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>
 					</div>
 				</fieldset>	
