@@ -168,7 +168,7 @@
                     <legend>Update Event:</legend>
                     <div>
                         <label for="title">Event Name:</label>  
-                            <input type="text" id="title" name="title" placeholder="Name"
+                            <input type="text" id="title" name="title"
                                value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" required/>
                                    <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -183,7 +183,7 @@
                         Yes<input type="radio" class="radioBtn" name="isFree" value="Yes" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == 'Yes') { echo 'checked';} } ?> required> 
                         No<input type="radio" class="radioBtn" name="isFree" value="No" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) ==  'No') { echo 'checked';} } ?>><br>
                         <label for="address">Address:</label>  
-                            <input type="text" id="address" name="address" placeholder="Address"
+                            <input type="text" id="address" name="address" 
                                 value="<?php if(isset($_SESSION['address'])){echo htmlspecialchars($_SESSION['address']);} ?>" required/>
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -195,7 +195,7 @@
                                         }
                                     } ?><br>                    
                         <label for="city">City:</label>  
-                            <input type="text" id="city" name="city" placeholder="City"
+                            <input type="text" id="city" name="city"
                                value="<?php if(isset($_SESSION['city'])){echo htmlspecialchars($_SESSION['city']);} ?>" required/>
                                    <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -208,7 +208,7 @@
                                     } ?><br>                        
                         <label for="state">State:</label>
                             <select name="state" id="state" required>
-                                <option value="" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == '') { echo 'selected="selected"';} } ?>>State:</option>
+                                <option value="" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == '') { echo 'selected="selected"';} } ?>></option>
                                 <option value="AL" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AL') { echo 'selected="selected"';} } ?>>Alabama</option>
                                 <option value="AK" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AK') { echo 'selected="selected"';} } ?>>Alaska</option>
                                 <option value="AS" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AS') { echo 'selected="selected"';} } ?>>American Samoa</option>
@@ -278,8 +278,8 @@
                                             }
                                         }
                                     } ?><br>    
-                        <label for="zip">Zip Code:</label>  
-                            <input type="text" id="zip" name="zip" placeholder="five digit zip"
+                        <label for="zip">Zip Code (5 digits):</label>  
+                            <input type="text" id="zip" name="zip" 
                                value="<?php if(isset($_SESSION['zip'])){echo htmlspecialchars($_SESSION['zip']);} ?>" required />
                                    <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -312,7 +312,7 @@
                                     } ?><br>
                         <label for="startTime">Start Time:</label>
                             <select name="startTime" id="startTime" required>
-                                <option value="">Start Time:</option>
+                                <option value=""></option>
                                 <?php  
                                     $min = "00";
                                     $hour = 12;
@@ -379,7 +379,7 @@
                                     } ?><br>
                         <label for="endTime" id="endTimeLabel">End Time:</label>
                             <select name="endTime" id="endTime" required>
-                                <option value="">End Time:</option>
+                                <option value=""></option>
                                 <?php 
                                 $min = "00";
                                 $hour = 12;
@@ -478,4 +478,5 @@ if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']);
 if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
 if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
 if(isset($_SESSION['description'])) unset($_SESSION['description']);
+session_write_close();
 ?>

@@ -415,4 +415,5 @@ if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']);
 if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
 if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
 if(isset($_SESSION['description'])) unset($_SESSION['description']);
+session_write_close();
 ?>
