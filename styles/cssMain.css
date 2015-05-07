@@ -247,6 +247,10 @@ textarea
 	margin-bottom:10px;
 	margin-top:15px;
 }
+.error
+{
+	color:red;
+}
 /*Regitser Page-------------------------------------*/
 .register
 {
