@@ -77,7 +77,7 @@ class Login
                         // write user data into PHP SESSION (a file on your server)
                         $_SESSION['user_name'] = $result_row->Username;
                         $_SESSION['user_login_status'] = 1;
-						$_SESSION['user_id'] = '_' . $result_row->ID;
+						$_SESSION['user_id'] = $result_row->ID;
 						session_write_close();
                     } else {
                         $this->errors[] = "Wrong password. Try again.";
