@@ -403,7 +403,7 @@ EOL;
             
             // if no connection errors (= working database connection)
             if (!$this->db_connection->connect_errno) {
-                if (!isset($_SESSION['id']))
+                if (!isset($_SESSION))
                 {
                     session_start();            
                 }
