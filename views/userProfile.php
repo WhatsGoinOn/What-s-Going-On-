@@ -66,7 +66,7 @@
 		<link href="../styles/cssMain.css" rel="stylesheet" type="text/css" />		
 
 		<style type="text/css">
-			a[href="/WhatsGoingOn/views/userProfile.php"]
+			a[href="/WhatsGoingOn/views/userProfile.php?user=<?php echo $_SESSION['user_name'] ?>"]
 			{
 				display:block;
 				background-color: #E65C00;
@@ -74,6 +74,11 @@
 				font-weight:bold;
 			}
 		</style>
+		<script>
+			function confirmCancel(eventName) {
+				return confirm("Are you sure you want to cancel '" + eventName + "'?");
+			}
+		</script>
 	</head>
 
 	<body>
