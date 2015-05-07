@@ -23,8 +23,9 @@ if (isset($login)) {
 
     <input id="login_input_password" class="login_input" placeholder="password" type="password" name="user_password" autocomplete="off" required /><br>
 
-    <input type="submit"  name="login" value="Log in" />
+    <input type="submit"  name="login" value="Log in" />&nbsp;&nbsp;
+    
+    <a href="/WhatsGoingOn/login/registrationHandler.php">or Create account</a>
 
 </form>
 
-<a href="/WhatsGoingOn/login/registrationHandler.php">or Create account</a>
