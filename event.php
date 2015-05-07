@@ -8,9 +8,11 @@
 	$event = new Event();
 	if (!empty($_GET["id"])) {
 		$event->fetchFromId($_GET["id"]);
-		//fetch owner
-		$user = new User();
-		$user->fetchFromId($event->OwnerID);
+		if (isset($_SESSION['user_name'])) {
+			//fetch owner
+			$user = new User();
+			$user->fetchFromId($event->OwnerID);
+		}
 	} else {
 		$eventExists = false;
 	}
@@ -72,15 +74,17 @@
 		  		<div id="eventName">
 		  			<h1><?php echo($event->Title); ?></h1>
 		  			<?php
-		  				if ($user->Username == $_SESSION['user_name']) {
-		  					echo <<<EOL
-		  						<a href="/WhatsGoingOn/updateEventHandler.php?id=$event->ID">Edit</a>
-								<span>&nbsp;&nbsp;</span>
-								<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
-									<input type="hidden" name="eventId" value="$event->ID">
-									<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
-								</form>
+		  				if (isset($_SESSION['user_name'])) {
+			  				if ($user->Username == $_SESSION['user_name']) {
+			  					echo <<<EOL
+			  						<a href="/WhatsGoingOn/updateEventHandler.php?id=$event->ID">Edit</a>
+									<span>&nbsp;&nbsp;</span>
+									<form class="cancelEvent" method="post" action="/WhatsGoingOn/cancelEvent.php" onsubmit="return confirmCancel()">
+										<input type="hidden" name="eventId" value="$event->ID">
+										<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
+									</form>
 EOL;
+							}
 						}
 		  			?>
 		  			<div class="eventImage">
@@ -88,7 +92,7 @@ EOL;
 			  				if ($event->ImageID == null) {
 			  					echo '<img class="imgSub" src="images/event.gif" alt="Event image">';
 			  				} else {
-			  					echo "<img class=\"imgSub\" src=\"image.php?id=<?php echo($event->ImageID); ?>\" alt=\"Event image\">";
+			  					echo "<img class=\"imgSub\" src=\"image.php?id=$event->ImageID\" alt=\"Event image\">";
 							}
 		  				?>
 		  			</div>
