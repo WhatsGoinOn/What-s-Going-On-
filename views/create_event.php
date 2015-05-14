@@ -17,6 +17,28 @@ if (isset($event)) {
         }
     }
 }
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+// Unset session variables if the $_POST['createEvent'] variable is not set
+if (!isset($_POST['createEvent'])){
+    if(isset($_SESSION['title'])) unset($_SESSION['title']);
+    if(isset($_SESSION['isFree'])) unset($_SESSION['isFree']);
+    if(isset($_SESSION['address'])) unset($_SESSION['address']); 
+    if(isset($_SESSION['city'])) unset($_SESSION['city']);
+    if(isset($_SESSION['state'])) unset($_SESSION['state']); 
+    if(isset($_SESSION['zip'])) unset($_SESSION['zip']);
+    if(isset($_SESSION['startDate'])) unset($_SESSION['startDate']); 
+    if(isset($_SESSION['startTime'])) unset($_SESSION['startTime']);
+    if(isset($_SESSION['start_am_pm'])) unset($_SESSION['start_am_pm']);
+    if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']); 
+    if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
+    if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
+    if(isset($_SESSION['description'])) unset($_SESSION['description']);
+    session_write_close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -368,7 +390,7 @@ if (isset($event)) {
                             } ?>
 						<!-- End Of Image Upload section -->			  				
 						<br/>
-				  		<input style="margin-bottom: 4%;margin-top:10px; margin-left:-160px; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>
+				  		<input style="margin-bottom: 4%;margin-top:10px; margin-left:-160px; height: 2em;" type="submit" value="Create Event" name="createEvent"/><br/>
 					</div>
 				</fieldset>	
 			</form>		  			
