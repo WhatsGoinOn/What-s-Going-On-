@@ -197,7 +197,7 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 	color:#FF6600;
 }
 /*Create Events Page--------------------------------------------*/
-#createEventSection label
+/*#createEventSection label
 {
 	margin-left:1%;
 	padding:0.7%;
@@ -239,7 +239,7 @@ textarea
 	height:2em;
 	margin-bottom:10px;
 	margin-top:15px;
-}
+}*/
 .error
 {
 	color:red;
