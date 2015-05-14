@@ -455,14 +455,11 @@ if (!isset($_POST['createEvent'])){
                                                     echo "<span class='error'>" . $error . "</span>";
                                                 }
                                             }
-                                        }
-<<<<<<< HEAD
-                                    } ?>
+                                        }                                    } ?>
     	  					    </td>
     	  					</tr>
                         </table>
 				  		<input type="submit" value="Create Event" name="createEvent"/><br/>
-=======
                                     }
                                 } ?>
                         AM<input type="radio" class="radioBtn" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?> required> 
@@ -506,7 +503,6 @@ if (!isset($_POST['createEvent'])){
 						<!-- End Of Image Upload section -->			  				
 						<br/>
 				  		<input id="CreateEventbtn" style="height: 2em; width:20%;" type="submit" value="Create Event" name="createEvent"/><br/>
->>>>>>> 5463b215d8494fdd0e31bc4bfc5e78c15321f727
 					</div>
 				</fieldset>	
 			</form>		  			
