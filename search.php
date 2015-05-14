@@ -60,8 +60,10 @@
 	  		<form action="" method="get">
 	  			<input name="keyword" type="text" placeholder="Keyword"
 	  				<?php if (isset($_GET['keyword']) && !empty($_GET['keyword'])) { echo("value=\"" . $_GET['keyword']) . '"'; } ?>/> 
+	  			<br />
 	  			<input name="zip" type="text" placeholder="ZIP"
 	  				<?php if (isset($_GET['zip']) && !empty($_GET['zip'])) { echo("value=\"" . $_GET['zip']) . '"'; } ?>/>
+	  			<br />
 	  			<input name="date" id="date" type="text" placeholder="Date"
 	  				<?php if (isset($_GET['date']) && !empty($_GET['date'])) { echo("value=\"" . $_GET['date']) . '"'; } ?>/>
 	  			<br />
