@@ -27,7 +27,7 @@ header
 {
 	height: 130px;
     background:#F0F0F0;
-    border:1px solid #CCC;
+    border-bottom: 1px solid #CCC;
     width:100%;
 }
 header h1
@@ -239,6 +239,13 @@ textarea
 	height:2em;
 	margin-bottom:10px;
 	margin-top:15px;
+}
+#CreateEventbtn
+{
+	margin-bottom: 4%;
+	clear:all;
+	margin-top:30px;
+	margin-left:-160px;
 }
 .error
 {
