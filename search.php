@@ -36,7 +36,7 @@
 	    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	    <script>
 			$(function() {
-		    	$( "#date" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+		    	$( "#date" ).datepicker({ dateFormat: 'mm-dd-yy' }).val();
 		  	});
 		</script>
 	</head>

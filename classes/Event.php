@@ -89,6 +89,14 @@ class Event
 		} else {
 			$img = "<img class=\"imgSub\" src=\"/WhatsGoingOn/image.php?id=$this->ImageID\">";
 		}
+        //Format Dates
+        $startDate = date("m/d/Y", strtotime($this->StartDateTime));
+        $endDate = date("m/d/Y", strtotime($this->EndDateTime));
+        if ($startDate == $endDate){
+           $endDate = date("g:i A", strtotime($this->EndDateTime)); 
+        }        
+        $startDate = date("m/d/Y g:i A", strtotime($this->StartDateTime));
+        
 		
 		echo <<<EOL
 			<div class="eventItem">
@@ -98,7 +106,7 @@ class Event
 				<div class="eventItemInfo">
 					<h3><a href="event.php?id=$this->ID">$this->Title</a></h3>
 					<p>$this->City, $this->State $this->ZIP</p>
-					<p>$this->StartDateTime - $this->EndDateTime</p>
+					<p>$startDate - $endDate</p>
 					<p>$desc</p>
 				</div>
 			</div>
@@ -119,6 +127,13 @@ EOL;
 		} else {
 			$img = "<img class=\"imgSub\" src=\"/WhatsGoingOn/image.php?id=$this->ImageID\">";
 		}
+        //Format Dates
+        $startDate = date("m/d/Y", strtotime($this->StartDateTime));
+        $endDate = date("m/d/Y", strtotime($this->EndDateTime));
+        if ($startDate == $endDate){
+           $endDate = date("g:i A", strtotime($this->EndDateTime)); 
+        }        
+        $startDate = date("m/d/Y g:i A", strtotime($this->StartDateTime));
 		
 		echo <<<EOL
 			<div class="eventItem">
@@ -134,8 +149,8 @@ EOL;
 						<input type="hidden" name="eventId" value="$this->ID">
 						<button class="linkButton" type="submit" value="Cancel Event">Cancel Event</button>
 					</form>
-					<p>$this->City, $this->State $this->ZIP</p>
-					<p>$this->StartDateTime - $this->EndDateTime</p>
+					<p>$this->City, $this->State $this->ZIP</p>					
+					<p>$startDate - $endDate</p>
 					<p>$desc</p>
 				</div>
 			</div>
