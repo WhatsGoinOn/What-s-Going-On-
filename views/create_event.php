@@ -459,50 +459,7 @@ if (!isset($_POST['createEvent'])){
     	  					    </td>
     	  					</tr>
                         </table>
-				  		<input type="submit" value="Create Event" name="createEvent"/><br/>
-                                    }
-                                } ?>
-                        AM<input type="radio" class="radioBtn" name="end_am_pm" value="AM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'AM') { echo 'checked';} } ?> required> 
-                        PM<input type="radio" class="radioBtn" name="end_am_pm" value="PM" <?php if(isset($_SESSION['end_am_pm'])){if(($_SESSION['end_am_pm']) == 'PM') { echo 'checked';} } ?>>
-                            <?php if(isset($event)) {
-                                if ($event->errors) {
-                                    foreach ($event->errors as $error) {
-                                        if($error == "Select a meridiem for the end time"){
-                                            echo "<span class='error'>" . $error . "</span>";
-                                        }
-                                    }
-                                }
-                            } ?><br>
-	  					<textarea rows="10" cols="50" name="description" placeholder="Description Here!"><?php if(isset($_SESSION['description'])){echo htmlspecialchars($_SESSION['description']);} ?></textarea>
-	  					    <?php if(isset($event)) {
-                                if ($event->errors) {
-                                    foreach ($event->errors as $error) {
-                                        if($error == "Enter a description"){
-                                            echo "<span class='error'>" . $error . "</span>";
-                                        }elseif($error == "Only 500 chartacters allowed in the description"){
-                                            echo "<span class='error'>" . $error . "</span>";
-                                        }
-                                    }
-                                }
-                            } ?><br>
-                        <!-- Image Upload section -->
-						<input type="hidden" name="MAX_FILE_SIZE" value="65535">
-						<label for="userfile" style="margin-top:2%; width:22%;">Event Image (max 63KB):</label>
-						<input name="userfile" type="file" id="userfile">
-						<?php if(isset($event)) {
-                                if ($event->errors) {
-                                    foreach ($event->errors as $error) {
-                                        if($error == "Enter a description"){
-                                            echo "<span class='error'>" . $error . "</span>";
-                                        }elseif($error == "There was an issue with the image upload."){
-                                            echo "<span class='error'>" . $error . "</span>";
-                                        }
-                                    }
-                                }
-                            } ?>
-						<!-- End Of Image Upload section -->			  				
-						<br/>
-				  		<input id="CreateEventbtn" style="height: 2em; width:20%;" type="submit" value="Create Event" name="createEvent"/><br/>
+				  		<input type="submit" value="Create Event" name="createEvent"/><br/>                
 					</div>
 				</fieldset>	
 			</form>		  			
