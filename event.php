@@ -133,6 +133,8 @@ EOL;
 						    }
 						}
 					} ?>
+			<br />
+			<br />
 	  	</section>
 	  	</div>
 	  	<footer>

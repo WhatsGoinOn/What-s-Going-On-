@@ -92,6 +92,7 @@
 				}
 			
 			?>
+			<br />
 	  	</section>
 	  	</div>
 	  	<footer>

@@ -187,7 +187,9 @@
 				} else { ?><!--If username is left off or invalid-->
 		  		<p>Invalid user.</p>
 		  	<?php } ?>
-	  	</section>	  	
+		  	<br />
+	  	</section>
+	  	<br />	  	
 	  	</div><!--end of text-->
 	  	<footer>
 	  		<?php require_once("../footer.php"); ?>
