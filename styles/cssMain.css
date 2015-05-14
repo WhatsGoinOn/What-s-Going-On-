@@ -197,49 +197,10 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 	color:#FF6600;
 }
 /*Create Events Page--------------------------------------------*/
-/*#createEventSection label
-{
-	margin-left:1%;
-	padding:0.7%;
-	width: 15%;
-	float: left;
-	clear:both;
-}
-#createEventSection textarea, img
-{
-	margin-left: 1.5%;
-}
-#createEventSection input
-{
-	width: 27%;
-	height: 20px;
-}
-#createEventSection input[type=checkbox]
-{
-	width:2%;
-}
-#zip
-{
-	margin-bottom:10px;
-}
-textarea
+#createEventSection label
 {
 	
-}
-#createEventSection select
-{
-	height:2em;
-	margin-bottom:8px;
-	border-radius: 0px;
-	width:28%;
-}
-#createEventSection .radioBtn
-{
-	width:2%;
-	height:2em;
-	margin-bottom:10px;
-	margin-top:15px;
-}*/
+
 .error
 {
 	color:red;
