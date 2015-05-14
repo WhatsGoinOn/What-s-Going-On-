@@ -97,8 +97,16 @@ EOL;
 							}
 		  				?>
 		  			</div>
-		  			<?php $startDate = date("m/d/Y H:i:s", strtotime($event->StartDateTime));?>
-		  			<?php $endDate = date("m/d/Y H:i:s", strtotime($event->EndDateTime));?>
+		  			<?php 		  			
+    		  			//Format Dates
+                        $startDate = date("m/d/Y", strtotime($event->StartDateTime));
+                        $endDate = date("m/d/Y", strtotime($event->EndDateTime));
+                        if ($startDate == $endDate){
+                           $endDate = date("g:i A", strtotime($event->EndDateTime)); 
+                        }        
+                        $startDate = date("m/d/Y g:i A", strtotime($event->StartDateTime));
+                    ?>	  			
+		  			
 		  			<p><?php echo($startDate)?> - <?php echo($endDate)?></p>
 		  			<p><?php echo($event->Address);?></p>
 		  			<p><?php echo($event->City);?>&nbsp;<?php echo($event->State);?>&nbsp;<?php echo($event->ZIP);?></p>

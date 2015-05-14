@@ -17,6 +17,28 @@ if (isset($event)) {
         }
     }
 }
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+// Unset session variables if the $_POST['createEvent'] variable is not set
+if (!isset($_POST['createEvent'])){
+    if(isset($_SESSION['title'])) unset($_SESSION['title']);
+    if(isset($_SESSION['isFree'])) unset($_SESSION['isFree']);
+    if(isset($_SESSION['address'])) unset($_SESSION['address']); 
+    if(isset($_SESSION['city'])) unset($_SESSION['city']);
+    if(isset($_SESSION['state'])) unset($_SESSION['state']); 
+    if(isset($_SESSION['zip'])) unset($_SESSION['zip']);
+    if(isset($_SESSION['startDate'])) unset($_SESSION['startDate']); 
+    if(isset($_SESSION['startTime'])) unset($_SESSION['startTime']);
+    if(isset($_SESSION['start_am_pm'])) unset($_SESSION['start_am_pm']);
+    if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']); 
+    if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
+    if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
+    if(isset($_SESSION['description'])) unset($_SESSION['description']);
+    session_write_close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,41 +62,21 @@ if (isset($event)) {
 			}
 		</style>
 		
-		<script type="text/javascript">
-            function Validate()
-            {           
-                var Title = document.getElementById("title");             
-                var Address = document.getElementById("address");
-                var City = document.getElementById("city");
-                var State = document.getElementById("state");
-                var Zip = document.getElementById("zip");
-                var StartDate = document.getElementById("startDate");
-                var StartTime = document.getElementById("startTime");
-                var StartAmPm = document.getElementById("start_am_pm");
-                var EndDate = document.getElementById("endDate");
-                var EndTime = document.getElementById("endTime");
-                var EndAmPm = document.getElementById("end_am_pm");                
-                
-                if ()
-                {
-                   
-                    return false;
-                } 
-                else if ()
-                {
-                    
-                    return false;
-                }
-                else 
-                {
-                    return true;    
-                }            
-            }
+		<!-- Stuff for calendar search -->        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $( "#startDate" ).datepicker({ dateFormat: 'mm/dd/yy' }).val();
+                $( "#endDate" ).datepicker({ dateFormat: 'mm/dd/yy' }).val();
+            });            
         </script>       		
 
 	</head>
-
-	<body>
+    
+    <!-- init() is for calendar search -->
+    <body onload="init()">
 		<div id="wrapper">
 			
 		<header>
@@ -229,7 +231,7 @@ if (isset($event)) {
                                         }
                                     } ?><br>
 				  		<label for="startDate">Start Date:</label>  
-                            <input type="text" id="startDate" name="startDate" placeholder="(month/day/year)"
+                            <input type="text" id="startDate" name="startDate"
                                 value="<?php if(isset($_SESSION['startDate'])){echo htmlspecialchars($_SESSION['startDate']);} ?>" required />
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -294,7 +296,7 @@ if (isset($event)) {
                                 }
                             } ?><br>
                         <label for="endDate">End Date:</label>  
-                            <input type="text" id="endDate" name="endDate" placeholder="(month/day/year)"
+                            <input type="text" id="endDate" name="endDate"
                                 value="<?php if(isset($_SESSION['endDate'])){echo htmlspecialchars($_SESSION['endDate']);} ?>" required />
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -388,7 +390,7 @@ if (isset($event)) {
                             } ?>
 						<!-- End Of Image Upload section -->			  				
 						<br/>
-				  		<input style="margin-bottom: 4%; height: 2em;" type="submit" value="Create Event" onclick="return Validate()" name="createEvent"/><br/>
+				  		<input style="margin-bottom: 4%;margin-top:10px; margin-left:-160px; height: 2em;" type="submit" value="Create Event" name="createEvent"/><br/>
 					</div>
 				</fieldset>	
 			</form>		  			
