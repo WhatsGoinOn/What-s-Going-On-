@@ -106,41 +106,21 @@
             }
         </style>
         
-        <script type="text/javascript">
-            function Validate()
-            {           
-                var Title = document.getElementById("title");             
-                var Address = document.getElementById("address");
-                var City = document.getElementById("city");
-                var State = document.getElementById("state");
-                var Zip = document.getElementById("zip");
-                var StartDate = document.getElementById("startDate");
-                var StartTime = document.getElementById("startTime");
-                var StartAmPm = document.getElementById("start_am_pm");
-                var EndDate = document.getElementById("endDate");
-                var EndTime = document.getElementById("endTime");
-                var EndAmPm = document.getElementById("end_am_pm");                
-                
-                if ()
-                {
-                   
-                    return false;
-                } 
-                else if ()
-                {
-                    
-                    return false;
-                }
-                else 
-                {
-                    return true;    
-                }            
-            }
+        <!-- Stuff for calendar search -->        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $( "#startDate" ).datepicker({ dateFormat: 'mm/dd/yy' }).val();
+                $( "#endDate" ).datepicker({ dateFormat: 'mm/dd/yy' }).val();
+            });            
         </script>               
 
     </head>
-
-    <body>
+    
+    <!-- init() is for calendar search -->
+    <body onload="init()">
         <div id="wrapper">
             
         <header>
@@ -295,7 +275,7 @@
                                         }
                                     } ?><br>
                         <label for="startDate">Start Date:</label>  
-                            <input type="text" id="startDate" name="startDate" placeholder="(month/day/year)"
+                            <input type="text" id="startDate" name="startDate"
                                 value="<?php if(isset($_SESSION['startDate'])){echo htmlspecialchars($_SESSION['startDate']);} ?>" required />
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -360,7 +340,7 @@
                                 }
                             } ?><br>
                         <label for="endDate">End Date:</label>  
-                            <input type="text" id="endDate" name="endDate" placeholder="(month/day/year)"
+                            <input type="text" id="endDate" name="endDate"
                                 value="<?php if(isset($_SESSION['endDate'])){echo htmlspecialchars($_SESSION['endDate']);} ?>" required />
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
