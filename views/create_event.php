@@ -172,7 +172,7 @@ if (!isset($_POST['createEvent'])){
                                     <label for="state">State:</label>
                                 </td>
                                 <td>
-                                    <select name="state" id="state" required>
+                                    <select name="state" style="width:66.5%;" required>
                                         <option value="" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == '') { echo 'selected="selected"';} } ?>></option>
                                         <option value="AL" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AL') { echo 'selected="selected"';} } ?>>Alabama</option>
                                         <option value="AK" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AK') { echo 'selected="selected"';} } ?>>Alaska</option>

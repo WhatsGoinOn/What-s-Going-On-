@@ -164,7 +164,7 @@ aside
 {
 	width:100%;
 }
-#eventName, #zip, #city, #state, #map input
+#eventName, #map input
 {
     display: inline-block;
     clear: left;
