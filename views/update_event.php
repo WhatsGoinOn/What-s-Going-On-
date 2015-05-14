@@ -106,41 +106,21 @@
             }
         </style>
         
-        <script type="text/javascript">
-            function Validate()
-            {           
-                var Title = document.getElementById("title");             
-                var Address = document.getElementById("address");
-                var City = document.getElementById("city");
-                var State = document.getElementById("state");
-                var Zip = document.getElementById("zip");
-                var StartDate = document.getElementById("startDate");
-                var StartTime = document.getElementById("startTime");
-                var StartAmPm = document.getElementById("start_am_pm");
-                var EndDate = document.getElementById("endDate");
-                var EndTime = document.getElementById("endTime");
-                var EndAmPm = document.getElementById("end_am_pm");                
-                
-                if ()
-                {
-                   
-                    return false;
-                } 
-                else if ()
-                {
-                    
-                    return false;
-                }
-                else 
-                {
-                    return true;    
-                }            
-            }
+        <!-- Stuff for calendar search -->        
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script>
+            $(function() {
+                $( "#startDate" ).datepicker({ dateFormat: 'mm/dd/yy' }).val();
+                $( "#endDate" ).datepicker({ dateFormat: 'mm/dd/yy' }).val();
+            });            
         </script>               
 
     </head>
-
-    <body>
+    
+    <!-- init() is for calendar search -->
+    <body onload="init()">
         <div id="wrapper">
             
         <header>
@@ -168,7 +148,7 @@
                     <legend>Update Event:</legend>
                     <div>
                         <label for="title">Event Name:</label>  
-                            <input type="text" id="title" name="title" placeholder="Name"
+                            <input type="text" id="title" name="title"
                                value="<?php if(isset($_SESSION['title'])){echo htmlspecialchars($_SESSION['title']);} ?>" required/>
                                    <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -183,7 +163,7 @@
                         Yes<input type="radio" class="radioBtn" name="isFree" value="Yes" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) == 'Yes') { echo 'checked';} } ?> required> 
                         No<input type="radio" class="radioBtn" name="isFree" value="No" <?php if(isset($_SESSION['isFree'])){if(($_SESSION['isFree']) ==  'No') { echo 'checked';} } ?>><br>
                         <label for="address">Address:</label>  
-                            <input type="text" id="address" name="address" placeholder="Address"
+                            <input type="text" id="address" name="address" 
                                 value="<?php if(isset($_SESSION['address'])){echo htmlspecialchars($_SESSION['address']);} ?>" required/>
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -195,7 +175,7 @@
                                         }
                                     } ?><br>                    
                         <label for="city">City:</label>  
-                            <input type="text" id="city" name="city" placeholder="City"
+                            <input type="text" id="city" name="city"
                                value="<?php if(isset($_SESSION['city'])){echo htmlspecialchars($_SESSION['city']);} ?>" required/>
                                    <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -208,7 +188,7 @@
                                     } ?><br>                        
                         <label for="state">State:</label>
                             <select name="state" id="state" required>
-                                <option value="" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == '') { echo 'selected="selected"';} } ?>>State:</option>
+                                <option value="" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == '') { echo 'selected="selected"';} } ?>></option>
                                 <option value="AL" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AL') { echo 'selected="selected"';} } ?>>Alabama</option>
                                 <option value="AK" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AK') { echo 'selected="selected"';} } ?>>Alaska</option>
                                 <option value="AS" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AS') { echo 'selected="selected"';} } ?>>American Samoa</option>
@@ -278,8 +258,8 @@
                                             }
                                         }
                                     } ?><br>    
-                        <label for="zip">Zip Code:</label>  
-                            <input type="text" id="zip" name="zip" placeholder="five digit zip"
+                        <label for="zip">Zip Code (5 digits):</label>  
+                            <input type="text" id="zip" name="zip" 
                                value="<?php if(isset($_SESSION['zip'])){echo htmlspecialchars($_SESSION['zip']);} ?>" required />
                                    <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -295,7 +275,7 @@
                                         }
                                     } ?><br>
                         <label for="startDate">Start Date:</label>  
-                            <input type="text" id="startDate" name="startDate" placeholder="(month/day/year)"
+                            <input type="text" id="startDate" name="startDate"
                                 value="<?php if(isset($_SESSION['startDate'])){echo htmlspecialchars($_SESSION['startDate']);} ?>" required />
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -312,7 +292,7 @@
                                     } ?><br>
                         <label for="startTime">Start Time:</label>
                             <select name="startTime" id="startTime" required>
-                                <option value="">Start Time:</option>
+                                <option value=""></option>
                                 <?php  
                                     $min = "00";
                                     $hour = 12;
@@ -360,7 +340,7 @@
                                 }
                             } ?><br>
                         <label for="endDate">End Date:</label>  
-                            <input type="text" id="endDate" name="endDate" placeholder="(month/day/year)"
+                            <input type="text" id="endDate" name="endDate"
                                 value="<?php if(isset($_SESSION['endDate'])){echo htmlspecialchars($_SESSION['endDate']);} ?>" required />
                                     <?php if(isset($event)) {
                                         if ($event->errors) {
@@ -379,7 +359,7 @@
                                     } ?><br>
                         <label for="endTime" id="endTimeLabel">End Time:</label>
                             <select name="endTime" id="endTime" required>
-                                <option value="">End Time:</option>
+                                <option value=""></option>
                                 <?php 
                                 $min = "00";
                                 $hour = 12;
@@ -451,7 +431,7 @@
                         <input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
                                 
                         <input type="hidden" name="eventID" value="<?php echo htmlspecialchars($_SESSION['eventID'])?>">
-                        <input style="margin-bottom: 4%; height: 2em;" type="submit" value="Update Event" onclick="return Validate()" name="updateEvent"/>                      
+                        <input style="margin-bottom: 4%; height: 2em;" type="submit" value="Update Event" name="updateEvent"/>           
                     </div>
                 </fieldset> 
             </form>                 
@@ -478,4 +458,5 @@ if(isset($_SESSION['endDate'])) unset($_SESSION['endDate']);
 if(isset($_SESSION['endTime'])) unset($_SESSION['endTime']);
 if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
 if(isset($_SESSION['description'])) unset($_SESSION['description']);
+session_write_close();
 ?>
