@@ -211,7 +211,7 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 }
 #createEventSection input
 {
-	width: 28%;
+	width: 26%;
 	height: 20px;
 }
 #createEventSection input[type=checkbox]
