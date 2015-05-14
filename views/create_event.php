@@ -154,7 +154,7 @@ if (!isset($_POST['createEvent'])){
     		  				        <label for="city">City:</label> 
     		  				    </td>
     		  				    <td>
-    		  				        <input type="text" id="city" name="city" 
+    		  				        <input type="text" name="city" 
                                    value="<?php if(isset($_SESSION['city'])){echo htmlspecialchars($_SESSION['city']);} ?>" required/>
                                        <?php if(isset($event)) {
                                             if ($event->errors) {
