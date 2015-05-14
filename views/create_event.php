@@ -250,7 +250,7 @@ if (!isset($_POST['createEvent'])){
                                     <label for="zip">Zip Code (5 digits):</label> 
                                 </td>
                                 <td>
-                                    <input type="text" id="zip" name="zip"
+                                    <input type="text" name="zip"
                                     value="<?php if(isset($_SESSION['zip'])){echo htmlspecialchars($_SESSION['zip']);} ?>" required />
                                         <?php if(isset($event)) {
                                             if ($event->errors) {
