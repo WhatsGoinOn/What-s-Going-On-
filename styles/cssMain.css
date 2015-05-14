@@ -244,6 +244,10 @@ textarea
 {
 	color:red;
 }
+td
+{
+	padding:2px;
+}
 /*Regitser Page-------------------------------------*/
 .register
 {
