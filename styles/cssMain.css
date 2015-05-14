@@ -27,7 +27,7 @@ header
 {
 	height: 130px;
     background:#F0F0F0;
-    border:1px solid #CCC;
+    border-bottom:1px solid #CCC;
     width:100%;
 }
 header h1
@@ -164,7 +164,7 @@ aside
 {
 	width:100%;
 }
-#eventName, #zip, #city, #state, #map input
+#eventName, #map input
 {
     display: inline-block;
     clear: left;
@@ -205,10 +205,6 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 	float: left;
 	clear:both;
 }
-#createEventSection textarea, img
-{
-	margin-left: 1.5%;
-}
 #createEventSection input
 {
 	width: 27%;
@@ -240,6 +236,10 @@ textarea
 	margin-bottom:10px;
 	margin-top:15px;
 }*/
+#createEventSection img
+{
+	margin-left: 1.5%;
+}
 .error
 {
 	color:red;

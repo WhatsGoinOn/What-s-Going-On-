@@ -154,7 +154,7 @@ if (!isset($_POST['createEvent'])){
     		  				        <label for="city">City:</label> 
     		  				    </td>
     		  				    <td>
-    		  				        <input type="text" id="city" name="city" 
+    		  				        <input type="text" name="city" 
                                    value="<?php if(isset($_SESSION['city'])){echo htmlspecialchars($_SESSION['city']);} ?>" required/>
                                        <?php if(isset($event)) {
                                             if ($event->errors) {
@@ -172,7 +172,7 @@ if (!isset($_POST['createEvent'])){
                                     <label for="state">State:</label>
                                 </td>
                                 <td>
-                                    <select name="state" id="state" required>
+                                    <select name="state" style="width:66.5%;" required>
                                         <option value="" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == '') { echo 'selected="selected"';} } ?>></option>
                                         <option value="AL" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AL') { echo 'selected="selected"';} } ?>>Alabama</option>
                                         <option value="AK" <?php if(isset($_SESSION['state'])){if(($_SESSION['state']) == 'AK') { echo 'selected="selected"';} } ?>>Alaska</option>
@@ -250,7 +250,7 @@ if (!isset($_POST['createEvent'])){
                                     <label for="zip">Zip Code (5 digits):</label> 
                                 </td>
                                 <td>
-                                    <input type="text" id="zip" name="zip"
+                                    <input type="text" name="zip"
                                     value="<?php if(isset($_SESSION['zip'])){echo htmlspecialchars($_SESSION['zip']);} ?>" required />
                                         <?php if(isset($event)) {
                                             if ($event->errors) {
