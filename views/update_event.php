@@ -145,7 +145,7 @@
             <form id="createEvent" name="createEvent" method="post" action="/WhatsGoingOn/createEventHandler.php" enctype="multipart/form-data">        
             
                 <fieldset>
-                    <legend>Create Event:</legend>
+                    <legend>Update Event:</legend>
                     <div>
                         <table border="0">
                             <tr>
@@ -503,7 +503,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <input type="submit" value="Create Event" name="createEvent"/><br/>                
+                        <input type="submit" value="Update Event" name="updateEvent"/><br/>                
                     </div>
                 </fieldset> 
             </form>                 
