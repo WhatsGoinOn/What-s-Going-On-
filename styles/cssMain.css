@@ -27,7 +27,7 @@ header
 {
 	height: 130px;
     background:#F0F0F0;
-    border-bottom: 1px solid #CCC;
+    border:1px solid #CCC;
     width:100%;
 }
 header h1
@@ -197,7 +197,7 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 	color:#FF6600;
 }
 /*Create Events Page--------------------------------------------*/
-/*#createEventSection label
+#createEventSection label
 {
 	margin-left:1%;
 	padding:0.7%;
@@ -212,16 +212,11 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 #createEventSection input
 {
 	width: 27%;
-	height: 22px;
+	height: 20px;
 }
 #createEventSection input[type=checkbox]
 {
 	width:2%;
-}
-#createEventSection input[type=file]
-{
-	margin-top:26px;
-	
 }
 #zip
 {
@@ -245,13 +240,6 @@ textarea
 	margin-bottom:10px;
 	margin-top:15px;
 }
-#CreateEventbtn
-{
-	margin-bottom: 4%;
-	clear:all;
-	margin-top:30px;
-	margin-left:-250px; 
-}*/
 .error
 {
 	color:red;
