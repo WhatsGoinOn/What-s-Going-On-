@@ -431,7 +431,7 @@
                         <input type="checkbox" id="private" name="chk_tags[]" value="Private" />Private<br>
                                 
                         <input type="hidden" name="eventID" value="<?php echo htmlspecialchars($_SESSION['eventID'])?>">
-                        <input style="margin-bottom: 4%; height: 2em;" type="submit" value="Update Event" onclick="return Validate()" name="updateEvent"/>                      
+                        <input style="margin-bottom: 4%; height: 2em;" type="submit" value="Update Event" name="updateEvent"/>           
                     </div>
                 </fieldset> 
             </form>                 
