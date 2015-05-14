@@ -43,7 +43,7 @@
 	<body onload="init()">
 		<div id="wrapper">			
     		<header>
-    			<h1>What's Going On?<!--img src="" alt="What's Going On?">--></h1>
+    			<h1><img src="" alt="What's Going On?"></h1>
     			<div id="login">			    
     				<?php require_once("login/loginHandler.php"); ?>
     			</div>			
