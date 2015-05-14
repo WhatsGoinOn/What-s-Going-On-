@@ -197,7 +197,7 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 	color:#FF6600;
 }
 /*Create Events Page--------------------------------------------*/
-#createEventSection label
+/*#createEventSection label
 {
 	margin-left:1%;
 	padding:0.7%;
@@ -217,6 +217,11 @@ input[type=submit]:hover, #map input[type=button]:hover, #createEventSection inp
 #createEventSection input[type=checkbox]
 {
 	width:2%;
+}
+#createEventSection input[type=file]
+{
+	margin-top:26px;
+	
 }
 #zip
 {
@@ -246,7 +251,7 @@ textarea
 	clear:all;
 	margin-top:30px;
 	margin-left:-250px; 
-}
+}*/
 .error
 {
 	color:red;

@@ -375,7 +375,7 @@ if (!isset($_POST['createEvent'])){
                             } ?><br>
                         <!-- Image Upload section -->
 						<input type="hidden" name="MAX_FILE_SIZE" value="65535">
-						<label for="userfile" style="margin-top:2%; width:25%;">Event Image (max 63KB):</label>
+						<label for="userfile" style="margin-top:2%; width:22%;">Event Image (max 63KB):</label>
 						<input name="userfile" type="file" id="userfile">
 						<?php if(isset($event)) {
                                 if ($event->errors) {
