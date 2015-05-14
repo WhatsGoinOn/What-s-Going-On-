@@ -94,7 +94,9 @@ class Event
         $endDate = date("m/d/Y", strtotime($this->EndDateTime));
         if ($startDate == $endDate){
            $endDate = date("g:i A", strtotime($this->EndDateTime)); 
-        }        
+        }else{
+           $endDate = date("m/d/Y g:i A", strtotime($this->EndDateTime));
+        }       
         $startDate = date("m/d/Y g:i A", strtotime($this->StartDateTime));
         
 		
@@ -132,7 +134,9 @@ EOL;
         $endDate = date("m/d/Y", strtotime($this->EndDateTime));
         if ($startDate == $endDate){
            $endDate = date("g:i A", strtotime($this->EndDateTime)); 
-        }        
+        }else{
+           $endDate = date("m/d/Y g:i A", strtotime($this->EndDateTime));
+        }       
         $startDate = date("m/d/Y g:i A", strtotime($this->StartDateTime));
 		
 		echo <<<EOL
