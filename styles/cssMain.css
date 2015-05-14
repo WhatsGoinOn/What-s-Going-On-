@@ -182,7 +182,7 @@ input[type=checkbox]
 {
 	margin-right:2em;
 }
-input[type=submit], #createEventSection input[type=button]
+input[type=submit]
 {
 	height: 2.2em;
 	margin-top:1%;
