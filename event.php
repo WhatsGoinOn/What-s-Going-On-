@@ -104,7 +104,7 @@ EOL;
                         if ($startDate == $endDate){
                            $endDate = date("g:i A", strtotime($event->EndDateTime)); 
                         }else{
-                           $endDate = date("m/d/Y g:i A", strtotime($this->EndDateTime));
+                           $endDate = date("m/d/Y g:i A", strtotime($event->EndDateTime));
                         }
                         $startDate = date("m/d/Y g:i A", strtotime($event->StartDateTime));
                     ?>	  			
