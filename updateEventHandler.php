@@ -6,6 +6,8 @@ $eventOwnerName;
 require_once("login/config/db.php");
 // load the create event class
 require_once("classes/Event.php");
+// load the image upload class
+require_once("classes/Upload.php");
 
 // create the createEvent object. when this object is created, it will do all new event stuff automatically
 // so this single line handles the entire update event process.
