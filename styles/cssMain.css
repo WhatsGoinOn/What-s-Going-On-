@@ -168,7 +168,7 @@ aside
 {
     display: inline-block;
     clear: left;
-    width: 150px;
+    width: 250px;
     height:20px;
     clear:left;
     margin-top:1%;
@@ -400,7 +400,7 @@ footer
 
 #eventName p{
 	font-size:1em;
-	width:200px;
+	width:400px;
 }
 
 #eventName .descriptionE{
@@ -410,7 +410,6 @@ footer
 #searchList {
 	width: 100%;
 }
-
 /* Cancelling events */
 .cancelEvent {
 	display: inline;
