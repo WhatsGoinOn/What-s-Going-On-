@@ -25,7 +25,7 @@ if (isset($login)) {
 
     <input type="submit"  name="login" value="Log in" />&nbsp;&nbsp;
     
-    <a href="/WhatsGoingOn/login/registrationHandler.php">or Create account</a>
+    <a href="/WhatsGoingOn/login/registrationHandler.php">Create account</a>
 
 </form>
 
