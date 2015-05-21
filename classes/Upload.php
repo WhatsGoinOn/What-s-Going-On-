@@ -89,37 +89,47 @@
 									return $imageID;
 								} catch(PDOException $e) {
 									$this->errors[] = 'Error : ' .$e->getMessage();
+									return null;
 								}
 							} else {
 								$this->errors[] = "File is not allowed type.";
+								return null;
 							}
 						} else {
 							$this->errors[] = "File size too large.";
+							return null;
 						}
 					} else {
 						switch($_FILES['userfile']['error']) {
 							case 0: //no error; possible file attack!
 							  $this->errors[] = "There was a problem with your upload.";
+							  return null;
 							  break;
 							case 1: //uploaded file exceeds the upload_max_filesize directive in php.ini
 							  $this->errors[] = "The file you are trying to upload is too big.";
+							  return null;
 							  break;
 							case 2: //uploaded file exceeds the max file size in the html form
 							  $this->errors[] = "The file you are trying to upload is too big.";
+							  return null;
 							  break;
 							case 3: //uploaded file was only partially uploaded
 							  $this->errors[] = "The file you are trying upload was only partially uploaded.";
+							  return null;
 							  break;
 							case 4: //no file was uploaded
 							  $this->errors[] = "You must select an image for upload.";
+							  return null;
 							  break;
 							default: //a default error, just in case!
 							  $this->errors[] = "There was a problem with your upload.";
+							  return null;
 							  break;
 						}
 					}
 				} else {
 					$this->errors[] = "No file uploaded.";
+					return null;
 				}
 			} else {
 				$this->errors[] = "Image purpose not specified.";

@@ -1,23 +1,4 @@
-<?php 
-    // show potential errors / feedback (from event object)
-    if (isset($event)) {
-        if ($event->errors) {
-            foreach ($event->errors as $error) {
-                if ($error == "Sorry, your event creation failed. Please go back and try again." 
-                    || $error == "Sorry, no database connection."
-                    || $error == "An unknown error occurred."
-                    || $error == "Sorry, that event has already been created."){
-                    echo $error . "<br>";
-                }            
-            }
-        }
-        if ($event->messages) {
-            foreach ($event->messages as $message) {
-                echo $message;
-            }
-        }
-    }
-
+<?php
     if (!isset($_POST["updateEvent"])) {
         $event = new Event();
         if (isset($_GET["id"])) {
@@ -83,6 +64,25 @@
             session_write_close();
         }
     }
+
+	// show potential errors / feedback (from event object)
+    if (isset($event)) {
+        if ($event->errors) {
+            foreach ($event->errors as $error) {
+                if ($error == "Sorry, your event creation failed. Please go back and try again." 
+                    || $error == "Sorry, no database connection."
+                    || $error == "An unknown error occurred."
+                    || $error == "Sorry, that event has already been created."){
+                    echo $error . "<br>";
+                }            
+            }
+        }
+        if ($event->messages) {
+            foreach ($event->messages as $message) {
+                echo $message;
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -142,8 +142,8 @@
         </nav>
       
         <section id="createEventSection">
-            <form id="createEvent" name="createEvent" method="post" action="/WhatsGoingOn/createEventHandler.php" enctype="multipart/form-data">        
-            
+            <form id="createEvent" name="createEvent" method="post" action="" enctype="multipart/form-data">        
+            	<input type="hidden" name="eventID" value="<?php echo($_GET["id"]) ?>">
                 <fieldset>
                     <legend>Update Event:</legend>
                     <div>

@@ -491,11 +491,21 @@ EOL;
 					
 					if (count($upload->errors) <= 0) {
 	                    // write new event data into database
-	                    $sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree, ImageID)
+	                    //Hack fix for no image uploaded because of non-PDO query
+	                    $sql = "";
+	                    if (!is_null($_imageID)) {
+	                    	$sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree, ImageID)
 	                            VALUES('" . $userID . "', '" . $title . "', '" . $description . "', '" . $convertedStartDateTime . "',
 	                            '" . $convertedEndDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', 
 	                            '" . $isFree . "', " . $_imageID . ");";
-	                    $query_new_event_insert = $this->db_connection->query($sql);
+	                    } else {
+	                    	$sql = "INSERT INTO event (OwnerID, Title, Description, StartDateTime, EndDateTime, Address, City, State, Zip, IsFree)
+	                            VALUES('" . $userID . "', '" . $title . "', '" . $description . "', '" . $convertedStartDateTime . "',
+	                            '" . $convertedEndDateTime . "', '" . $address . "', '" . $city . "', '" . $state . "', '" . $zip . "', 
+	                            '" . $isFree . "');";
+	                    }
+						$query_new_event_insert = $this->db_connection->query($sql);
+	                    
 						
 	                    // if event has been added successfully
 	                    if ($query_new_event_insert) {
@@ -552,6 +562,7 @@ EOL;
         }
     }  
 
+	//==========================UPDATE EVENT================================
     private function updateEvent(){
         $todaysDateTime = new DateTime();            
         $startDateTime;
@@ -806,17 +817,34 @@ EOL;
 
                 if ($query_zip_check->num_rows != 1){
                     $this->errors[] = "Sorry, please enter a valid zipcode";
-                }elseif ($query_event_check->num_rows == 1) {
-                    $this->errors[] = "Sorry, that event has already been created.";
                 } else {
+                	
+					//If everything is good so far, and an image was included, attempt to upload the image first
+                	$upload = new Upload();
+					
+                	if (isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0)  {
+						$_imageID = $upload->uploadImage(0);
+						if(!$upload->errors && !is_numeric($_imageID)) {
+							$upload->errors[] = "There was an issue with the image upload.";
+						}
+					}
+					
                     // write updated event data into database
-                    
-                    $sql = "UPDATE event SET Title = '" . $title . "', Description = '" . $description . "', 
+                    //Hack fix for non-parameterized queries
+                    $sql = "";
+                    if (!is_null($_imageID)) {
+                    	$sql = "UPDATE event SET Title = '" . $title . "', Description = '" . $description . "', 
+                            StartDateTime = '" . $convertedStartDateTime . "', EndDateTime = '" . $convertedEndDateTime . "', 
+                            Address = '" . $address . "', City = '" . $city . "', State = '" . $state . "', Zip = '" . $zip . "', 
+                            IsFree = '" . $isFree . "', ImageID = " . $_imageID . " WHERE ID = '" . $eventID . "'";
+                    } else {
+                    	$sql = "UPDATE event SET Title = '" . $title . "', Description = '" . $description . "', 
                             StartDateTime = '" . $convertedStartDateTime . "', EndDateTime = '" . $convertedEndDateTime . "', 
                             Address = '" . $address . "', City = '" . $city . "', State = '" . $state . "', Zip = '" . $zip . "', 
                             IsFree = '" . $isFree . "' WHERE ID = '" . $eventID . "'";
+                    }
                             
-                            $query_update_event_insert = $this->db_connection->query($sql);
+                    $query_update_event_insert = $this->db_connection->query($sql);
 
                     // if event has been updated successfully
                     if ($query_update_event_insert) {
@@ -838,6 +866,9 @@ EOL;
                         if(isset($_SESSION['end_am_pm'])) unset($_SESSION['end_am_pm']);
                         if(isset($_SESSION['description'])) unset($_SESSION['description']);
                         session_write_close();
+						
+						header("Location: http://itweb.fvtc.edu/WhatsGoingOn/event.php?id=" . $_POST['eventID']);
+						exit();
                     } else {
                         $this->errors[] = "Sorry, your event creation failed. Please go back and try again.";
                     }

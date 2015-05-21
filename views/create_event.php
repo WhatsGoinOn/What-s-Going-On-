@@ -98,7 +98,7 @@ if (!isset($_POST['createEvent'])){
 	  	</nav>
 	  
 	  	<section id="createEventSection">
-	  		<form id="createEvent" name="createEvent" method="post" action="/WhatsGoingOn/createEventHandler.php" enctype="multipart/form-data">		
+	  		<form id="createEvent" name="createEvent" method="post" action="" enctype="multipart/form-data">		
 			
 				<fieldset>
 					<legend>Create Event:</legend>

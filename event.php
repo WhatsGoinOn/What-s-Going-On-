@@ -103,7 +103,9 @@ EOL;
                         $endDate = date("m/d/Y", strtotime($event->EndDateTime));
                         if ($startDate == $endDate){
                            $endDate = date("g:i A", strtotime($event->EndDateTime)); 
-                        }        
+                        }else{
+                           $endDate = date("m/d/Y g:i A", strtotime($event->EndDateTime));
+                        }
                         $startDate = date("m/d/Y g:i A", strtotime($event->StartDateTime));
                     ?>	  			
 		  			
@@ -111,7 +113,7 @@ EOL;
 		  			<p><?php echo($event->Address);?></p>
 		  			<p><?php echo($event->City);?>&nbsp;<?php echo($event->State);?>&nbsp;<?php echo($event->ZIP);?></p>
 		  			<hr>
-		  			<p class="descriptionE"><?php echo($event->Description); ?></p>	  			
+		  			<p class="descriptionE"><?php echo($event->Description); ?></p>    		  					
 		  		</div>	
 		  		
 		  		<div id="">
