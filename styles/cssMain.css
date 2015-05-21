@@ -75,7 +75,7 @@ nav
 nav ul
 {
 	overflow: auto;
-	margin-left: auto;
+	margin-left: 30%;
 	margin-right: auto;
 }
 nav a
