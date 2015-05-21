@@ -830,10 +830,19 @@ EOL;
 					}
 					
                     // write updated event data into database
-                    $sql = "UPDATE event SET Title = '" . $title . "', Description = '" . $description . "', 
+                    //Hack fix for non-parameterized queries
+                    $sql = "";
+                    if (!is_null($_imageID)) {
+                    	$sql = "UPDATE event SET Title = '" . $title . "', Description = '" . $description . "', 
+                            StartDateTime = '" . $convertedStartDateTime . "', EndDateTime = '" . $convertedEndDateTime . "', 
+                            Address = '" . $address . "', City = '" . $city . "', State = '" . $state . "', Zip = '" . $zip . "', 
+                            IsFree = '" . $isFree . "', ImageID = " . $_imageID . " WHERE ID = '" . $eventID . "'";
+                    } else {
+                    	$sql = "UPDATE event SET Title = '" . $title . "', Description = '" . $description . "', 
                             StartDateTime = '" . $convertedStartDateTime . "', EndDateTime = '" . $convertedEndDateTime . "', 
                             Address = '" . $address . "', City = '" . $city . "', State = '" . $state . "', Zip = '" . $zip . "', 
                             IsFree = '" . $isFree . "' WHERE ID = '" . $eventID . "'";
+                    }
                             
                     $query_update_event_insert = $this->db_connection->query($sql);
 
