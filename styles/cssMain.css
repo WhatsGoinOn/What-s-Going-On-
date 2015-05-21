@@ -27,7 +27,7 @@ header
 {
 	height: 130px;
     background:#F0F0F0;
-    background-image: url("../images/header.gif");
+    background-image: url("../images/hands.png");
     border-bottom:1px solid #CCC;
     width:100%;
 }
@@ -48,6 +48,21 @@ header a
 {
 	float:right;
 	padding-right: 10px;
+}
+#login a
+{
+	border-radius: 0.2em;
+    box-shadow: 0.5em 0.5em 0.5em #888888;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding:6px;
+    font-size: 16px;
+    color:#000000;
+    text-decoration:none;
+    margin-bottom: 2%;
+    margin-left:-5%;
+    margin-top:10%;
+    background-color:#F0F0F0;
 }
 
 /*styling horizontal navigation*/
